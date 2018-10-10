@@ -1,0 +1,180 @@
+#SYRAH Annual input file, version number:
+1.0
+#DATA is for the west side in 1965
+#(year)
+1965
+#CONSTANTS THAT DETERMINE ARRAY BOUNDS
+#Number of districts
+#(NDISTRICTS)
+1
+#Number of groups
+#(NGROUPS)
+54
+#Number of stocks
+#(NSTOCKS)
+3
+#Number of age groups recorded: 
+#(NAGECOMPS)
+18
+#Age group labels (must be numeric!)
+#(AgeCompLabels)
+0.1 0.2 0.3 0.4 0.5 1.1 1.2 1.3 1.4 1.5 2.1 2.2 2.3 2.4 3.1 3.2 3.3 3.4
+#Flag for genetic data by district: 1 = Data available, -1 = Data Unavailable 
+#(GENdata)
+1
+#Genetic fractions
+#(GeneticFracData)
+#1) District ID, 2) Sample Size, 3) Igushik, 4) Wood, 5) Nushagak
+1     341     0.0898     0.5349     0.3119
+#Age composition for CATCH data
+#(AgeCompCATCH)
+1     3938     0     0     0.03552802     0     0     0     0.09893394     0.7244968     0     0     0     0.09616744     0.04487377     0     0     0     0     0
+#Age composition for ESCAPEMENT data
+#(AgeCompESC)
+1     2615     0     0     0.0002532584     0     0     0     0.1164272     0.7269192     0     0     0     0.1030911     0.0533093     0     0     0     0     0
+2     1097     0     0.001066098     0.002004629     0     0     0.002249944     0.2351387     0.6567828     0     0     0     0.07110153     0.03165624     0     0     0     0     0
+3     1e-100     0     0.02913312     0.0651482     0.01223487     0     0.004946185     0.4856242     0.2586278     0.002050846     0     0     0.08596988     0.0562649     0     0     0     0     0
+#Catch Data by District
+#(catchData)
+793323
+#Escapement Data by Stock
+#(escData)
+180840     675156     255793.5
+#PARAMETERS TO BE ESTIMATED
+#Number of Selectivity Parameters
+#(NSELECTPAR)
+5
+#Selectivity to estimate for AGE GROUPS NOT GROUPS age groups are 1.2, 1.3, 2.2, 2.3 ect...
+#1) Age Group, 2) phase, 3) StartValue, 4) min, 5) max
+#(TempSelectivity)
+1     1     0.100000930741     0.0     10
+2     1     1.20681     0.0     10
+3     1     2.62874     0.0     10
+4     1     0.100000582404     0.0     10
+5     1     1.46445     0.0     10
+#Number of Availability Parameters
+#(NAVAILPAR)
+3
+#Availability to estimate for stocks in districts (i.e. Alagnak in Egegik District)
+#1) Availability group, 2) phase, 3) StartValue, 4) min, 5) max
+#(TempAvailability)
+1     1     0.696066     0.0     10
+2     1     0.996789     0.0     10
+3     1     1.60715     0.0     10
+#Total run size of each group (thousands): group number, estimation phase [neg=ignore], startValue, min, max
+#(TempRunSize)
+1     -1     0     0     1905112.5021
+2     -1     0     0     1905112.5021
+3     1     69.5     0     1905112.5021
+4     -1     0     0     1905112.5021
+5     -1     0     0     1905112.5021
+6     -1     0     0     1905112.5021
+7     1     24931.8     0     1905112.5021
+8     1     198221     0     1905112.5021
+9     -1     0     0     1905112.5021
+10     -1     0     0     1905112.5021
+11     -1     0     0     1905112.5021
+12     1     23405.4     0     1905112.5021
+13     1     14205.1     0     1905112.5021
+14     -1     0     0     1905112.5021
+15     -1     0     0     1905112.5021
+16     -1     0     0     1905112.5021
+17     -1     0     0     1905112.5021
+18     -1     0     0     1905112.5021
+19     -1     0     0     1905112.5021
+20     1     754.205     0     1905112.5021
+21     1     2411.19     0     1905112.5021
+22     -1     0     0     1905112.5021
+23     -1     0     0     1905112.5021
+24     1     1547.24     0     1905112.5021
+25     1     193945     0     1905112.5021
+26     1     830653     0     1905112.5021
+27     -1     0     0     1905112.5021
+28     -1     0     0     1905112.5021
+29     -1     0     0     1905112.5021
+30     1     85644.6     0     1905112.5021
+31     1     34853.5     0     1905112.5021
+32     -1     0     0     1905112.5021
+33     -1     0     0     1905112.5021
+34     -1     0     0     1905112.5021
+35     -1     0     0     1905112.5021
+36     -1     0     0     1905112.5021
+37     -1     0     0     1905112.5021
+38     1     9624.79     0     1905112.5021
+39     1     44584.3     0     1905112.5021
+40     1     3014.35     0     1905112.5021
+41     -1     0     0     1905112.5021
+42     1     1219.21     0     1905112.5021
+43     1     178936     0     1905112.5021
+44     1     184258     0     1905112.5021
+45     1     506.107     0     1905112.5021
+46     -1     0     0     1905112.5021
+47     -1     0     0     1905112.5021
+48     1     40471.7     0     1905112.5021
+49     1     35866.4     0     1905112.5021
+50     -1     0     0     1905112.5021
+51     -1     0     0     1905112.5021
+52     -1     0     0     1905112.5021
+53     -1     0     0     1905112.5021
+54     -1     0     0     1905112.5021
+#GROUP CODES
+#These relate the groups to the various parameters of interest that could vary or be fixed
+#1) Group number, 2) DistrictID, 3) StreamID, 4) Selectivity pointer, 5) AgeComp group ID
+#(groupCodes)
+1     1     1     1     1
+2     1     1     2     2
+3     1     1     3     3
+4     1     1     4     4
+5     1     1     5     5
+6     1     1     1     6
+7     1     1     2     7
+8     1     1     3     8
+9     1     1     4     9
+10     1     1     5     10
+11     1     1     1     11
+12     1     1     2     12
+13     1     1     3     13
+14     1     1     4     14
+15     1     1     1     15
+16     1     1     2     16
+17     1     1     3     17
+18     1     1     4     18
+19     1     2     1     1
+20     1     2     2     2
+21     1     2     3     3
+22     1     2     4     4
+23     1     2     5     5
+24     1     2     1     6
+25     1     2     2     7
+26     1     2     3     8
+27     1     2     4     9
+28     1     2     5     10
+29     1     2     1     11
+30     1     2     2     12
+31     1     2     3     13
+32     1     2     4     14
+33     1     2     1     15
+34     1     2     2     16
+35     1     2     3     17
+36     1     2     4     18
+37     1     3     1     1
+38     1     3     2     2
+39     1     3     3     3
+40     1     3     4     4
+41     1     3     5     5
+42     1     3     1     6
+43     1     3     2     7
+44     1     3     3     8
+45     1     3     4     9
+46     1     3     5     10
+47     1     3     1     11
+48     1     3     2     12
+49     1     3     3     13
+50     1     3     4     14
+51     1     3     1     15
+52     1     3     2     16
+53     1     3     3     17
+54     1     3     4     18
+#Testing code to ensure data was read in correctly, DO NOT CHANGE
+#(testCode)
+12345

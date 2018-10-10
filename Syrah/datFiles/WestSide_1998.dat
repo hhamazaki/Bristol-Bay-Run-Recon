@@ -1,0 +1,180 @@
+#SYRAH Annual input file, version number:
+1.0
+#DATA is for the west side in 1998
+#(year)
+1998
+#CONSTANTS THAT DETERMINE ARRAY BOUNDS
+#Number of districts
+#(NDISTRICTS)
+1
+#Number of groups
+#(NGROUPS)
+54
+#Number of stocks
+#(NSTOCKS)
+3
+#Number of age groups recorded: 
+#(NAGECOMPS)
+18
+#Age group labels (must be numeric!)
+#(AgeCompLabels)
+0.1 0.2 0.3 0.4 0.5 1.1 1.2 1.3 1.4 1.5 2.1 2.2 2.3 2.4 3.1 3.2 3.3 3.4
+#Flag for genetic data by district: 1 = Data available, -1 = Data Unavailable 
+#(GENdata)
+-1
+#Genetic fractions
+#(GeneticFracData)
+#1) District ID, 2) Sample Size, 3) Igushik, 4) Wood, 5) Nushagak
+1     -1     0     0     0
+#Age composition for CATCH data
+#(AgeCompCATCH)
+1     4700     0     0.0009083564     0.009229213     0.001828242     0     0.0008276454     0.5707655     0.359317     0.006190037     0     0.0002256638     0.03074565     0.01957312     5.876896e-05     0     0.0003307591     0     0
+#Age composition for ESCAPEMENT data
+#(AgeCompESC)
+1     786     0     0     0     0     0     0     0.3907448     0.5550068     0.000574465     0     0     0.03461047     0.01906343     0     0     0     0     0
+2     1073     0     0     0     0     0     0.002395458     0.6801807     0.2874592     0     0     0     0.0277536     0.002210959     0     0     0     0     0
+3     770     0     0.00167412     0.02391089     0     0     0.0007262164     0.07022216     0.833825     0.06508036     0     0     0.0007546955     0.003806584     0     0     0     0     0
+#Catch Data by District
+#(catchData)
+2696125
+#Escapement Data by Stock
+#(escData)
+215904     1755768     507532.3
+#PARAMETERS TO BE ESTIMATED
+#Number of Selectivity Parameters
+#(NSELECTPAR)
+5
+#Selectivity to estimate for AGE GROUPS NOT GROUPS age groups are 1.2, 1.3, 2.2, 2.3 ect...
+#1) Age Group, 2) phase, 3) StartValue, 4) min, 5) max
+#(TempSelectivity)
+1     2     0.690729     0.0     10
+2     2     1.079503     0.0     10
+3     2     1.083164     0.0     10
+4     2     0.887294     0.0     10
+5     2     1.75931     0.0     10
+#Number of Availability Parameters
+#(NAVAILPAR)
+3
+#Availability to estimate for stocks in districts (i.e. Alagnak in Egegik District)
+#1) Availability group, 2) phase, 3) StartValue, 4) min, 5) max
+#(TempAvailability)
+1     -1     0.510474133333333     0     10
+2     -1     1.4236348     0     10
+3     -1     1.0658914     0     10
+#Total run size of each group (thousands): group number, estimation phase [neg=ignore], startValue, min, max
+#(TempRunSize)
+1     -1     0     0     5175329.2674
+2     1     1.00000000057458     0     5175329.2674
+3     1     1.00000000057458     0     5175329.2674
+4     1     1.00000000057458     0     5175329.2674
+5     -1     0     0     5175329.2674
+6     1     1.00000000057458     0     5175329.2674
+7     1     112674     0     5175329.2674
+8     1     160080     0     5175329.2674
+9     1     156.963     0     5175329.2674
+10     -1     0     0     5175329.2674
+11     1     1.00000000057458     0     5175329.2674
+12     1     10022.2     0     5175329.2674
+13     1     5651.97     0     5175329.2674
+14     1     1.00000000057458     0     5175329.2674
+15     -1     0     0     5175329.2674
+16     1     1.00000000057458     0     5175329.2674
+17     -1     0     0     5175329.2674
+18     -1     0     0     5175329.2674
+19     -1     0     0     5175329.2674
+20     1     435.858     0     5175329.2674
+21     1     1.0000000669382     0     5175329.2674
+22     1     3879.59     0     5175329.2674
+23     -1     0     0     5175329.2674
+24     1     6490.59     0     5175329.2674
+25     1     2693071     0     5175329.2674
+26     1     1113761     0     5175329.2674
+27     1     1.00000000574577     0     5175329.2674
+28     -1     0     0     5175329.2674
+29     1     462.418     0     5175329.2674
+30     1     125467     0     5175329.2674
+31     1     42466.5     0     5175329.2674
+32     1     125.677     0     5175329.2674
+33     -1     0     0     5175329.2674
+34     1     725.351     0     5175329.2674
+35     -1     0     0     5175329.2674
+36     -1     0     0     5175329.2674
+37     -1     0     0     5175329.2674
+38     1     1898.94     0     5175329.2674
+39     1     26427.5     0     5175329.2674
+40     1     1.00000000201102     0     5175329.2674
+41     -1     0     0     5175329.2674
+42     1     519.204     0     5175329.2674
+43     1     64488.8     0     5175329.2674
+44     1     763846     0     5175329.2674
+45     1     52103.2     0     5175329.2674
+46     -1     0     0     5175329.2674
+47     1     1.00000000172373     0     5175329.2674
+48     1     710.811     0     5175329.2674
+49     1     4125.92     0     5175329.2674
+50     1     1.00000000201102     0     5175329.2674
+51     -1     0     0     5175329.2674
+52     1     1.00000000229831     0     5175329.2674
+53     -1     0     0     5175329.2674
+54     -1     0     0     5175329.2674
+#GROUP CODES
+#These relate the groups to the various parameters of interest that could vary or be fixed
+#1) Group number, 2) DistrictID, 3) StreamID, 4) Selectivity pointer, 5) AgeComp group ID
+#(groupCodes)
+1     1     1     1     1
+2     1     1     2     2
+3     1     1     3     3
+4     1     1     4     4
+5     1     1     5     5
+6     1     1     1     6
+7     1     1     2     7
+8     1     1     3     8
+9     1     1     4     9
+10     1     1     5     10
+11     1     1     1     11
+12     1     1     2     12
+13     1     1     3     13
+14     1     1     4     14
+15     1     1     1     15
+16     1     1     2     16
+17     1     1     3     17
+18     1     1     4     18
+19     1     2     1     1
+20     1     2     2     2
+21     1     2     3     3
+22     1     2     4     4
+23     1     2     5     5
+24     1     2     1     6
+25     1     2     2     7
+26     1     2     3     8
+27     1     2     4     9
+28     1     2     5     10
+29     1     2     1     11
+30     1     2     2     12
+31     1     2     3     13
+32     1     2     4     14
+33     1     2     1     15
+34     1     2     2     16
+35     1     2     3     17
+36     1     2     4     18
+37     1     3     1     1
+38     1     3     2     2
+39     1     3     3     3
+40     1     3     4     4
+41     1     3     5     5
+42     1     3     1     6
+43     1     3     2     7
+44     1     3     3     8
+45     1     3     4     9
+46     1     3     5     10
+47     1     3     1     11
+48     1     3     2     12
+49     1     3     3     13
+50     1     3     4     14
+51     1     3     1     15
+52     1     3     2     16
+53     1     3     3     17
+54     1     3     4     18
+#Testing code to ensure data was read in correctly, DO NOT CHANGE
+#(testCode)
+12345

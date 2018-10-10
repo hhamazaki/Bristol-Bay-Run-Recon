@@ -1,0 +1,186 @@
+#SYRAH Annual input file, version number:
+1.0
+#DATA is for the west side in 2006
+#(year)
+2006
+#CONSTANTS THAT DETERMINE ARRAY BOUNDS
+#Number of districts
+#(NDISTRICTS)
+1
+#Number of groups
+#(NGROUPS)
+54
+#Number of stocks
+#(NSTOCKS)
+3
+#Number of age groups recorded: 
+#(NAGECOMPS)
+18
+#Age group labels (must be numeric!)
+#(AgeCompLabels)
+0.1 0.2 0.3 0.4 0.5 1.1 1.2 1.3 1.4 1.5 2.1 2.2 2.3 2.4 3.1 3.2 3.3 3.4
+#Flag for genetic data by district: 1 = Data available, -1 = Data Unavailable 
+#(GENdata)
+1
+#Genetic fractions
+#(GeneticFracData)
+#1) District ID, 2) Sample Size, 3) Igushik, 4) Wood, 5) Nushagak
+1     1249     0.02123431     0.758436     0.19507
+#Age composition for CATCH data
+#(AgeCompCATCH)
+1     6221     0     8.671962e-05     0.006079479     0.000485216     0     2.050714e-05     0.2581347     0.615163     0.03438837     0     0     0.03091296     0.05450038     0     0.0002286602     0     0     0
+#Age composition for ESCAPEMENT data
+#(AgeCompESC)
+1     1106     0     0     0     0.0004939348     0     0     0.4922626     0.4648189     0.0006025255     0     0     0.01142586     0.0303961     0     0     0     0     0
+2     1790     0     0     0     0     0     0.0006769708     0.7759019     0.1486063     0.001163264     0     0     0.0664879     0.007163656     0     0     0     0     0
+3     1040     0     0.00876365     0.009278132     0.001576451     0     0     0.1983519     0.6793006     0.09331836     0     0     0.005201867     0.00420903     0     0     0     0     0
+#Catch Data by District
+#(catchData)
+10698095
+#Escapement Data by Stock
+#(escData)
+305268     4008102     548410
+#PARAMETERS TO BE ESTIMATED
+#Number of Selectivity Parameters
+#(NSELECTPAR)
+5
+#Selectivity to estimate for AGE GROUPS NOT GROUPS age groups are 1.2, 1.3, 2.2, 2.3 ect...
+#1) Age Group, 2) phase, 3) StartValue, 4) min, 5) max
+#(TempSelectivity)
+1     2     0.390656907     0.0     10
+2     2     0.3688386184     0.0     10
+3     2     1.0593275681     0.0     10
+4     2     1.201086056     0.0     10
+5     2     2.480090863     0.0     10
+#Number of Availability Parameters
+#(NAVAILPAR)
+3
+#Availability to estimate for stocks in districts (i.e. Alagnak in Egegik District)
+#1) Availability group, 2) phase, 3) StartValue, 4) min, 5) max
+#(TempAvailability)
+1     3     0.6133023757     0.0     10
+2     3     1.510860454     0.0     10
+3     3     1.175837168     0.0     10
+#Total run size of each group (thousands): group number, estimation phase [neg=ignore], startValue, min, max
+#(TempRunSize)
+1     -1     0     0     15559875
+2     1     1.00000000172749     0     15559875
+3     1     1.00000000172749     0     15559875
+4     1     385.9656737     0     15559875
+5     -1     0     0     15559875
+6     1     1.00000000172749     0     15559875
+7     1     188962.0591     0     15559875
+8     1     321567.1616     0     15559875
+9     1     471.56919     0     15559875
+10     -1     0     0     15559875
+11     -1     0     0     15559875
+12     1     4396.419483     0     15559875
+13     1     21160.50993     0     15559875
+14     -1     0     0     15559875
+15     1     1.00000000172749     0     15559875
+16     -1     0     0     15559875
+17     -1     0     0     15559875
+18     -1     0     0     15559875
+19     -1     0     0     15559875
+20     1     1.00000000431873     0     15559875
+21     1     27229.89554     0     15559875
+22     1     1.00000002677614     0     15559875
+23     -1     0     0     15559875
+24     1     4052.455609     0     15559875
+25     1     5811247.401     0     15559875
+26     1     5372420.571     0     15559875
+27     1     59388.43411     0     15559875
+28     -1     0     0     15559875
+29     -1     0     0     15559875
+30     1     550752.9164     0     15559875
+31     1     537946.0228     0     15559875
+32     -1     0     0     15559875
+33     1     1329.223557     0     15559875
+34     -1     0     0     15559875
+35     -1     0     0     15559875
+36     -1     0     0     15559875
+37     -1     0     0     15559875
+38     1     7596.565721     0     15559875
+39     1     30554.77785     0     15559875
+40     1     6098.708703     0     15559875
+41     -1     0     0     15559875
+42     1     1.00000000172749     0     15559875
+43     1     175486.2285     0     15559875
+44     1     2064586.359     0     15559875
+45     1     366245.2541     0     15559875
+46     -1     0     0     15559875
+47     -1     0     0     15559875
+48     1     4646.095277     0     15559875
+49     1     13326.01229     0     15559875
+50     -1     0     0     15559875
+51     1     1.00000000172749     0     15559875
+52     -1     0     0     15559875
+53     -1     0     0     15559875
+54     -1     0     0     15559875
+#GROUP CODES
+#These relate the groups to the various parameters of interest that could vary or be fixed
+#1) Group number, 2) DistrictID, 3) StreamID, 4) Selectivity pointer, 5) AgeComp group ID
+#(groupCodes)
+1     1     1     1     1
+2     1     1     2     2
+3     1     1     3     3
+4     1     1     4     4
+5     1     1     5     5
+6     1     1     1     6
+7     1     1     2     7
+8     1     1     3     8
+9     1     1     4     9
+10     1     1     5     10
+11     1     1     1     11
+12     1     1     2     12
+13     1     1     3     13
+14     1     1     4     14
+15     1     1     1     15
+16     1     1     2     16
+17     1     1     3     17
+18     1     1     4     18
+19     1     2     1     1
+20     1     2     2     2
+21     1     2     3     3
+22     1     2     4     4
+23     1     2     5     5
+24     1     2     1     6
+25     1     2     2     7
+26     1     2     3     8
+27     1     2     4     9
+28     1     2     5     10
+29     1     2     1     11
+30     1     2     2     12
+31     1     2     3     13
+32     1     2     4     14
+33     1     2     1     15
+34     1     2     2     16
+35     1     2     3     17
+36     1     2     4     18
+37     1     3     1     1
+38     1     3     2     2
+39     1     3     3     3
+40     1     3     4     4
+41     1     3     5     5
+42     1     3     1     6
+43     1     3     2     7
+44     1     3     3     8
+45     1     3     4     9
+46     1     3     5     10
+47     1     3     1     11
+48     1     3     2     12
+49     1     3     3     13
+50     1     3     4     14
+51     1     3     1     15
+52     1     3     2     16
+53     1     3     3     17
+54     1     3     4     18
+#Standard deviation for CATCH error distribution
+#(temp_sigmaCat)
+0.5
+#Standard deviation for ESCAPEMENT error distribution
+#(temp_sigmaEsc)
+0.1
+#Testing code to ensure data was read in correctly, DO NOT CHANGE
+#(testCode)
+12345
