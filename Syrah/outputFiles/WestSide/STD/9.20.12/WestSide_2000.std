@@ -1,0 +1,21 @@
+ index   name            value      std dev   
+     1   RunSize[7]      5.8009e+04 1.9437e+04
+     2   RunSize[8]      6.3920e+05 7.0316e+04
+     3   RunSize[9]      2.3425e-09 4.6527e-03
+     4   RunSize[12]     1.4979e+03 3.1487e+03
+     5   RunSize[13]     1.9397e+03 3.7689e+03
+     6   RunSize[25]     2.4719e+06 2.4728e+05
+     7   RunSize[26]     2.4204e+06 2.4572e+05
+     8   RunSize[27]     2.7662e+03 7.2932e+03
+     9   RunSize[30]     8.7577e+04 5.0840e+04
+    10   RunSize[31]     6.7114e+04 5.2733e+04
+    11   RunSize[43]     3.4703e+05 6.6692e+04
+    12   RunSize[44]     8.8277e+05 1.2075e+05
+    13   RunSize[45]     7.4177e+03 9.0537e+03
+    14   RunSize[48]     1.2724e+04 1.2443e+04
+    15   RunSize[49]     3.2689e+04 2.2183e+04
+    16   Selectivity[1]  4.8188e-01 1.5761e+03
+    17   Selectivity[2]  1.3418e+00 1.2225e+03
+    18   Selectivity[3]  1.6209e+00 1.4768e+03
+    19   Selectivity[4]  3.3617e-01 3.0628e+02
+    20   Selectivity[5]  1.2192e+00 2.8153e+03
