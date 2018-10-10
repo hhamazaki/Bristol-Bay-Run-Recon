@@ -6,7 +6,7 @@ Model Creators:
 This run reconstruction model is detailed in **A general model for salmon run reconstruction that accounts for interception and and differences in availability to harvest** [Cunningham et al. (2018)](http://www.nrcresearchpress.com/doi/abs/10.1139/cjfas-2016-0360#.W76LUCdRebU).
 
 Original Project Collaborators:
-Curry J. Cunningham, Trevor A. Branch, Tyler H. Dann, Matt Smith, James E. Seeb, Lisa W. Seeb, Ray Hilborn
+Curry J. Cunningham, Trevor A. Branch, Tyler H. Dann, Matt Smith, James E. Seeb, Lisa W. Seeb, Ray Hilborn, Lowell Fair, Tim Baker, Fred West.
 
 ## Purpose
 A general run reconstruction model for the sockeye salmon fishery in Bristol Bay, Alaska. This model leverages information from age and genetic composition samples to apportion mixed-stock catches and account for interception among terminal fishing districts.
