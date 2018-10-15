@@ -495,30 +495,30 @@ year,district,districtID,stream,subdistrict,fage,oage,prop
 2016,NaknekKvichak,324,,Kvi Set,0,3,0
 2016,NaknekKvichak,324,,Kvi Set,0,4,0
 2016,NaknekKvichak,324,,Kvi Set,0,5,0
-2016,NaknekKvichak,324,,Kvi Set,1,1,0.001000079
-2016,NaknekKvichak,324,,Kvi Set,1,2,0.416071612
-2016,NaknekKvichak,324,,Kvi Set,1,3,0.244302503
+2016,NaknekKvichak,324,,Kvi Set,1,1,0.000993253
+2016,NaknekKvichak,324,,Kvi Set,1,2,0.417072743
+2016,NaknekKvichak,324,,Kvi Set,1,3,0.243385162
 2016,NaknekKvichak,324,,Kvi Set,1,4,0
 2016,NaknekKvichak,324,,Kvi Set,1,5,0
 2016,NaknekKvichak,324,,Kvi Set,2,1,0
-2016,NaknekKvichak,324,,Kvi Set,2,2,0.219751489
-2016,NaknekKvichak,324,,Kvi Set,2,3,0.118874316
+2016,NaknekKvichak,324,,Kvi Set,2,2,0.219256778
+2016,NaknekKvichak,324,,Kvi Set,2,3,0.118357623
 2016,NaknekKvichak,324,,Kvi Set,2,4,0
 2016,NaknekKvichak,324,,Kvi Set,3,1,0
 2016,NaknekKvichak,324,,Kvi Set,3,2,0
 2016,NaknekKvichak,324,,Kvi Set,3,3,0
 2016,Nushagak,325,100,Igushik Set,0,2,0
-2016,Nushagak,325,100,Igushik Set,0,3,0.001831502
+2016,Nushagak,325,100,Igushik Set,0,3,0.001831941
 2016,Nushagak,325,100,Igushik Set,0,4,0
 2016,Nushagak,325,100,Igushik Set,0,5,0
 2016,Nushagak,325,100,Igushik Set,1,1,0
-2016,Nushagak,325,100,Igushik Set,1,2,0.062271062
-2016,Nushagak,325,100,Igushik Set,1,3,0.917582418
+2016,Nushagak,325,100,Igushik Set,1,2,0.062270562
+2016,Nushagak,325,100,Igushik Set,1,3,0.917582835
 2016,Nushagak,325,100,Igushik Set,1,4,0
 2016,Nushagak,325,100,Igushik Set,1,5,0
 2016,Nushagak,325,100,Igushik Set,2,1,0
-2016,Nushagak,325,100,Igushik Set,2,2,0.003663004
-2016,Nushagak,325,100,Igushik Set,2,3,0.014652015
+2016,Nushagak,325,100,Igushik Set,2,2,0.003662695
+2016,Nushagak,325,100,Igushik Set,2,3,0.014651967
 2016,Nushagak,325,100,Igushik Set,2,4,0
 2016,Nushagak,325,100,Igushik Set,3,1,0
 2016,Nushagak,325,100,Igushik Set,3,2,0
@@ -527,14 +527,14 @@ year,district,districtID,stream,subdistrict,fage,oage,prop
 2017,NaknekKvichak,324,,Kvi Set,0,3,0
 2017,NaknekKvichak,324,,Kvi Set,0,4,0
 2017,NaknekKvichak,324,,Kvi Set,0,5,0
-2017,NaknekKvichak,324,,Kvi Set,1,1,0.000562672
-2017,NaknekKvichak,324,,Kvi Set,1,2,0.469566083
-2017,NaknekKvichak,324,,Kvi Set,1,3,0.399592602
+2017,NaknekKvichak,324,,Kvi Set,1,1,0.000557338
+2017,NaknekKvichak,324,,Kvi Set,1,2,0.469197908
+2017,NaknekKvichak,324,,Kvi Set,1,3,0.399768744
 2017,NaknekKvichak,324,,Kvi Set,1,4,0
 2017,NaknekKvichak,324,,Kvi Set,1,5,0
 2017,NaknekKvichak,324,,Kvi Set,2,1,0
-2017,NaknekKvichak,324,,Kvi Set,2,2,0.05699965
-2017,NaknekKvichak,324,,Kvi Set,2,3,0.073278994
+2017,NaknekKvichak,324,,Kvi Set,2,2,0.057100974
+2017,NaknekKvichak,324,,Kvi Set,2,3,0.073374069
 2017,NaknekKvichak,324,,Kvi Set,2,4,0
 2017,NaknekKvichak,324,,Kvi Set,3,1,0
 2017,NaknekKvichak,324,,Kvi Set,3,2,0
@@ -543,14 +543,14 @@ year,district,districtID,stream,subdistrict,fage,oage,prop
 2017,Nushagak,325,100,Igushik Set,0,3,0
 2017,Nushagak,325,100,Igushik Set,0,4,0
 2017,Nushagak,325,100,Igushik Set,0,5,0
-2017,Nushagak,325,100,Igushik Set,1,1,0.00198749
-2017,Nushagak,325,100,Igushik Set,1,2,0.590475422
-2017,Nushagak,325,100,Igushik Set,1,3,0.396687295
-2017,Nushagak,325,100,Igushik Set,1,4,0.004279095
+2017,Nushagak,325,100,Igushik Set,1,1,0.001987422
+2017,Nushagak,325,100,Igushik Set,1,2,0.590476376
+2017,Nushagak,325,100,Igushik Set,1,3,0.396686476
+2017,Nushagak,325,100,Igushik Set,1,4,0.00427977
 2017,Nushagak,325,100,Igushik Set,1,5,0
 2017,Nushagak,325,100,Igushik Set,2,1,0
-2017,Nushagak,325,100,Igushik Set,2,2,0.00259572
-2017,Nushagak,325,100,Igushik Set,2,3,0.00397498
+2017,Nushagak,325,100,Igushik Set,2,2,0.002595111
+2017,Nushagak,325,100,Igushik Set,2,3,0.003974845
 2017,Nushagak,325,100,Igushik Set,2,4,0
 2017,Nushagak,325,100,Igushik Set,3,1,0
 2017,Nushagak,325,100,Igushik Set,3,2,0
@@ -560,14 +560,94 @@ year,district,districtID,stream,subdistrict,fage,oage,prop
 2017,Nushagak,325,300,WRSHA,0,4,0
 2017,Nushagak,325,300,WRSHA,0,5,0
 2017,Nushagak,325,300,WRSHA,1,1,0
-2017,Nushagak,325,300,WRSHA,1,2,0.856447689
-2017,Nushagak,325,300,WRSHA,1,3,0.136253041
-2017,Nushagak,325,300,WRSHA,1,4,0.00243309
+2017,Nushagak,325,300,WRSHA,1,2,0.856448427
+2017,Nushagak,325,300,WRSHA,1,3,0.136253734
+2017,Nushagak,325,300,WRSHA,1,4,0.002432613
 2017,Nushagak,325,300,WRSHA,1,5,0
 2017,Nushagak,325,300,WRSHA,2,1,0
-2017,Nushagak,325,300,WRSHA,2,2,0.00243309
-2017,Nushagak,325,300,WRSHA,2,3,0.00243309
+2017,Nushagak,325,300,WRSHA,2,2,0.002432613
+2017,Nushagak,325,300,WRSHA,2,3,0.002432613
 2017,Nushagak,325,300,WRSHA,2,4,0
 2017,Nushagak,325,300,WRSHA,3,1,0
 2017,Nushagak,325,300,WRSHA,3,2,0
 2017,Nushagak,325,300,WRSHA,3,3,0
+2018,NaknekKvichak,324,,Kvi Set,0,2,0
+2018,NaknekKvichak,324,,Kvi Set,0,3,0
+2018,NaknekKvichak,324,,Kvi Set,0,4,0
+2018,NaknekKvichak,324,,Kvi Set,0,5,0
+2018,NaknekKvichak,324,,Kvi Set,1,1,0
+2018,NaknekKvichak,324,,Kvi Set,1,2,0.506570371
+2018,NaknekKvichak,324,,Kvi Set,1,3,0.457369369
+2018,NaknekKvichak,324,,Kvi Set,1,4,0.004072584
+2018,NaknekKvichak,324,,Kvi Set,1,5,0
+2018,NaknekKvichak,324,,Kvi Set,2,1,0
+2018,NaknekKvichak,324,,Kvi Set,2,2,0.009821251
+2018,NaknekKvichak,324,,Kvi Set,2,3,0.021369225
+2018,NaknekKvichak,324,,Kvi Set,2,4,0.000798834
+2018,NaknekKvichak,324,,Kvi Set,3,1,0
+2018,NaknekKvichak,324,,Kvi Set,3,2,0
+2018,NaknekKvichak,324,,Kvi Set,3,3,0
+2018,NaknekKvichak,324,,Nak Set,0,2,0
+2018,NaknekKvichak,324,,Nak Set,0,3,0
+2018,NaknekKvichak,324,,Nak Set,0,4,0
+2018,NaknekKvichak,324,,Nak Set,0,5,0
+2018,NaknekKvichak,324,,Nak Set,1,1,0.0025
+2018,NaknekKvichak,324,,Nak Set,1,2,0.478705189
+2018,NaknekKvichak,324,,Nak Set,1,3,0.389975236
+2018,NaknekKvichak,324,,Nak Set,1,4,0
+2018,NaknekKvichak,324,,Nak Set,1,5,0
+2018,NaknekKvichak,324,,Nak Set,2,1,0
+2018,NaknekKvichak,324,,Nak Set,2,2,0.052370283
+2018,NaknekKvichak,324,,Nak Set,2,3,0.074891509
+2018,NaknekKvichak,324,,Nak Set,2,4,0
+2018,NaknekKvichak,324,,Nak Set,3,1,0
+2018,NaknekKvichak,324,,Nak Set,3,2,0
+2018,NaknekKvichak,324,,Nak Set,3,3,0.001556604
+2018,NaknekKvichak,324,,NRSHA,0,2,0
+2018,NaknekKvichak,324,,NRSHA,0,3,0
+2018,NaknekKvichak,324,,NRSHA,0,4,0
+2018,NaknekKvichak,324,,NRSHA,0,5,0
+2018,NaknekKvichak,324,,NRSHA,1,1,0.000350594
+2018,NaknekKvichak,324,,NRSHA,1,2,0.210868528
+2018,NaknekKvichak,324,,NRSHA,1,3,0.691719948
+2018,NaknekKvichak,324,,NRSHA,1,4,0.001401116
+2018,NaknekKvichak,324,,NRSHA,1,5,0
+2018,NaknekKvichak,324,,NRSHA,2,1,0.000350594
+2018,NaknekKvichak,324,,NRSHA,2,2,0.028046231
+2018,NaknekKvichak,324,,NRSHA,2,3,0.065929854
+2018,NaknekKvichak,324,,NRSHA,2,4,0.001332508
+2018,NaknekKvichak,324,,NRSHA,3,1,0
+2018,NaknekKvichak,324,,NRSHA,3,2,0
+2018,NaknekKvichak,324,,NRSHA,3,3,0
+2018,Nushagak,325,100,Igushik Set,0,2,0
+2018,Nushagak,325,100,Igushik Set,0,3,0
+2018,Nushagak,325,100,Igushik Set,0,4,0
+2018,Nushagak,325,100,Igushik Set,0,5,0
+2018,Nushagak,325,100,Igushik Set,1,1,0
+2018,Nushagak,325,100,Igushik Set,1,2,0.221774187
+2018,Nushagak,325,100,Igushik Set,1,3,0.778225813
+2018,Nushagak,325,100,Igushik Set,1,4,0
+2018,Nushagak,325,100,Igushik Set,1,5,0
+2018,Nushagak,325,100,Igushik Set,2,1,0
+2018,Nushagak,325,100,Igushik Set,2,2,0
+2018,Nushagak,325,100,Igushik Set,2,3,0
+2018,Nushagak,325,100,Igushik Set,2,4,0
+2018,Nushagak,325,100,Igushik Set,3,1,0
+2018,Nushagak,325,100,Igushik Set,3,2,0
+2018,Nushagak,325,100,Igushik Set,3,3,0
+2018,Nushagak,325,300,WRSHA,0,2,0
+2018,Nushagak,325,300,WRSHA,0,3,0
+2018,Nushagak,325,300,WRSHA,0,4,0
+2018,Nushagak,325,300,WRSHA,0,5,0
+2018,Nushagak,325,300,WRSHA,1,1,0
+2018,Nushagak,325,300,WRSHA,1,2,0.784883399
+2018,Nushagak,325,300,WRSHA,1,3,0.209302161
+2018,Nushagak,325,300,WRSHA,1,4,0
+2018,Nushagak,325,300,WRSHA,1,5,0
+2018,Nushagak,325,300,WRSHA,2,1,0
+2018,Nushagak,325,300,WRSHA,2,2,0.00581444
+2018,Nushagak,325,300,WRSHA,2,3,0
+2018,Nushagak,325,300,WRSHA,2,4,0
+2018,Nushagak,325,300,WRSHA,3,1,0
+2018,Nushagak,325,300,WRSHA,3,2,0
+2018,Nushagak,325,300,WRSHA,3,3,0
