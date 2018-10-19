@@ -2343,7 +2343,7 @@ fit.stock.recruit <- function(pdf=FALSE, wd=wd) {
 create.annual.summary <- function(year, side, wd=wd) {
   setwd(paste(wd, "/Syrah/outputFiles", sep=""))
   ### TESTING ###
-   # year <- 2013
+   # year <- 2018
    # side <- 'east'
   ###############
   
