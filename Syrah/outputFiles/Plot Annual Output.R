@@ -6,7 +6,7 @@
 #Purpose: Read output files for ADMB reconstruction and create descriptive plots
 #**************************************************************************
 require(PBSmodelling)
-require(xlsx)
+# require(xlsx)
 require(reshape2)
 require(ggplot2)
 require(beanplot)
@@ -2115,7 +2115,7 @@ create.total.run.table <- function(side, years, writeCSV=FALSE, wd=wd) {
   #####
   
   require(PBSmodelling)
-  require(xlsx)
+  # require(xlsx)
   
   setwd(paste(wd, "/Syrah/outputFiles", sep=""))
   if(side == 'west') {
