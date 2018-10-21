@@ -1398,14 +1398,14 @@ plot.avail.sel.time <- function(side, years, pdf=FALSE, plot.avail=FALSE, plot.s
 
 
 plot.apportioned.catch <- function(side, years, pdf=FALSE, separate=FALSE, write.nush.data=FALSE, write.table=FALSE, wd=wd) {
-  setwd(paste(wd, "//Syrah/outputFiles", sep=""))
+  setwd(paste(wd, "/Syrah/outputFiles", sep=""))
   ### TESTING ###
-#   side <- 'west'
-#   years <- 1963:2014
-#   pdf <- FALSE
-#   separate <- FALSE
-#   write.nush.data <- FALSE
-#   write.table <- TRUE
+  # side <- 'west'
+  # years <- 1963:2018
+  # pdf <- FALSE
+  # separate <- FALSE
+  # write.nush.data <- FALSE
+  # write.table <- TRUE
   ###
   n.select.par <- 5
   n.agecomps <- 18
@@ -1474,9 +1474,9 @@ plot.apportioned.catch <- function(side, years, pdf=FALSE, separate=FALSE, write
   #PLOTTING
   if(pdf == TRUE) {
     if(side == 'west') {
-      pdf(file='WestSide Figs/WestSide Apportioned Catches.pdf', height=8, width=8)
+      pdf(file='WestSide Figs/WestSide Apportioned Catches.pdf', height=8, width=10)
     } else {
-      pdf(file='EastSide Figs/EastSide Apportioned Catches.pdf', height=8, width=8)
+      pdf(file='EastSide Figs/EastSide Apportioned Catches.pdf', height=8, width=10)
     }
   }
   
@@ -1513,9 +1513,12 @@ plot.apportioned.catch <- function(side, years, pdf=FALSE, separate=FALSE, write
   #PLOT PROPORTIONAL CATCHES
   if(write.table==TRUE) {
     if(side=='west') {
-      write.xlsx(x=catches, file='WestSide Figs/WestSide Apportioned Catches.xlsx', sheetName='catches', append=FALSE)
+      # write.xlsx(x=catches, file='WestSide Figs/WestSide Apportioned Catches.xlsx', sheetName='catches', append=FALSE)
+      
     }else {
-      write.xlsx(x=catches, file='EastSide Figs/EastSide Apportioned Catches.xlsx', sheetName='catches', append=FALSE)
+      # write.xlsx(x=catches, file='EastSide Figs/EastSide Apportioned Catches.xlsx', sheetName='catches', append=FALSE)
+      # writexl::write_xlsx(x=catches, path='EastSide Figs/EastSide Apportioned Catches.xlsx')
+      # openxlsx::write.xlsx(x=catches, file='EastSide Figs/EastSide Apportioned Catches.xlsx', sheetName='catches')
     }
   }
 
@@ -1555,9 +1558,9 @@ plot.apportioned.catch <- function(side, years, pdf=FALSE, separate=FALSE, write
       list.props <- apply(temp.prop, c(1), quantile, probs=c(0.025,0.25,0.5,0.75,0.975))
       output <- cbind(names.stocks,list.mean,list.sd,list.cv,t(list.props))
       if(side=='west') {
-        write.xlsx(x=output, file='WestSide Figs/WestSide Apportioned Catches.xlsx', sheetName=names.districts[d], append=TRUE)
+        # write.xlsx(x=output, file='WestSide Figs/WestSide Apportioned Catches.xlsx', sheetName=names.districts[d], append=TRUE)
       }else {
-        write.xlsx(x=output, file='EastSide Figs/EastSide Apportioned Catches.xlsx', sheetName=names.districts[d], append=TRUE)
+        # write.xlsx(x=output, file='EastSide Figs/EastSide Apportioned Catches.xlsx', sheetName=names.districts[d], append=TRUE)
       }      
     }
   }#next d
@@ -1971,25 +1974,25 @@ create.brood <- function(side, years, reallocate=TRUE, allocateOffshore=TRUE, re
       write.csv(cbind(years,pred.baywide.total), file='WestSide Figs/Extras/West Complete Return.csv')
       
       if(s==1) {
-      	write.xlsx(x=cbind(c('Return Year', years), rbind(temp.data$AgeCompLabels,return.data[,,s])),
-      	           file=paste('WestSide Figs/ALL Return Table.xlsx', sep=''),
-      	           sheetName=names.stocks[s], row.names=FALSE, append=FALSE)
+      	# write.xlsx(x=cbind(c('Return Year', years), rbind(temp.data$AgeCompLabels,return.data[,,s])),
+      	#            file=paste('WestSide Figs/ALL Return Table.xlsx', sep=''),
+      	#            sheetName=names.stocks[s], row.names=FALSE, append=FALSE)
       	           
-      	write.xlsx(x=cbind(rbind(c('Brood Year', temp.data$AgeCompLabels),brood.data[,,s]), c('Escapement', rep(NA,max(offset)), escapements[,s]), 
-                                                                                       c('Recruits', rep(NA,max(offset)), recruits[,s]), 
-                                                                                       c('R/S', rep(NA,max(offset)), rps[,s])),
-      	           file=paste('WestSide Figs/ALL Brood Table.xlsx', sep=''),
-      	           sheetName=names.stocks[s], row.names=FALSE, append=FALSE)      	              	           	           
+      # 	write.xlsx(x=cbind(rbind(c('Brood Year', temp.data$AgeCompLabels),brood.data[,,s]), c('Escapement', rep(NA,max(offset)), escapements[,s]), 
+      #                                                                                  c('Recruits', rep(NA,max(offset)), recruits[,s]), 
+      #                                                                                  c('R/S', rep(NA,max(offset)), rps[,s])),
+      # 	           file=paste('WestSide Figs/ALL Brood Table.xlsx', sep=''),
+      # 	           sheetName=names.stocks[s], row.names=FALSE, append=FALSE)      	              	           	           
       }else {
-      	write.xlsx(x=cbind(c('Return Year', years), rbind(temp.data$AgeCompLabels,return.data[,,s])),
-      	           file=paste('WestSide Figs/ALL Return Table.xlsx', sep=''),
-      	           sheetName=names.stocks[s], row.names=FALSE, append=TRUE)
-      	           
-      	write.xlsx(x=cbind(rbind(c('Brood Year', temp.data$AgeCompLabels),brood.data[,,s]), c('Escapement', rep(NA,max(offset)), escapements[,s]), 
-                                                                                       c('Recruits', rep(NA,max(offset)), recruits[,s]), 
-                                                                                       c('R/S', rep(NA,max(offset)), rps[,s])),
-      	           file=paste('WestSide Figs/ALL Brood Table.xlsx', sep=''),
-      	           sheetName=names.stocks[s], row.names=FALSE, append=TRUE)      	         
+      # 	write.xlsx(x=cbind(c('Return Year', years), rbind(temp.data$AgeCompLabels,return.data[,,s])),
+      # 	           file=paste('WestSide Figs/ALL Return Table.xlsx', sep=''),
+      # 	           sheetName=names.stocks[s], row.names=FALSE, append=TRUE)
+      # 	           
+      # 	write.xlsx(x=cbind(rbind(c('Brood Year', temp.data$AgeCompLabels),brood.data[,,s]), c('Escapement', rep(NA,max(offset)), escapements[,s]), 
+      #                                                                                  c('Recruits', rep(NA,max(offset)), recruits[,s]), 
+      #                                                                                  c('R/S', rep(NA,max(offset)), rps[,s])),
+      # 	           file=paste('WestSide Figs/ALL Brood Table.xlsx', sep=''),
+      # 	           sheetName=names.stocks[s], row.names=FALSE, append=TRUE)      	         
       }
       
     } else {
@@ -2002,25 +2005,25 @@ create.brood <- function(side, years, reallocate=TRUE, allocateOffshore=TRUE, re
       write.csv(cbind(years,pred.baywide.total), file='EastSide Figs/Extras/East Complete Return.csv')
     
       if(s==1) {
-      	write.xlsx(x=cbind(c('Return Year', years), rbind(temp.data$AgeCompLabels,return.data[,,s])),
-      	           file=paste('EastSide Figs/ALL Return Table.xlsx', sep=''),
-      	           sheetName=names.stocks[s], row.names=FALSE, append=FALSE)
-      	           
-      	write.xlsx(x=cbind(rbind(c('Brood Year', temp.data$AgeCompLabels),brood.data[,,s]), c('Escapement', rep(NA,max(offset)), escapements[,s]), 
-                                                                                       c('Recruits', rep(NA,max(offset)), recruits[,s]), 
-                                                                                       c('R/S', rep(NA,max(offset)), rps[,s])),
-      	           file=paste('EastSide Figs/ALL Brood Table.xlsx', sep=''),
-      	           sheetName=names.stocks[s], row.names=FALSE, append=FALSE)      	              	           	           
+      # 	write.xlsx(x=cbind(c('Return Year', years), rbind(temp.data$AgeCompLabels,return.data[,,s])),
+      # 	           file=paste('EastSide Figs/ALL Return Table.xlsx', sep=''),
+      # 	           sheetName=names.stocks[s], row.names=FALSE, append=FALSE)
+      # 	           
+      # 	write.xlsx(x=cbind(rbind(c('Brood Year', temp.data$AgeCompLabels),brood.data[,,s]), c('Escapement', rep(NA,max(offset)), escapements[,s]), 
+      #                                                                                  c('Recruits', rep(NA,max(offset)), recruits[,s]), 
+      #                                                                                  c('R/S', rep(NA,max(offset)), rps[,s])),
+      # 	           file=paste('EastSide Figs/ALL Brood Table.xlsx', sep=''),
+      # 	           sheetName=names.stocks[s], row.names=FALSE, append=FALSE)      	              	           	           
       }else {
-      	write.xlsx(x=cbind(c('Return Year', years), rbind(temp.data$AgeCompLabels,return.data[,,s])),
-      	           file=paste('EastSide Figs/ALL Return Table.xlsx', sep=''),
-      	           sheetName=names.stocks[s], row.names=FALSE, append=TRUE)
-      	           
-      	write.xlsx(x=cbind(rbind(c('Brood Year', temp.data$AgeCompLabels),brood.data[,,s]), c('Escapement', rep(NA,max(offset)), escapements[,s]), 
-                                                                                       c('Recruits', rep(NA,max(offset)), recruits[,s]), 
-                                                                                       c('R/S', rep(NA,max(offset)), rps[,s])),
-      	           file=paste('EastSide Figs/ALL Brood Table.xlsx', sep=''),
-      	           sheetName=names.stocks[s], row.names=FALSE, append=TRUE)      	         
+      # 	write.xlsx(x=cbind(c('Return Year', years), rbind(temp.data$AgeCompLabels,return.data[,,s])),
+      # 	           file=paste('EastSide Figs/ALL Return Table.xlsx', sep=''),
+      # 	           sheetName=names.stocks[s], row.names=FALSE, append=TRUE)
+      # 	           
+      # 	write.xlsx(x=cbind(rbind(c('Brood Year', temp.data$AgeCompLabels),brood.data[,,s]), c('Escapement', rep(NA,max(offset)), escapements[,s]), 
+      #                                                                                  c('Recruits', rep(NA,max(offset)), recruits[,s]), 
+      #                                                                                  c('R/S', rep(NA,max(offset)), rps[,s])),
+      # 	           file=paste('EastSide Figs/ALL Brood Table.xlsx', sep=''),
+      # 	           sheetName=names.stocks[s], row.names=FALSE, append=TRUE)      	         
       }
     
     }
@@ -2193,9 +2196,9 @@ create.total.run.table <- function(side, years, writeCSV=FALSE, wd=wd) {
     i <- 1
     for(i in c(1,8,9,10)) {
       if(side == 'west') {
-        write.xlsx(x=total.ret[,i,], file=paste('WestSide Figs/Extras/Daniel Summary_west.xlsx', sep=''), sheetName=dimnames(total.ret)[[2]][i], append=ifelse(i==1,FALSE,TRUE) ) 
+        # write.xlsx(x=total.ret[,i,], file=paste('WestSide Figs/Extras/Daniel Summary_west.xlsx', sep=''), sheetName=dimnames(total.ret)[[2]][i], append=ifelse(i==1,FALSE,TRUE) ) 
       }else {
-        write.xlsx(x=total.ret[,i,], file=paste('EastSide Figs/Extras/Daniel Summary_east.xlsx', sep=''), sheetName=dimnames(total.ret)[[2]][i], append=ifelse(i==1,FALSE,TRUE) ) 
+        # write.xlsx(x=total.ret[,i,], file=paste('EastSide Figs/Extras/Daniel Summary_east.xlsx', sep=''), sheetName=dimnames(total.ret)[[2]][i], append=ifelse(i==1,FALSE,TRUE) ) 
       }
     }#next i
     
@@ -3218,9 +3221,9 @@ plot.catch.esc.sigma <- function(side, years, pdf, wd=wd) {
 
 # wd <- "/Users/curryc2/Documents/Curry's SYRAH Work/Syrah Annual"
 ############################
-#  plot.years <- 1963:2017
-#  plot.side <- 'east'
-#  cross <- 1.25
+ plot.years <- 1963:2018
+ plot.side <- 'east'
+ cross <- 1.25
 
 plot.all <- function(plot.years, plot.side, cross, wd=wd) {
   
