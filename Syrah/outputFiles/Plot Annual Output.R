@@ -2346,8 +2346,8 @@ fit.stock.recruit <- function(pdf=FALSE, wd=wd) {
 create.annual.summary <- function(year, side, wd=wd) {
   setwd(paste(wd, "/Syrah/outputFiles", sep=""))
   ### TESTING ###
-   # year <- 2018
-   # side <- 'east'
+   # year <- 2014
+   # side <- 'west'
   ###############
   
   if(side == 'west') {
@@ -2432,72 +2432,74 @@ create.annual.summary <- function(year, side, wd=wd) {
   if(side == 'west') {
     #Igushik Set
     dim <- 4
-    s <- which(names.stocks=='Igushik')
-    temp.stream <- esc.stream[s]
-    temp.dist <- esc.dist[s]
     temp.subdistrict <- 'Igushik Set'
-    sub.catch <- add.catch$number[add.catch$subdistrict==temp.subdistrict & add.catch$year==year]
-    temp.n.agecomps <- nrow(add.ac[add.ac$year==year & add.ac$subdistrict==temp.subdistrict,])
-    if(temp.n.agecomps > 0) {  #Agecomp data are available
-      ac <- 1
-      for(ac in 1:temp.n.agecomps) {
-        temp.fa <- add.ac$fage[add.ac$year==year & add.ac$subdistrict==temp.subdistrict][ac]
-  	  	temp.oa <- add.ac$oage[add.ac$year==year & add.ac$subdistrict==temp.subdistrict][ac]	
-  	  	temp.loc <- which(agecomps == paste(temp.fa,".",temp.oa, sep=''))  	
+    temp.add.catch <- add.catch[add.catch$subdistrict==temp.subdistrict,]
+    n.catches <- nrow(temp.add.catch)
+    i <- 1
+    for(i in 1:n.catches) {
+      # s <- which(names.stocks==temp.add.catch$district[i])
+      s <- which(esc.dist==temp.add.catch$districtID[i] & esc.stream==temp.add.catch$stream[i]) 
+      temp.stream <- esc.stream[s]
+      temp.dist <- esc.dist[s]
+      sub.catch <- temp.add.catch$number[i]
+      temp.n.agecomps <- nrow(add.ac[add.ac$year==year & add.ac$subdistrict==temp.subdistrict,])
+      if(temp.n.agecomps > 0) {  #Agecomp data are available
+        ac <- 1
+        for(ac in 1:temp.n.agecomps) {
+          temp.fa <- add.ac$fage[add.ac$year==year & add.ac$subdistrict==temp.subdistrict][ac]
+          temp.oa <- add.ac$oage[add.ac$year==year & add.ac$subdistrict==temp.subdistrict][ac]	
+          temp.loc <- which(agecomps == paste(temp.fa,".",temp.oa, sep=''))  	
+          #Add subdistrict catch to output array
+          output[dim,temp.loc,s] <- sub.catch*add.ac$prop[add.ac$year==year & add.ac$subdistrict==temp.subdistrict][ac]
+        }#next ac
+      }else {  #Agecomp data are NOT available
+        #Find escapement age comp
+        if(nrow(ac.data[ac.data$district==temp.dist & ac.data$stream==temp.stream & ac.data$year==year & ac.data$catch.esc=='esc',]) > 0) {
+          temp.esc.ac <- as.numeric(ac.data[ac.data$district==temp.dist & ac.data$stream==temp.stream & ac.data$year==year & ac.data$catch.esc=='esc', c(8:ncol(ac.data))])/
+            ac.data$n.fish[ac.data$district==temp.dist & ac.data$stream==temp.stream & ac.data$year==year & ac.data$catch.esc=='esc']
+        } else {  #Predicted age comp if OBSERVED age comp NOT available
+          temp.esc.ac <- temp.data$predAgeCompEsc[s,]
+        }	  
         #Add subdistrict catch to output array
-        output[dim,temp.loc,s] <- sub.catch*add.ac$prop[add.ac$year==year & add.ac$subdistrict==temp.subdistrict][ac]
-      }#next ac
-    }else {  #Agecomp data are NOT available
-      #Find escapement age comp
-  	  if(nrow(ac.data[ac.data$district==temp.dist & ac.data$stream==temp.stream & ac.data$year==year & ac.data$catch.esc=='esc',]) > 0) {
-  	          
-  	    temp.esc.ac <- as.numeric(ac.data[ac.data$district==temp.dist & ac.data$stream==temp.stream & ac.data$year==year & ac.data$catch.esc=='esc', c(8:ncol(ac.data))])/
-  	  	ac.data$n.fish[ac.data$district==temp.dist & ac.data$stream==temp.stream & ac.data$year==year & ac.data$catch.esc=='esc']
-  	  } else {  #Predicted age comp if OBSERVED age comp NOT available
-  	    temp.esc.ac <- temp.data$predAgeCompEsc[s,]
-  	  }	  
-      #Add subdistrict catch to output array
-      if(length(sub.catch)>0) {
-  	    output[dim,,s] <- sub.catch*temp.esc.ac
-  	  }else {
-  	  	output[dim,,s] <- 0
-  	  }
-    }
+        output[dim,,s] <- sub.catch*temp.esc.ac
+      }
+    }#next i
     
     #WRSHA
     dim <- 5
-    s <- which(names.stocks=='Wood')
-    temp.stream <- esc.stream[s]
-    temp.dist <- esc.dist[s]
     temp.subdistrict <- 'WRSHA'
-    sub.catch <- add.catch$number[add.catch$subdistrict==temp.subdistrict & add.catch$year==year]
-    temp.n.agecomps <- nrow(add.ac[add.ac$year==year & add.ac$subdistrict==temp.subdistrict,])
-    if(temp.n.agecomps > 0) {  #Agecomp data are available
-      ac <- 1
-      for(ac in 1:temp.n.agecomps) {
-        temp.fa <- add.ac$fage[add.ac$year==year & add.ac$subdistrict==temp.subdistrict][ac]
-  	  	temp.oa <- add.ac$oage[add.ac$year==year & add.ac$subdistrict==temp.subdistrict][ac]	
-  	  	temp.loc <- which(agecomps == paste(temp.fa,".",temp.oa, sep=''))  	
+    temp.add.catch <- add.catch[add.catch$subdistrict==temp.subdistrict,]
+    n.catches <- nrow(temp.add.catch)
+    i <- 1
+    for(i in 1:n.catches) {
+      # s <- which(names.stocks==temp.add.catch$district[i])
+      s <- which(esc.dist==temp.add.catch$districtID[i] & esc.stream==temp.add.catch$stream[i]) 
+      temp.stream <- esc.stream[s]
+      temp.dist <- esc.dist[s]
+      sub.catch <- temp.add.catch$number[i]
+      temp.n.agecomps <- nrow(add.ac[add.ac$year==year & add.ac$subdistrict==temp.subdistrict,])
+      if(temp.n.agecomps > 0) {  #Agecomp data are available
+        ac <- 1
+        for(ac in 1:temp.n.agecomps) {
+          temp.fa <- add.ac$fage[add.ac$year==year & add.ac$subdistrict==temp.subdistrict][ac]
+          temp.oa <- add.ac$oage[add.ac$year==year & add.ac$subdistrict==temp.subdistrict][ac]	
+          temp.loc <- which(agecomps == paste(temp.fa,".",temp.oa, sep=''))  	
+          #Add subdistrict catch to output array
+          output[dim,temp.loc,s] <- sub.catch*add.ac$prop[add.ac$year==year & add.ac$subdistrict==temp.subdistrict][ac]
+        }#next ac
+      }else {  #Agecomp data are NOT available
+        #Find escapement age comp
+        if(nrow(ac.data[ac.data$district==temp.dist & ac.data$stream==temp.stream & ac.data$year==year & ac.data$catch.esc=='esc',]) > 0) {
+          temp.esc.ac <- as.numeric(ac.data[ac.data$district==temp.dist & ac.data$stream==temp.stream & ac.data$year==year & ac.data$catch.esc=='esc', c(8:ncol(ac.data))])/
+            ac.data$n.fish[ac.data$district==temp.dist & ac.data$stream==temp.stream & ac.data$year==year & ac.data$catch.esc=='esc']
+        } else {  #Predicted age comp if OBSERVED age comp NOT available
+          temp.esc.ac <- temp.data$predAgeCompEsc[s,]
+        }	  
         #Add subdistrict catch to output array
-        output[dim,temp.loc,s] <- sub.catch*add.ac$prop[add.ac$year==year & add.ac$subdistrict==temp.subdistrict][ac]
-      }#next ac
-    }else {  #Agecomp data are NOT available
-      #Find escapement age comp
-  	  if(nrow(ac.data[ac.data$district==temp.dist & ac.data$stream==temp.stream & ac.data$year==year & ac.data$catch.esc=='esc',]) > 0) {
-  	          
-  	    temp.esc.ac <- as.numeric(ac.data[ac.data$district==temp.dist & ac.data$stream==temp.stream & ac.data$year==year & ac.data$catch.esc=='esc', c(8:ncol(ac.data))])/
-  	  	ac.data$n.fish[ac.data$district==temp.dist & ac.data$stream==temp.stream & ac.data$year==year & ac.data$catch.esc=='esc']
-  	  } else {  #Predicted age comp if OBSERVED age comp NOT available
-  	    temp.esc.ac <- temp.data$predAgeCompEsc[s,]
-  	  }	  
-      #Add subdistrict catch to output array
-  	  if(length(sub.catch) > 0) {
-  	    output[dim,,s] <- sub.catch*temp.esc.ac
-  	  }else {
-  	    output[dim,,s] <- 0
-  	  }
-    }
-
+        output[dim,,s] <- sub.catch*temp.esc.ac
+      }
+    }#next i
+    
   }else {
   	#Kvichak Set
   	dim <- 4
@@ -2506,7 +2508,8 @@ create.annual.summary <- function(year, side, wd=wd) {
   	n.catches <- nrow(temp.add.catch)
   	i <- 1
   	for(i in 1:n.catches) {
-  	  s <- which(names.stocks==temp.add.catch$district[i])
+  	  # s <- which(names.stocks==temp.add.catch$district[i])
+  	  s <- which(esc.dist==temp.add.catch$districtID[i] & esc.stream==temp.add.catch$stream[i]) 
   	  temp.stream <- esc.stream[s]
       temp.dist <- esc.dist[s]
   	  sub.catch <- temp.add.catch$number[i]
@@ -2540,7 +2543,8 @@ create.annual.summary <- function(year, side, wd=wd) {
   	n.catches <- nrow(temp.add.catch)
   	i <- 1
   	for(i in 1:n.catches) {
-  	  s <- which(names.stocks==temp.add.catch$district[i])
+  	  # s <- which(names.stocks==temp.add.catch$district[i])
+  	  s <- which(esc.dist==temp.add.catch$districtID[i] & esc.stream==temp.add.catch$stream[i]) 
   	  temp.stream <- esc.stream[s]
       temp.dist <- esc.dist[s]
   	  sub.catch <- temp.add.catch$number[i]
@@ -2574,7 +2578,8 @@ create.annual.summary <- function(year, side, wd=wd) {
   	n.catches <- nrow(temp.add.catch)
   	i <- 1
   	for(i in 1:n.catches) {
-  	  s <- which(names.stocks==temp.add.catch$district[i])
+  	  # s <- which(names.stocks==temp.add.catch$district[i])
+  	  s <- which(esc.dist==temp.add.catch$districtID[i] & esc.stream==temp.add.catch$stream[i]) 
   	  temp.stream <- esc.stream[s]
       temp.dist <- esc.dist[s]
   	  sub.catch <- temp.add.catch$number[i]
@@ -2654,7 +2659,7 @@ create.annual.summary <- function(year, side, wd=wd) {
   }#next s	 
 }
 
-#create.annual.summary(year=2012, side='west', wd=wd)
+# create.annual.summary(year=2014, side='west', wd=wd)
 
 ####### plot.agecomp.coord.all ######
 # INPUTS: 1) side - "east" or "west"
