@@ -25,12 +25,16 @@ plot.annual.genComp <- function(side, years, pdf=FALSE, text.cex.left, text.cex.
     n.stocks <- 3
     names.districts <- 'Nushagak'
     names.stocks <- c('Igushik', 'Wood', 'Nushagak')
+	fdir <- 'WestSide/WestSide_'
+	pdf.fn <- 'WestSide Figs/WestSide Genetic Comp.pdf'
   }
   if(side == 'east') {
     n.districts <- 3
     n.stocks <- 5
     names.districts <- c('Naknek-Kvichak','Egegik','Ugashik')
     names.stocks <- c('Kvichak','Alagnak','Naknek','Egegik','Ugashik')	
+	fdir <- 'EastSide/EastSide_'
+	pdf.fn <- 'EastSide Figs/EastSide Genetic Comp.pdf'
   }
   if(side != 'west' & side != 'east') { print('##### ERROR side selection is incorrect'); stop(); }
   
@@ -43,13 +47,8 @@ plot.annual.genComp <- function(side, years, pdf=FALSE, text.cex.left, text.cex.
   for(y in 1:n.years) {
     year <- years[y]
     
-    if(side == 'west') {
-      temp.data <- readList(paste('WestSide/WestSide_',year,'.out',sep='')) 
-      
-    }else {
-      temp.data <- readList(paste('EastSide/EastSide_',year,'.out',sep=''))	
-    } 
-    
+    temp.data <- readList(paste(fdir,year,'.out',sep='')) 
+
     d <- 1
     for(d in 1:n.districts) {
       #Genetic sample size
@@ -72,14 +71,9 @@ plot.annual.genComp <- function(side, years, pdf=FALSE, text.cex.left, text.cex.
   if(side=='east') { cols[2] <- 'red' }
   # cols <- brewer.pal(n=n.socks, name='Set1')  
   
+  if(pdf == TRUE) {pdf(file=pdf.fn , height=6, width=8)}
+ 
   
-  if(pdf == TRUE) { 
-    if(side == 'west') {
-      pdf(file='WestSide Figs/WestSide Genetic Comp.pdf', height=6, width=8)
-    } else {
-      pdf(file='EastSide Figs/EastSide Genetic Comp.pdf', height=6, width=8)	
-    }
-  }
   #PLOT IT OUT
   space <- 0.2
   par(mfrow=c(3,1), mar=c(0,6,1,3), oma=c(5,0,5,0))

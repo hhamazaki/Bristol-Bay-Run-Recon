@@ -40,6 +40,8 @@ create.brood <- function(side, years, reallocate=TRUE, allocateOffshore=TRUE, re
     names.stocks <- c('Igushik', 'Wood', 'Nushagak')
     esc.dist <- c(325,325,325)
     esc.stream <- c(100,300,700)
+	fdir <- 'WestSide/WestSide_'
+	fdir2 <- 'WestSide Figs/'
   }
   if(side == 'east') {
     n.districts <- 3
@@ -48,6 +50,8 @@ create.brood <- function(side, years, reallocate=TRUE, allocateOffshore=TRUE, re
     names.stocks <- c('Kvichak','Alagnak','Naknek','Egegik','Ugashik')	
     esc.dist <- c(324,324,324,322,321)
     esc.stream <- c(100,500,600,100,100)
+	fdir <- 'EastSide/EastSide_'
+	fdir2 <- 'EastSide Figs/'
   }
   if(side != 'west' & side != 'east') { print('##### ERROR side selection is incorrect'); stop(); }
   
@@ -58,17 +62,18 @@ create.brood <- function(side, years, reallocate=TRUE, allocateOffshore=TRUE, re
   predicted.annual.esc <- matrix(nrow=n.years, ncol=n.stocks, dimnames=list(years, names.stocks))
   
   y <- 1
-  for(y in 1:n.years) {
+  for(y in 1:n.years){
     year <- years[y]
-    if(side == 'west') {
-      temp.data <- readList(paste('WestSide/WestSide_',year,'.out',sep='')) 
-      
+    temp.data <- readList(paste(fdir,year,'.out',sep=''))  
       #OBS ERROR
-      d <- 1
       for(d in 1:n.districts) {
+	   if(side == 'west') {
         diff.catch[y,,d] <- (temp.data$obsCatch[d] - temp.data$predCatch[d]) * temp.data$predAgeCompCatch
-      }#next d
-      
+		 }else {
+        diff.catch[y,,d] <- (temp.data$obsCatch[d] - temp.data$predCatch[d]) * temp.data$predAgeCompCatch[d]		 
+         }
+	  }#next d
+
       counter <- 1
       s <- 1
       for(s in 1:n.stocks) {
@@ -81,28 +86,6 @@ create.brood <- function(side, years, reallocate=TRUE, allocateOffshore=TRUE, re
         #Predicted escapement for brood table if obs err NOT reallocated
         predicted.annual.esc[y,s] <- temp.data$predEsc[s]
       }
-    }else {
-      temp.data <- readList(paste('EastSide/EastSide_',year,'.out',sep=''))	
-      
-      #OBS ERROR
-      d <- 1
-      for(d in 1:n.districts) {
-        diff.catch[y,,d] <- (temp.data$obsCatch[d] - temp.data$predCatch[d]) * temp.data$predAgeCompCatch[d]
-      }#next d
-      
-      counter <- 1
-      s <- 1
-      for(s in 1:n.stocks) {
-        #OBS ERROR
-        diff.esc[y,,s] <- (temp.data$obsEsc[s] - temp.data$predEsc[s]) * temp.data$predAgeCompEsc[s,]
-        
-        return.data[y,,s] <- temp.data$RunSize[counter:(s*n.agecomps)]
-        counter <- counter+n.agecomps
-        
-        #Predicted escapement for brood table if obs err NOT reallocated
-        predicted.annual.esc[y,s] <- temp.data$predEsc[s]
-      }#next s
-    } 
   }#next y
   
   #Create Brood Table
@@ -175,11 +158,9 @@ create.brood <- function(side, years, reallocate=TRUE, allocateOffshore=TRUE, re
               # temp.esc.ac <- temp.data$predAgeCompEsc[temp.stock,] #ERROR HERE: If no ac data for catch addition and escapement, was using avg from most recent year. 
               # Instead we will use the predicted agecomp from escapement
               
-              if(side == 'west') {
-                temp.data <- readList(paste('WestSide/WestSide_',temp.year,'.out',sep='')) 
-              }else {
-                temp.data <- readList(paste('EastSide/EastSide_',temp.year,'.out',sep='')) 
-              }
+        
+              temp.data <- readList(paste(fdir,temp.year,'.out',sep='')) 
+           
               
               #Currently we will use the predicted escapement age composition
               temp.esc.ac <- temp.data$predAgeCompEsc[temp.stock,]
@@ -271,6 +252,8 @@ create.brood <- function(side, years, reallocate=TRUE, allocateOffshore=TRUE, re
   rps <- matrix(nrow=n.years, ncol=n.stocks, dimnames=list(years,names.stocks))
   
   s <- 1
+  run.list <- list()
+  brood.list <- list()
   for(s in 1:n.stocks) {
     y <- 1
     for(y in 1:(n.years)) {  #Plus three years where MAJOR age classes have returned
@@ -278,72 +261,24 @@ create.brood <- function(side, years, reallocate=TRUE, allocateOffshore=TRUE, re
       recruits[y,s] <- sum(brood.data[which(brood.data[,1,s]==year), c(2:(n.agecomps+1)), s])
       rps[y,s] <- recruits[y,s]/escapements[y,s]
     }#next y
+      temp <-data.frame(years,round(return.data[,,s],0))
+	  names(temp) <- c('Return Year', temp.data$AgeCompLabels)
+	  
+	  run.list[[names.stocks[s]]] <- temp  
+	  
+      write.csv(temp, file=paste(fdir2, names.stocks[s], ' Return Table.csv', sep=''), row.names=FALSE) 
+      temp <-data.frame(round(brood.data[,,s],0),c(rep(NA,max(offset)),round(escapements[,s],0)),
+	                    c(rep(NA,max(offset)),round(recruits[,s],0)),c(rep(NA,max(offset)),rps[,s]))
+	  names(temp) <- c('Brood Year', temp.data$AgeCompLabels,'Escapement','Recruits','R/S')	
     
-    
-    if(side == 'west') { 
-      write.csv(cbind(c('Return Year', years), rbind(temp.data$AgeCompLabels,return.data[,,s])), 
-                file=paste('WestSide Figs/', names.stocks[s], ' Return Table.csv', sep=''), row.names=FALSE) 
-      write.csv(cbind(rbind(c('Brood Year', temp.data$AgeCompLabels),brood.data[,,s]), c('Escapement', rep(NA,max(offset)), escapements[,s]), 
-                      c('Recruits', rep(NA,max(offset)), recruits[,s]), 
-                      c('R/S', rep(NA,max(offset)), rps[,s])), 
-                file=paste('WestSide Figs/', names.stocks[s], ' Brood Table.csv', sep=''), row.names=FALSE)
-      write.csv(cbind(years,pred.baywide.total), file='WestSide Figs/Extras/West Complete Return.csv')
-      
-      if(s==1) {
-        # write.xlsx(x=cbind(c('Return Year', years), rbind(temp.data$AgeCompLabels,return.data[,,s])),
-        #            file=paste('WestSide Figs/ALL Return Table.xlsx', sep=''),
-        #            sheetName=names.stocks[s], row.names=FALSE, append=FALSE)
-        
-        # 	write.xlsx(x=cbind(rbind(c('Brood Year', temp.data$AgeCompLabels),brood.data[,,s]), c('Escapement', rep(NA,max(offset)), escapements[,s]), 
-        #                                                                                  c('Recruits', rep(NA,max(offset)), recruits[,s]), 
-        #                                                                                  c('R/S', rep(NA,max(offset)), rps[,s])),
-        # 	           file=paste('WestSide Figs/ALL Brood Table.xlsx', sep=''),
-        # 	           sheetName=names.stocks[s], row.names=FALSE, append=FALSE)      	              	           	           
-      }else {
-        # 	write.xlsx(x=cbind(c('Return Year', years), rbind(temp.data$AgeCompLabels,return.data[,,s])),
-        # 	           file=paste('WestSide Figs/ALL Return Table.xlsx', sep=''),
-        # 	           sheetName=names.stocks[s], row.names=FALSE, append=TRUE)
-        # 	           
-        # 	write.xlsx(x=cbind(rbind(c('Brood Year', temp.data$AgeCompLabels),brood.data[,,s]), c('Escapement', rep(NA,max(offset)), escapements[,s]), 
-        #                                                                                  c('Recruits', rep(NA,max(offset)), recruits[,s]), 
-        #                                                                                  c('R/S', rep(NA,max(offset)), rps[,s])),
-        # 	           file=paste('WestSide Figs/ALL Brood Table.xlsx', sep=''),
-        # 	           sheetName=names.stocks[s], row.names=FALSE, append=TRUE)      	         
-      }
-      
-    } else {
-      write.csv(cbind(c('Return Year', years), rbind(temp.data$AgeCompLabels,return.data[,,s])), 
-                file=paste('EastSide Figs/', names.stocks[s], ' Return Table.csv', sep=''), row.names=FALSE) 
-      write.csv(cbind(rbind(c('Brood Year', temp.data$AgeCompLabels),brood.data[,,s]), c('Escapement', rep(NA,max(offset)),escapements[,s]),
-                      c('Recruits', rep(NA,max(offset)), recruits[,s]), 
-                      c('R/S', rep(NA,max(offset)), rps[,s])),       
-                file=paste('EastSide Figs/', names.stocks[s], ' Brood Table.csv', sep=''), row.names=FALSE)
-      write.csv(cbind(years,pred.baywide.total), file='EastSide Figs/Extras/East Complete Return.csv')
-      
-      if(s==1) {
-        # 	write.xlsx(x=cbind(c('Return Year', years), rbind(temp.data$AgeCompLabels,return.data[,,s])),
-        # 	           file=paste('EastSide Figs/ALL Return Table.xlsx', sep=''),
-        # 	           sheetName=names.stocks[s], row.names=FALSE, append=FALSE)
-        # 	           
-        # 	write.xlsx(x=cbind(rbind(c('Brood Year', temp.data$AgeCompLabels),brood.data[,,s]), c('Escapement', rep(NA,max(offset)), escapements[,s]), 
-        #                                                                                  c('Recruits', rep(NA,max(offset)), recruits[,s]), 
-        #                                                                                  c('R/S', rep(NA,max(offset)), rps[,s])),
-        # 	           file=paste('EastSide Figs/ALL Brood Table.xlsx', sep=''),
-        # 	           sheetName=names.stocks[s], row.names=FALSE, append=FALSE)      	              	           	           
-      }else {
-        # 	write.xlsx(x=cbind(c('Return Year', years), rbind(temp.data$AgeCompLabels,return.data[,,s])),
-        # 	           file=paste('EastSide Figs/ALL Return Table.xlsx', sep=''),
-        # 	           sheetName=names.stocks[s], row.names=FALSE, append=TRUE)
-        # 	           
-        # 	write.xlsx(x=cbind(rbind(c('Brood Year', temp.data$AgeCompLabels),brood.data[,,s]), c('Escapement', rep(NA,max(offset)), escapements[,s]), 
-        #                                                                                  c('Recruits', rep(NA,max(offset)), recruits[,s]), 
-        #                                                                                  c('R/S', rep(NA,max(offset)), rps[,s])),
-        # 	           file=paste('EastSide Figs/ALL Brood Table.xlsx', sep=''),
-        # 	           sheetName=names.stocks[s], row.names=FALSE, append=TRUE)      	         
-      }
-      
-    }
-  }#next s
-}
+     brood.list[[names.stocks[s]]] <- temp  
+ 	  
+      write.csv(temp, file=paste(fdir2, names.stocks[s], ' Brood Table.csv', sep=''), row.names=FALSE)
+      write.csv(data.frame(years,pred.baywide.total), file=paste0(fdir2,side,'_Complete Return.csv'))
 
-# create.brood(side='east', years=1963:2016, reallocate=TRUE, allocateOffshore=TRUE, renorm.obs.err=TRUE, wd=wd)
+  }#next s
+     write.xlsx(x=run.list,file=paste0(fdir2,'ALL Return Table.xlsx'))
+     write.xlsx(x=brood.list,file=paste0(fdir2,'ALL Brood Table.xlsx'))
+     
+}
+# create.brood(side='east', years=plot.years, reallocate=TRUE, allocateOffshore=TRUE, renorm.obs.err=TRUE, wd=wd)

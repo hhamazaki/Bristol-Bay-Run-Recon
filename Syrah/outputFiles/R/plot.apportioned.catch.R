@@ -18,18 +18,25 @@ plot.apportioned.catch <- function(side, years, pdf=FALSE, separate=FALSE, write
   n.agecomps <- 18
   
   n.years <- length(years)
+ 
   
   if(side == 'west') {
     n.districts <- 1
     n.stocks <- 3
     names.districts <- 'Nushagak'
     names.stocks <- c('Igushik', 'Wood', 'Nushagak')
+	fdir <- 'WestSide/WestSide_'
+	pdf.file.1 <- 'WestSide Figs/WestSide Apportioned Catches.pdf'
+	xlsx.file <- 'WestSide Figs/WestSide Apportioned Catches.xlsx'
   }
   if(side == 'east') {
     n.districts <- 3
     n.stocks <- 5
     names.districts <- c('Naknek-Kvichak','Egegik','Ugashik')
     names.stocks <- c('Kvichak','Alagnak','Naknek','Egegik','Ugashik')	
+	fdir <- 'EastSide/EastSide_'
+	pdf.file.1 <- 'EastSide Figs/EastSide Apportioned Catches.pdf'
+	xlsx.file <- 'EastSide Figs/EastSide Apportioned Catches.xlsx'
   }
   if(side != 'west' & side != 'east') { print('##### ERROR side selection is incorrect'); stop(); }
   
@@ -45,13 +52,8 @@ plot.apportioned.catch <- function(side, years, pdf=FALSE, separate=FALSE, write
   for(y in 1:n.years) {
     year <- years[y]
     
-    if(side == 'west') {
-      temp.data <- readList(paste('WestSide/WestSide_',year,'.out',sep='')) 
+    temp.data <- readList(paste(fdir,year,'.out',sep='')) 
       
-    }else {
-      temp.data <- readList(paste('EastSide/EastSide_',year,'.out',sep=''))	
-    } 
-    
     #Retreive general info
     n.agecomps <- temp.data$nagecomps
     
@@ -77,15 +79,9 @@ plot.apportioned.catch <- function(side, years, pdf=FALSE, separate=FALSE, write
       nush.esc[y,] <- temp.data$escByGroup[(2*n.agecomps+1):length(temp.data$catchByGroup)]
     }
   }#next y  
-  
+
   #PLOTTING
-  if(pdf == TRUE) {
-    if(side == 'west') {
-      pdf(file='WestSide Figs/WestSide Apportioned Catches.pdf', height=8, width=10)
-    } else {
-      pdf(file='EastSide Figs/EastSide Apportioned Catches.pdf', height=8, width=10)
-    }
-  }
+  if(pdf == TRUE) { pdf(file=pdf.file.1, height=8, width=10) } #pdf
   
   if(separate == TRUE) { par(mfrow=c(1,1), mar=c(0.1,4,0,0), oma=c(5,2,1,1)) } else { par(mfrow=c(n.districts,1), mar=c(0.125,4,0,0), oma=c(5,2,1,1)) }
   #cols <- rainbow(n.stocks)
@@ -117,18 +113,10 @@ plot.apportioned.catch <- function(side, years, pdf=FALSE, separate=FALSE, write
       mtext('Total Catch (millions)', side=2, line=0.5, outer=TRUE, font=2)}
   }#next d
   
-  #PLOT PROPORTIONAL CATCHES
-  if(write.table==TRUE) {
-    if(side=='west') {
-      # write.xlsx(x=catches, file='WestSide Figs/WestSide Apportioned Catches.xlsx', sheetName='catches', append=FALSE)
-      
-    }else {
-      # write.xlsx(x=catches, file='EastSide Figs/EastSide Apportioned Catches.xlsx', sheetName='catches', append=FALSE)
-      # writexl::write_xlsx(x=catches, path='EastSide Figs/EastSide Apportioned Catches.xlsx')
-      # openxlsx::write.xlsx(x=catches, file='EastSide Figs/EastSide Apportioned Catches.xlsx', sheetName='catches')
-    }
-  }
+  temp.list <- list()
+  temp.list$catches <- data.frame(t(catches))
   
+  #PLOT PROPORTIONAL CATCHES
   par(mfrow=c(2,1), mar=c(0.5,4,0,0), oma=c(4.5,2,1,1)) 
   d <- 1
   for(d in 1:n.districts) {
@@ -158,21 +146,22 @@ plot.apportioned.catch <- function(side, years, pdf=FALSE, separate=FALSE, write
     mtext('Year', side=1, line=3.5, outer=TRUE, font=2) 
     mtext(paste(names.districts[d],'District', sep=' '), side=2, line=0.5, outer=TRUE, font=2) 
     #For Table
-    if(write.table==TRUE) {
+	  temp.list.n <- names.districts[d]
       list.mean <- apply(temp.prop, c(1), mean)
       list.sd <- apply(temp.prop, c(1), sd)
       list.cv <-list.sd/list.mean
       list.props <- apply(temp.prop, c(1), quantile, probs=c(0.025,0.25,0.5,0.75,0.975))
-      output <- cbind(names.stocks,list.mean,list.sd,list.cv,t(list.props))
-      if(side=='west') {
-        # write.xlsx(x=output, file='WestSide Figs/WestSide Apportioned Catches.xlsx', sheetName=names.districts[d], append=TRUE)
-      }else {
-        # write.xlsx(x=output, file='EastSide Figs/EastSide Apportioned Catches.xlsx', sheetName=names.districts[d], append=TRUE)
-      }      
-    }
+      output <- data.frame(names.stocks,list.mean,list.sd,list.cv,t(list.props))
+	  temp.list[[temp.list.n]] <- output
   }#next d
+
   
   if(pdf == TRUE) { dev.off() }
+
+  if(write.table==TRUE) {
+	 write.xlsx(temp.list, xlsx.file )
+	 }
+  
   
   if(write.nush.data == TRUE){ 
     rownames(nush.catch) <- years; rownames(nush.esc) <- years

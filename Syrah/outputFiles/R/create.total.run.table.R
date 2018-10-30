@@ -14,7 +14,7 @@ create.total.run.table <- function(side, years, writeCSV=FALSE, wd=wd) {
   #####
   
   require(PBSmodelling)
-  # require(xlsx)
+
   
   setwd(paste(wd, "/Syrah/outputFiles", sep=""))
   if(side == 'west') {
@@ -24,6 +24,8 @@ create.total.run.table <- function(side, years, writeCSV=FALSE, wd=wd) {
     names.stocks <- c('Igushik', 'Wood', 'Nushagak')
     esc.dist <- c(325,325,325)
     esc.stream <- c(100,300,700)
+	fdir.1 <- 'WestSide/WestSide_'
+	extra.dir <- 'WestSide Figs/Extras/'
   }
   if(side == 'east') {
     n.districts <- 3
@@ -32,6 +34,8 @@ create.total.run.table <- function(side, years, writeCSV=FALSE, wd=wd) {
     names.stocks <- c('Kvichak','Alagnak','Naknek','Egegik','Ugashik')  
     esc.dist <- c(324,324,324,322,321)
     esc.stream <- c(100,500,600,100,100)
+	fdir.1 <- 'EastSide/EastSide_'
+	extra.dir <- 'EastSide Figs/Extras/'
   }
   if(side != 'west' & side != 'east') { print('##### ERROR side selection is incorrect'); stop(); }
   
@@ -54,12 +58,8 @@ create.total.run.table <- function(side, years, writeCSV=FALSE, wd=wd) {
   for(y in 1:n.years) {
     year <- years[y]
     #RETREIVE DATA 
-    if(side == 'west') {
-      temp.data <- readList(paste('WestSide/WestSide_',year,'.out',sep='')) 
-    }else {
-      temp.data <- readList(paste('EastSide/EastSide_',year,'.out',sep=''))  
-    }
-    
+
+    temp.data <- readList(paste(fdir.1,year,'.out',sep='')) 
     nagecomps <- temp.data$nagecomps
     
     s <- 1
@@ -85,24 +85,18 @@ create.total.run.table <- function(side, years, writeCSV=FALSE, wd=wd) {
   if(writeCSV == TRUE) {
     s <- 1
     for(s in 1:n.stocks) {
-      if(side == 'west') {  
-        write.csv(total.ret[,,s], file=paste('WestSide Figs/Extras/', names.stocks[s], ' Run.csv', sep=''))
-      }else {
-        write.csv(total.ret[,,s], file=paste('EastSide Figs/Extras/', names.stocks[s], ' Run.csv', sep=''))
-      }
+        write.csv(total.ret[,,s], file=paste(extra.dir, names.stocks[s], ' Run.csv', sep=''))
     }#next s
     #Output for Daniel
-    i <- 1
+	temp.list <- list()
     for(i in c(1,8,9,10)) {
-      if(side == 'west') {
-        # write.xlsx(x=total.ret[,i,], file=paste('WestSide Figs/Extras/Daniel Summary_west.xlsx', sep=''), sheetName=dimnames(total.ret)[[2]][i], append=ifelse(i==1,FALSE,TRUE) ) 
-      }else {
-        # write.xlsx(x=total.ret[,i,], file=paste('EastSide Figs/Extras/Daniel Summary_east.xlsx', sep=''), sheetName=dimnames(total.ret)[[2]][i], append=ifelse(i==1,FALSE,TRUE) ) 
-      }
+         list.name <- dimnames(total.ret)[[2]][i]
+	     temp.list[[list.name]] <- total.ret[,i,]
     }#next i
     
-  }else {
-    print(total.ret)
+	write.xlsx(x=temp.list, file=paste(extra.dir,'Daniel Summary_west.xlsx', sep='')) 
+       
+#    print(total.ret)
   } 
   
   ######################### TOTAL RUN COMPARISON ###################
