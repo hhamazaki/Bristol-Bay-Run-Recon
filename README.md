@@ -1,6 +1,6 @@
 # Bristol Bay Annual Run Reconstruction
 Model Creators:
-* Dr. Curry J. Cunningham (University of Washington, School of Aquatic and Fishery Sciences)
+* Dr. Curry J. Cunningham (University of Alaska Fairbanks, College of Fisheries and Ocean Sciences)
 * Dr. Trevor Branch (University of Washington, School of Aquatic and Fishery Sciences)
 
 This run reconstruction model is detailed in **A general model for salmon run reconstruction that accounts for interception and and differences in availability to harvest** [Cunningham et al. (2018)](http://www.nrcresearchpress.com/doi/abs/10.1139/cjfas-2016-0360#.W76LUCdRebU).
