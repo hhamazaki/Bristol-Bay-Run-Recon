@@ -23,7 +23,7 @@ require(R2admb)
 
 ############## CONTROL SECTION ##############
 #Set working directory
-wd <- "/Users/curryc2/Documents/Curry's SYRAH Work/Syrah Annual"
+wd <- "O:/DCF/REG2/BBsalmon/Run Reconstruction/2019/Syrah Annual_updated_22Oct18/Syrah Annual"
 
 #Define operating system
 # mac <- TRUE  #Set to FALSE if working on a PC
@@ -60,10 +60,10 @@ Sys.setenv(PATH='/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin')
 # }
 
 #using R2admb
-compile_admb("syrah", verbose=TRUE)
+#compile_admb("syrah", verbose=TRUE)
 
 #######################################################################################################
-year <- 2017
+year <- 2019
 gen.dat <- TRUE  #Flag for Whether GSI data are available
 #######################################################################################################
 #Plotting parameters
@@ -71,9 +71,9 @@ plot.years <- 1963:year
 cross <- 1.25 
 #######################################################################################################
 #WEST SIDE
-phz.run=1; phz.sel=2; phz.avail=3;
+phz.run=2; phz.sel=2; phz.avail=1;
 
-do.west <- FALSE
+do.west <- TRUE
 if(do.west==TRUE) {
   side <- 'west'
 
@@ -121,7 +121,7 @@ if(do.west==TRUE) {
                             fixed.avail=fixed.avail,
                             loc.prefix=paste(wd, "/Syrah/datFiles/", sep=""),
                             read.outs=TRUE, phz.run=phz.run, phz.sel=phz.sel, phz.avail=phz.avail,
-                            temp_sigmaCat=0.5, temp_sigmaEsc=0.1, wd=wd) 
+                            temp_sigmaCat=0.5, temp_sigmaEsc=0.5, wd=wd) 
 
   #Clear output objects
   cleanup(side=side, year=year, wd=wd)
@@ -148,9 +148,11 @@ if(do.west==TRUE) {
 #######################################################################################################
 #EAST SIDE
 # phz.run=2; phz.sel=1; phz.avail=1; # 2015 req
+# phz.run=2; phz.sel=2; phz.avail=1; # 2017 req
+
 phz.run=1; phz.sel=2; phz.avail=2;
 
-do.east <- FALSE
+do.east <- TRUE
 if(do.east==TRUE) {
   side <- 'east'
 
@@ -204,7 +206,7 @@ if(do.east==TRUE) {
                             fixed.avail=fixed.avail,
                             loc.prefix=paste(wd, "/Syrah/datFiles/", sep=""),
                             read.outs=TRUE, phz.run=phz.run, phz.sel=phz.sel, phz.avail=phz.avail,
-                            temp_sigmaCat=0.5, temp_sigmaEsc=0.1, wd=wd) #0.5, 0.05
+                            temp_sigmaCat=0.5, temp_sigmaEsc=0.5, wd=wd) #0.5, 0.05
 
   #Clear output objects
   cleanup(side=side, year=year, wd=wd)
@@ -243,7 +245,7 @@ if(do.east==TRUE) {
 do.broods <- TRUE
 if(do.broods==TRUE) {
   # west.converge <- file.exists(paste(wd, "/Syrah/outputFiles/WestSide/COR/WestSide_", year, ".cor", sep=""))
-  # east.converge <- file.exists(paste(wd, "/Syrah/outputFiles/EastSide/COR/EastSide_", year, ".cor", sep=""))
+  #  east.converge <- file.exists(paste(wd, "/Syrah/outputFiles/EastSide/COR/EastSide_", year, ".cor", sep=""))
   # if(west.converge==TRUE & east.converge==TRUE) {
     create.all(plot.years=plot.years, plot.side='west', wd=wd)
     create.all(plot.years=plot.years, plot.side='east', wd=wd)

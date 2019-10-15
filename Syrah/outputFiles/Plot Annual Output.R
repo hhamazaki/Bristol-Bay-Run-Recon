@@ -6,7 +6,7 @@
 #Purpose: Read output files for ADMB reconstruction and create descriptive plots
 #**************************************************************************
 require(PBSmodelling)
-# require(xlsx)
+require(openxlsx)
 require(reshape2)
 require(ggplot2)
 require(beanplot)
@@ -291,6 +291,3 @@ create.all <- function(plot.years, plot.side, wd=wd) {
 }
 
 # create.all(plot.years=plot.years, plot.side=plot.side, wd=wd)
-
-
-

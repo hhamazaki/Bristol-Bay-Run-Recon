@@ -92,17 +92,22 @@ create.total.run.table <- function(side, years, writeCSV=FALSE, wd=wd) {
       }
     }#next s
     #Output for Daniel
-    i <- 1
+	temp.list <- list()
     for(i in c(1,8,9,10)) {
-      if(side == 'west') {
-        # write.xlsx(x=total.ret[,i,], file=paste('WestSide Figs/Extras/Daniel Summary_west.xlsx', sep=''), sheetName=dimnames(total.ret)[[2]][i], append=ifelse(i==1,FALSE,TRUE) ) 
-      }else {
-        # write.xlsx(x=total.ret[,i,], file=paste('EastSide Figs/Extras/Daniel Summary_east.xlsx', sep=''), sheetName=dimnames(total.ret)[[2]][i], append=ifelse(i==1,FALSE,TRUE) ) 
-      }
+#      if(side == 'west') {
+         list.name <- dimnames(total.ret)[[2]][i]
+	     temp.list[[list.name]] <- total.ret[,i,]
+#         write.xlsx(x=total.ret[,i,], file=paste('WestSide Figs/Extras/Daniel Summary_west.xlsx', sep=''), sheetName=dimnames(total.ret)[[2]][i], append=ifelse(i==1,FALSE,TRUE) ) 
+#     }else {
+#        write.xlsx(x=total.ret[,i,], file=paste('EastSide Figs/Extras/Daniel Summary_east.xlsx', sep=''), sheetName=dimnames(total.ret)[[2]][i], append=ifelse(i==1,FALSE,TRUE) ) 
+#     }
     }#next i
-    
-  }else {
-    print(total.ret)
+      if(side == 'west') {
+         write.xlsx(x=temp.list, file=paste('WestSide Figs/Extras/Daniel Summary_west.xlsx', sep='')) 
+       } else {
+	     write.xlsx(x=temp.list, file=paste('EastSide Figs/Extras/Daniel Summary_east.xlsx', sep='')) 
+       }
+#    print(total.ret)
   } 
   
   ######################### TOTAL RUN COMPARISON ###################
