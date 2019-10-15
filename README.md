@@ -20,9 +20,16 @@ Each year is estimated **independently** although some information is shared amo
 
 ## Structure
 
-Directory           | Description
---------------------|-------------------------------
-R                   | Houses input data files and functions to create ADMB inputs.
-Syrah               | Directory for running ADMB estimation model.
-Syrah/outputFiles   | Holds ADMB estimation model output (.out files) and code to generate output figures and tables.
+Directory                       | Description
+--------------------------------|-------------------------------
+R                               | ageComp.annual.csv
+R                               | GeneticsComp_updated_Annual.csv
+R                               | qry_Annual_ESCAPEMENT.csv
+R                               | qry_Annual_CATCH_updated.csv
+Syrah/outputFiles/Reallocation  | catchAdd.csv
+Syrah/outputFiles/Reallocation  | ageCompAdd.csv
+Syrah/outputFiles/Reallocation  | inshoreTogiak.csv
+Syrah/outputFiles/Reallocation  | offshoreCatchAdd.csv
+Syrah                           | Directory for running ADMB estimation model.
+Syrah/outputFiles               | Holds ADMB estimation model output (.out files) and code to generate output figures                                 |and tables.
 
