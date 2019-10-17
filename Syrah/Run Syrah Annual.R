@@ -150,7 +150,7 @@ if(do.west==TRUE) {
 # phz.run=2; phz.sel=1; phz.avail=1; # 2015 req
 # phz.run=2; phz.sel=2; phz.avail=1; # 2017 req
 
-phz.run=1; phz.sel=2; phz.avail=2;
+phz.run=2; phz.sel=1; phz.avail=1;
 
 do.east <- TRUE
 if(do.east==TRUE) {
@@ -206,7 +206,7 @@ if(do.east==TRUE) {
                             fixed.avail=fixed.avail,
                             loc.prefix=paste(wd, "/Syrah/datFiles/", sep=""),
                             read.outs=TRUE, phz.run=phz.run, phz.sel=phz.sel, phz.avail=phz.avail,
-                            temp_sigmaCat=0.5, temp_sigmaEsc=0.5, wd=wd) #0.5, 0.05
+                            temp_sigmaCat=0.5, temp_sigmaEsc=0.1, wd=wd) #0.5, 0.05
 
   #Clear output objects
   cleanup(side=side, year=year, wd=wd)

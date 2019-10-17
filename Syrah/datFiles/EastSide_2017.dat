@@ -270,7 +270,7 @@
 0.5
 #Standard deviation for ESCAPEMENT error distribution
 #(temp_sigmaEsc)
-0.5
+0.1
 #Testing code to ensure data was read in correctly, DO NOT CHANGE
 #(testCode)
 12345
