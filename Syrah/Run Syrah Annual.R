@@ -63,7 +63,7 @@ Sys.setenv(PATH='/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin')
 # }
 
 #using R2admb
-#compile_admb("syrah", verbose=TRUE)
+compile_admb("syrah", verbose=TRUE)
 
 #######################################################################################################
 year <- 2019
@@ -76,7 +76,7 @@ cross <- 1.25
 #WEST SIDE
 phz.run=2; phz.sel=2; phz.avail=1;
 
-do.west <- TRUE
+do.west <- FALSE
 if(do.west==TRUE) {
   side <- 'west'
 
@@ -105,7 +105,7 @@ if(do.west==TRUE) {
   setwd(paste(wd, "/Syrah", sep=""))
   
   #With R2admb
-  run_admb("syrah", extra.args=paste("-ind datFiles/WestSide_",year,".dat -rs -nox", sep=''), verbose=FALSE)
+  run_admb("syrah", extra.args=paste("-ind datFiles/WestSide_",year,".dat -rs -nox", sep=''), verbose=TRUE)
   
   move(side=side, year=year, wd=wd)
   #Plot
@@ -124,7 +124,7 @@ if(do.west==TRUE) {
                             fixed.avail=fixed.avail,
                             loc.prefix=paste(wd, "/Syrah/datFiles/", sep=""),
                             read.outs=TRUE, phz.run=phz.run, phz.sel=phz.sel, phz.avail=phz.avail,
-                            temp_sigmaCat=0.5, temp_sigmaEsc=0.5, wd=wd) 
+                            temp_sigmaCat=0.5, temp_sigmaEsc=0.1, wd=wd) # Usually cat=0.5, esc=0.1
 
   #Clear output objects
   cleanup(side=side, year=year, wd=wd)
