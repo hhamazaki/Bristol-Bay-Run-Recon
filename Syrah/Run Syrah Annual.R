@@ -23,7 +23,10 @@ require(R2admb)
 
 ############## CONTROL SECTION ##############
 #Set working directory
-wd <- "O:/DCF/REG2/BBsalmon/Run Reconstruction/2019/Syrah Annual_updated_22Oct18/Syrah Annual"
+# wd <- "O:/DCF/REG2/BBsalmon/Run Reconstruction/2019/Syrah Annual_updated_22Oct18/Syrah Annual"
+
+# NOTE IF YOU SET WORKING DIRECTORY TO THE GITHUB REPO THIS SHOULD WORK FINE...
+wd <- getwd()
 
 #Define operating system
 # mac <- TRUE  #Set to FALSE if working on a PC
@@ -85,7 +88,7 @@ if(do.west==TRUE) {
     fixed.avail=rep(-1,3) #IF GENETIC DATA ARE AVAILABLE (June Reconstruction)
   }else {
     #Get Average Availability
-    west.prelim <- c(1965,1977,1980,1982,1983,1985,1993,1995,1999,2006:2015,2017)
+    west.prelim <- c(1965,1977,1980,1982,1983,1985,1993,1995,1999,2006:2015,2017:2018)
     avg.avail <- avg.Avail.prelim(side='west', prelim.years=west.prelim, wd=wd)$avail.avgs
     
     fixed.avail=avg.avail #IF NO GENETIC DATA ARE AVAILABLE (March Reconstruction)
