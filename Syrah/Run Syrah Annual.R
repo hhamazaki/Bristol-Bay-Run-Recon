@@ -88,7 +88,7 @@ if(do.west==TRUE) {
     fixed.avail=rep(-1,3) #IF GENETIC DATA ARE AVAILABLE (June Reconstruction)
   }else {
     #Get Average Availability
-    west.prelim <- c(1965,1977,1980,1982,1983,1985,1993,1995,1999,2006:2015,2017:2018)
+    west.prelim <- c(1965,1977,1980,1982,1983,1985,1993,1995,1999,2006:2018)
     avg.avail <- avg.Avail.prelim(side='west', prelim.years=west.prelim, wd=wd)$avail.avgs
     
     fixed.avail=avg.avail #IF NO GENETIC DATA ARE AVAILABLE (March Reconstruction)
