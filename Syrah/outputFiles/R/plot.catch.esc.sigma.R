@@ -11,7 +11,7 @@ plot.catch.esc.sigma <- function(side, years, pdf, wd=wd) {
   # side <- 'west'
   # years <- 1963:2014
   # pdf <- FALSE
-  
+  require(PBSmodelling)
   if(side == 'west') {
     n.districts <- 1
     n.stocks <- 3
@@ -67,6 +67,9 @@ plot.catch.esc.sigma <- function(side, years, pdf, wd=wd) {
   lines(x=years, y=sigma.esc, col=rgb(0,0,1,alpha=0.5))
   points(x=years, y=sigma.esc, pch=21, bg=rgb(0,0,1,alpha=0.5))
   axis(side=1, at=years, labels=FALSE)
+  legend('left', legend=c("Catch","Escapement"), pch=19, col=c(rgb(1,0,0,alpha=0.5),
+                                                              rgb(0,0,1,alpha=0.5)),
+         title="Fixed Obs. Error SD")
   
   if(side=='west') {
     mtext('West Side Bristol Bay', side=3, line=1, font=2)
@@ -76,5 +79,5 @@ plot.catch.esc.sigma <- function(side, years, pdf, wd=wd) {
   
   if(pdf==TRUE) { dev.off() }
 }
-#plot.catch.esc.sigma(side='west', years=1963:2014, pdf=TRUE, wd=wd)
+# plot.catch.esc.sigma(side='west', years=1963:2014, pdf=FALSE, wd=wd)
 #plot.catch.esc.sigma(side='east', years=1963:2014, pdf=TRUE, wd=wd)
