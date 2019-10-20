@@ -45,7 +45,7 @@ plot.annual.catch.esc <- function(side, years, pdf, text.cex, cross.cex, wd=wd) 
   y <- 1
   for(y in 1:n.years) {
     year <- years[y]
-    print(year)
+    # print(year)
     
     if(side == 'west') {
       temp.data <- readList(paste('WestSide/WestSide_',year,'.out',sep='')) 
