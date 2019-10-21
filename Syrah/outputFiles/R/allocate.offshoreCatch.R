@@ -8,8 +8,8 @@ allocate.offshoreCatch <- function(years, remove.togiak=TRUE, wd=wd) {
   setwd(paste(wd, "/Syrah/outputFiles", sep=""))
   ### TESTING ###
   
-  #remove.togiak <- TRUE
-  #years <- 2012
+  # remove.togiak <- TRUE
+  # years <- 2019
   ###############
   
   n.agecomps <- 18
@@ -23,7 +23,7 @@ allocate.offshoreCatch <- function(years, remove.togiak=TRUE, wd=wd) {
   offshoreCatch <- read.csv('Reallocation/offshoreCatchAdd.csv', stringsAsFactors=FALSE)
   
   if(remove.togiak == TRUE) {
-    togiak <- read.csv('Reallocation/inshoreTogiak.csv', header=TRUE)
+    togiak <- read.csv('Reallocation/inshoreTogiak.csv', header=TRUE, stringsAsFactors = FALSE)
   }
   
   y <- 1
