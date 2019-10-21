@@ -25,6 +25,7 @@ require(R2admb)
 #Set working directory
 # wd <- "O:/DCF/REG2/BBsalmon/Run Reconstruction/2019/Syrah Annual_updated_22Oct18/Syrah Annual"
 
+# wd <- "/Users/curryc2/Documents/Curry's SYRAH Work/Bristol-Bay-Run-Recon"
 # NOTE IF YOU SET WORKING DIRECTORY TO THE GITHUB REPO THIS SHOULD WORK FINE...
 wd <- getwd()
 
@@ -74,7 +75,7 @@ plot.years <- 1963:year
 cross <- 1.25 
 #######################################################################################################
 #WEST SIDE
-phz.run=2; phz.sel=2; phz.avail=1;
+phz.run=1; phz.sel=1; phz.avail=1;
 
 do.west <- FALSE
 if(do.west==TRUE) {
@@ -140,8 +141,10 @@ if(do.west==TRUE) {
   #PLOT FINAL OUTPUT
   if(file.exists(paste(wd, "/Syrah/outputFiles/WestSide/COR/WestSide_", year, ".cor", sep=""))==TRUE) {
     # plot.all(plot.years=plot.years, plot.side=side, cross=cross, wd=wd)
-    
+    # setwd(paste(wd, "/Syrah/outputFiles", sep=""))
     plot.annual.catch.esc(side=side, years=plot.years, pdf=FALSE, text.cex=0.6, cross.cex=cross, wd=wd)
+    plot.annual.agecomp(side=side, years=year, pdf=FALSE, input.cex=2, wd=wd)
+    plot.annual.genComp(side, years=plot.years, pdf=FALSE, text.cex.left=1, text.cex.right=1, wd=wd)
     plot.maxGradient(side=side, years=plot.years, pdf=FALSE, wd=wd)
   }else {
     print(paste(side, 'SIDE RECONSTRUCTION DID NOT CONVERGE, RECHECK PHASING', sep=' '))	
@@ -152,10 +155,12 @@ if(do.west==TRUE) {
 #EAST SIDE
 # phz.run=2; phz.sel=1; phz.avail=1; # 2015 req
 # phz.run=2; phz.sel=2; phz.avail=1; # 2017 req
+# phz.run=3; phz.sel=2; phz.avail=1; #2018 Best - sigma 0.5, 0.1 on first fit
+# phz.run=3; phz.sel=2; phz.avail=1; #2019 Best - sigma 0.5, 0.05 on re-fit
 
-phz.run=2; phz.sel=1; phz.avail=1;
+phz.run=3; phz.sel=2; phz.avail=1;
 
-do.east <- TRUE
+do.east <- FALSE
 if(do.east==TRUE) {
   side <- 'east'
 
@@ -185,9 +190,10 @@ if(do.east==TRUE) {
   #system(paste("./syrah -ainp syrah.par -ind datFiles/EastSide_",year,".dat", sep=''))
   
   #With R2admb
-  run_admb("syrah", extra.args=paste("-ind datFiles/EastSide_",year,".dat -rs -nox", sep=''), verbose=FALSE)
+  run_admb("syrah", extra.args=paste("-ind datFiles/EastSide_",year,".dat -rs -nox", sep=''), verbose=TRUE)
   
   move(side=side, year=year, wd=wd)
+  
   #Plot
   # plot.all(plot.years=plot.years, plot.side=side, cross=cross, wd=wd)
   # plot.annual.catch.esc(side=side, years=plot.years, pdf=FALSE, text.cex=0.6, cross.cex=cross, wd=wd)
@@ -230,9 +236,13 @@ if(do.east==TRUE) {
   #Plot
   if(file.exists(paste(wd, "/Syrah/outputFiles/EastSide/COR/EastSide_", year, ".cor", sep=""))==TRUE) {
     # plot.all(plot.years=plot.years, plot.side=side, cross=cross, wd=wd)
-    
+    # setwd(paste(wd, "/Syrah/outputFiles", sep=""))
     plot.annual.catch.esc(side=side, years=plot.years, pdf=FALSE, text.cex=0.6, cross.cex=cross, wd=wd)
+    plot.annual.agecomp(side=side, years=year, pdf=FALSE, input.cex=2, wd=wd)
+    plot.annual.genComp(side, years=plot.years, pdf=FALSE, text.cex.left=0, text.cex.right=0, wd=wd)
     plot.maxGradient(side=side, years=plot.years, pdf=FALSE, wd=wd)
+    
+    
   }else {
     print(paste(side, 'SIDE RECONSTRUCTION DID NOT CONVERGE, RECHECK PHASING', sep=' '))	
   }
