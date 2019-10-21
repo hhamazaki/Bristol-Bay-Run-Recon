@@ -7,13 +7,13 @@
 #
 ################################
 create.brood <- function(side, years, reallocate=TRUE, allocateOffshore=TRUE, renorm.obs.err=TRUE, wd=wd) {
-  setwd(paste(wd, "/Syrah/outputFiles", sep=""))  
-  ## TESTING ##
-  #     side <- 'east'
-  #     years <- 1963:2016
-  #     reallocate <- TRUE
-  #     allocateOffshore <- TRUE
-  #     renorm.obs.err <- TRUE
+  setwd(paste(wd, "/Syrah/outputFiles", sep=""))
+  # TESTING ##
+      # side <- 'east'
+      # years <- 1963:2019
+      # reallocate <- TRUE
+      # allocateOffshore <- TRUE
+      # renorm.obs.err <- TRUE
   #############
   
   #Escapement data - for first column of brood table
@@ -41,6 +41,7 @@ create.brood <- function(side, years, reallocate=TRUE, allocateOffshore=TRUE, re
     esc.dist <- c(325,325,325)
     esc.stream <- c(100,300,700)
   }
+  
   if(side == 'east') {
     n.districts <- 3
     n.stocks <- 5
@@ -126,6 +127,7 @@ create.brood <- function(side, years, reallocate=TRUE, allocateOffshore=TRUE, re
       brood.data[c(temp.row:(temp.row+n.years-1)),(ac+1),s] <- return.data[,ac,s]
     }#next ac
   }#next s
+  
   #SAME TO HERE!
   #Reallocate the subdistrict catches
   if(reallocate == TRUE) {
@@ -204,6 +206,7 @@ create.brood <- function(side, years, reallocate=TRUE, allocateOffshore=TRUE, re
   }#end if
   
   #HERE IS THE DIFFERENCE!
+  # 2019: Warning here: In Ops.factor(togiak$inshore[which(togiak$year == year)], ‘/’ not meaningful for factors
   if(allocateOffshore == TRUE) {
     if(side == 'west') { offshore <- allocate.offshoreCatch(years, remove.togiak=TRUE, wd=wd)$westOffshore }
     if(side == 'east') { offshore <- allocate.offshoreCatch(years, remove.togiak=TRUE, wd=wd)$eastOffshore }
