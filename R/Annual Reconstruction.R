@@ -366,10 +366,10 @@ create.SYRAH.annual.input <- function(side='west', district.codes, stream.codes,
   
   #Read in genetic, catch and escapement data
   gen.data <- na.omit(read.csv('GeneticsComp_updated_Annual.csv', header=TRUE, stringsAsFactors=FALSE))
-  ac.data <- (read.csv('ageComp.annual.csv', header=TRUE, stringsAsFactors=FALSE)[,-1])
+  ac.data <- na.omit(read.csv('ageComp.annual.csv', header=TRUE, stringsAsFactors=FALSE)[,-1])
   
-  catch.data <-  (read.csv('qry_Annual_CATCH_updated.csv', header=TRUE, stringsAsFactors=FALSE))
-  esc.data <- (read.csv('qry_Annual_ESCAPEMENT_updated.csv', header=TRUE, stringsAsFactors=FALSE))
+  catch.data <-  na.omit(read.csv('qry_Annual_CATCH_updated.csv', header=TRUE, stringsAsFactors=FALSE))
+  esc.data <- na.omit(read.csv('qry_Annual_ESCAPEMENT_updated.csv', header=TRUE, stringsAsFactors=FALSE))
   ### For Divisor ###
   catch.data$SumOfTotal <- catch.data$SumOfTotal/cat.esc.div
   esc.data$SumOfTotal <- esc.data$SumOfTotal/cat.esc.div
