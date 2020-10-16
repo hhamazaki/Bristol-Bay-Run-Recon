@@ -54,8 +54,8 @@ source(paste(wd, "/Syrah/Syrah Helper Functions.r", sep=""))
 
 #Compile ADMB CODE
 #setup_admb("/Applications/ADMB-11 Terminal.app/Contents/admb-11")
-Sys.setenv(ADMB_HOME='usr/local/bin/ADMB')
-Sys.setenv(PATH='/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin')
+# Sys.setenv(ADMB_HOME='usr/local/bin/ADMB')
+# Sys.setenv(PATH='/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin')
 
 # if(mac==TRUE) {
 #   system("admb syrah.tpl") #Compiling .tpl file into executable
