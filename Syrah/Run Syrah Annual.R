@@ -19,6 +19,12 @@
 #*************************************************************************************************
 require(PBSmodelling)
 require(R2admb)
+require(openxlsx)
+require(reshape2)
+require(ggplot2)
+require(beanplot)
+require(mcmcplots)
+require(RColorBrewer)
 
 
 ############## CONTROL SECTION ##############
