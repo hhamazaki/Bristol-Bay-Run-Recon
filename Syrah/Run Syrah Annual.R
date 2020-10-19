@@ -73,7 +73,7 @@ source(paste(wd, "/Syrah/Syrah Helper Functions.r", sep=""))
 compile_admb("syrah", verbose=TRUE)
 
 #######################################################################################################
-year <- 2019
+year <- 2020
 gen.dat <- TRUE  #Flag for Whether GSI data are available
 #######################################################################################################
 #Plotting parameters
@@ -83,7 +83,7 @@ cross <- 1.25
 #WEST SIDE
 phz.run=1; phz.sel=1; phz.avail=1;
 
-do.west <- FALSE
+do.west <- TRUE
 if(do.west==TRUE) {
   side <- 'west'
 
@@ -95,7 +95,7 @@ if(do.west==TRUE) {
     fixed.avail=rep(-1,3) #IF GENETIC DATA ARE AVAILABLE (June Reconstruction)
   }else {
     #Get Average Availability
-    west.prelim <- c(1965,1977,1980,1982,1983,1985,1993,1995,1999,2006:2018)
+    west.prelim <- c(1965,1977,1980,1982,1983,1985,1993,1995,1999,2006:(year-1))
     avg.avail <- avg.Avail.prelim(side='west', prelim.years=west.prelim, wd=wd)$avail.avgs
     
     fixed.avail=avg.avail #IF NO GENETIC DATA ARE AVAILABLE (March Reconstruction)
@@ -178,7 +178,7 @@ if(do.east==TRUE) {
     fixed.avail=rep(-1,15) #IF GENETIC DATA ARE AVAILABLE (June Reconstruction)
   }else {
     #Get Average Availability
-    east.prelim <- c(1964,1965,1983,1985,1993,1995,1999,2002,2006:2015,2017)
+    east.prelim <- c(1964,1965,1983,1985,1993,1995,1999,2002,2006:(year-1))
     avg.avail <- avg.Avail.prelim(side='east', prelim.years=east.prelim, wd=wd)$avail.avgs
     
     fixed.avail=avg.avail  #IF NO GENETIC DATA ARE AVAILABLE (October/March Reconstruction)
