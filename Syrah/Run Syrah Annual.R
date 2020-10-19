@@ -84,7 +84,7 @@ cross <- 1.25
 #WEST SIDE
 phz.run=1; phz.sel=1; phz.avail=1;
 
-do.west <- FALSE
+do.west <- TRUE
 if(do.west==TRUE) {
   side <- 'west'
   
@@ -198,7 +198,7 @@ if(do.east==TRUE) {
                             fixed.avail=fixed.avail,
                             loc.prefix=paste(wd, "/Syrah/datFiles/", sep=""),
                             read.outs=FALSE, phz.run=phz.run, phz.sel=phz.sel, phz.avail=phz.avail,
-                            temp_sigmaCat=0.5, temp_sigmaEsc=0.5, wd=wd)  #0.5, 0.5
+                            temp_sigmaCat=0.5, temp_sigmaEsc=0.1, wd=wd)  #0.5, 0.5
   #Run ADMB 1st Round                          
   setwd(paste(wd, "/Syrah", sep=""))
   #system(paste("./syrah -ainp syrah.par -ind datFiles/EastSide_",year,".dat", sep=''))
@@ -229,7 +229,7 @@ if(do.east==TRUE) {
                             fixed.avail=fixed.avail,
                             loc.prefix=paste(wd, "/Syrah/datFiles/", sep=""),
                             read.outs=TRUE, phz.run=phz.run, phz.sel=phz.sel, phz.avail=phz.avail,
-                            temp_sigmaCat=0.5, temp_sigmaEsc=0.01, wd=wd) #0.5, 0.05
+                            temp_sigmaCat=0.5, temp_sigmaEsc=0.05, wd=wd) #0.5, 0.05
 
   #Clear output objects
   cleanup(side=side, year=year, wd=wd)
@@ -265,6 +265,9 @@ if(do.east==TRUE) {
 # plot.annual.catch.esc(side=side, years=plot.years, pdf=FALSE, text.cex=0.6, cross.cex=cross, wd=wd)
 
 # plot.maxGradient(side=side, years=plot.years, pdf=FALSE, wd=wd)
+
+# Reset Working Directory
+setwd(wd)
 
 #######################################################################################################
 #CREATE BROOD TABLES - SOME SORT 
