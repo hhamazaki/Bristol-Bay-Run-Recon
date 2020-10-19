@@ -25,6 +25,7 @@ require(ggplot2)
 require(beanplot)
 require(mcmcplots)
 require(RColorBrewer)
+require(here)
 
 
 ############## CONTROL SECTION ##############
@@ -33,7 +34,7 @@ require(RColorBrewer)
 
 # wd <- "/Users/curryc2/Documents/Curry's SYRAH Work/Bristol-Bay-Run-Recon"
 # NOTE IF YOU SET WORKING DIRECTORY TO THE GITHUB REPO THIS SHOULD WORK FINE...
-wd <- getwd()
+wd <- here()
 
 #Define operating system
 # mac <- TRUE  #Set to FALSE if working on a PC
