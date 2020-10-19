@@ -84,10 +84,13 @@ cross <- 1.25
 #WEST SIDE
 phz.run=1; phz.sel=1; phz.avail=1;
 
-do.west <- TRUE
+do.west <- FALSE
 if(do.west==TRUE) {
   side <- 'west'
-
+  
+  # Reset Working Directory
+  setwd(wd)
+  
   #Cleanup
   cleanup(side=side, year=year, wd=wd)
 
@@ -158,6 +161,7 @@ if(do.west==TRUE) {
   }
 }
 
+
 #######################################################################################################
 #EAST SIDE
 # phz.run=2; phz.sel=1; phz.avail=1; # 2015 req
@@ -165,12 +169,15 @@ if(do.west==TRUE) {
 # phz.run=3; phz.sel=2; phz.avail=1; #2018 Best - sigma 0.5, 0.1 on first fit
 # phz.run=3; phz.sel=2; phz.avail=1; #2019 Best - sigma 0.5, 0.05 on re-fit
 
-phz.run=3; phz.sel=2; phz.avail=1;
+phz.run=2; phz.sel=2; phz.avail=1;
 
-do.east <- FALSE
+do.east <- TRUE
 if(do.east==TRUE) {
   side <- 'east'
-
+  
+  # Reset Working Directory
+  setwd(wd)
+  
   #Cleanup
   cleanup(side=side, year=year, wd=wd)
 
@@ -222,7 +229,7 @@ if(do.east==TRUE) {
                             fixed.avail=fixed.avail,
                             loc.prefix=paste(wd, "/Syrah/datFiles/", sep=""),
                             read.outs=TRUE, phz.run=phz.run, phz.sel=phz.sel, phz.avail=phz.avail,
-                            temp_sigmaCat=0.5, temp_sigmaEsc=0.1, wd=wd) #0.5, 0.05
+                            temp_sigmaCat=0.5, temp_sigmaEsc=0.01, wd=wd) #0.5, 0.05
 
   #Clear output objects
   cleanup(side=side, year=year, wd=wd)
