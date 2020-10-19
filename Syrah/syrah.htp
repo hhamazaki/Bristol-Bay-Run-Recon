@@ -109,7 +109,7 @@ private:
   param_vector Fmort;
 public:
   virtual void userfunction(void);
-  virtual void report(void);
+  virtual void report(const dvector& gradients);
   virtual void final_calcs(void);
   model_parameters(int sz,int argc, char * argv[]);
   virtual void initializationfunction(void){}
