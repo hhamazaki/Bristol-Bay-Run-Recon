@@ -46,7 +46,7 @@ setwd(paste(wd, "/Syrah", sep=""))
 
 
 ##### Source Necessary Files #####
-#Creat ADMB input
+#Create ADMB input
 source(paste(wd, "/R/Annual Reconstruction.r", sep=""))
 #Plot output
 source(paste(wd, "/Syrah/outputFiles/Plot Annual Output.r", sep=""))
