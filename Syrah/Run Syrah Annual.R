@@ -83,6 +83,7 @@ cross <- 1.25
 #######################################################################################################
 #WEST SIDE
 phz.run=1; phz.sel=1; phz.avail=1;
+temp_sigmaCat=0.5; temp_sigmaEsc=0.1 # For Second Fit
 
 do.west <- TRUE
 if(do.west==TRUE) {
@@ -135,7 +136,7 @@ if(do.west==TRUE) {
                             fixed.avail=fixed.avail,
                             loc.prefix=paste(wd, "/Syrah/datFiles/", sep=""),
                             read.outs=TRUE, phz.run=phz.run, phz.sel=phz.sel, phz.avail=phz.avail,
-                            temp_sigmaCat=0.5, temp_sigmaEsc=0.1, wd=wd) # Usually cat=0.5, esc=0.1
+                            temp_sigmaCat=temp_sigmaCat, temp_sigmaEsc=temp_sigmaEsc, wd=wd) # Usually cat=0.5, esc=0.1
 
   #Clear output objects
   cleanup(side=side, year=year, wd=wd)
@@ -170,6 +171,7 @@ if(do.west==TRUE) {
 # phz.run=3; phz.sel=2; phz.avail=1; #2019 Best - sigma 0.5, 0.05 on re-fit
 
 phz.run=2; phz.sel=2; phz.avail=1;
+temp_sigmaCat=0.5; temp_sigmaEsc=0.05 # For Second Fit
 
 do.east <- TRUE
 if(do.east==TRUE) {
@@ -229,7 +231,7 @@ if(do.east==TRUE) {
                             fixed.avail=fixed.avail,
                             loc.prefix=paste(wd, "/Syrah/datFiles/", sep=""),
                             read.outs=TRUE, phz.run=phz.run, phz.sel=phz.sel, phz.avail=phz.avail,
-                            temp_sigmaCat=0.5, temp_sigmaEsc=0.05, wd=wd) #0.5, 0.05
+                            temp_sigmaCat=temp_sigmaCat, temp_sigmaEsc=temp_sigmaEsc, wd=wd) #0.5, 0.05
 
   #Clear output objects
   cleanup(side=side, year=year, wd=wd)
