@@ -85,7 +85,7 @@ cross <- 1.25
 phz.run=1; phz.sel=1; phz.avail=1;
 temp_sigmaCat=0.5; temp_sigmaEsc=0.1 # For Second Fit
 
-do.west <- TRUE
+do.west <- FALSE
 if(do.west==TRUE) {
   side <- 'west'
   
@@ -173,7 +173,7 @@ if(do.west==TRUE) {
 phz.run=2; phz.sel=2; phz.avail=1;
 temp_sigmaCat=0.5; temp_sigmaEsc=0.05 # For Second Fit
 
-do.east <- TRUE
+do.east <- FALSE
 if(do.east==TRUE) {
   side <- 'east'
   
@@ -274,7 +274,7 @@ setwd(wd)
 #######################################################################################################
 #CREATE BROOD TABLES - SOME SORT 
 #  Must be done last as both converged outputs must be ready so offshore can be allocated accordingly
-do.broods <- TRUE
+do.broods <- FALSE
 if(do.broods==TRUE) {
   # west.converge <- file.exists(paste(wd, "/Syrah/outputFiles/WestSide/COR/WestSide_", year, ".cor", sep=""))
   #  east.converge <- file.exists(paste(wd, "/Syrah/outputFiles/EastSide/COR/EastSide_", year, ".cor", sep=""))
