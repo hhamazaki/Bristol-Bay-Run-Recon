@@ -74,7 +74,7 @@ source(paste(wd, "/Syrah/Syrah Helper Functions.r", sep=""))
 compile_admb("syrah", verbose=TRUE)
 
 #######################################################################################################
-year <- 2020
+year <- 2021
 gen.dat <- TRUE  #Flag for Whether GSI data are available
 #######################################################################################################
 #Plotting parameters
@@ -85,7 +85,7 @@ cross <- 1.25
 phz.run=1; phz.sel=1; phz.avail=1;
 temp_sigmaCat=0.5; temp_sigmaEsc=0.1 # For Second Fit
 
-do.west <- FALSE
+do.west <- TRUE
 if(do.west==TRUE) {
   side <- 'west'
   
