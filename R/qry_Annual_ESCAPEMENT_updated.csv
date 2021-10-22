@@ -534,7 +534,7 @@ DistrictID,Stream,District,System,Year,Type,SumOfTotal
 325,800,Nushagak,Nuyakuk,2004,Escapement,77406
 325,800,Nushagak,Nuyakuk,2005,Escapement,251016
 325,800,Nushagak,Nuyakuk,2006,Escapement,170760
-321,100,Ugashik,Ugashik,2012,Escapement,695018
+321,100,Ugashik,Ugashik,2012,Escapement,670578
 322,100,Egegik,Egegik,2012,Escapement,1233900
 324,100,Naknek_Kvichak,Kvichak,2012,Escapement,4164444
 324,600,Naknek_Kvichak,Naknek,2012,Escapement,900312
@@ -560,7 +560,7 @@ DistrictID,Stream,District,System,Year,Type,SumOfTotal
 325,700,Nushagak,Nush-mul,2014,Escapement,618477
 321,100,Ugashik,Ugashik,2015,Escapement,1564638
 322,100,Egegik,Egegik,2015,Escapement,2160792
-324,100,Naknek_Kvichak,Kvichak,2015,Escapement,7341612
+324,100,Naknek_Kvichak,Kvichak,2015,Escapement,7348572
 324,500,Naknek_Kvichak,Alagnak,2015,Escapement,5770650
 324,600,Naknek_Kvichak,Naknek,2015,Escapement,1920954
 325,100,Nushagak,Igushik,2015,Escapement,651172
@@ -606,3 +606,11 @@ DistrictID,Stream,District,System,Year,Type,SumOfTotal
 325,100,Nushagak,Igushik,2020,Escapement,323814
 325,300,Nushagak,Wood,2020,Escapement,2243886
 325,700,Nushagak,Nush-mul,2020,Escapement,1228059
+321,100,Ugashik,Ugashik,2021,Escapement,2859930
+322,100,Egegik,Egegik,2021,Escapement,1832196
+324,100,Naknek_Kvichak,Kvichak,2021,Escapement,4703520
+324,500,Naknek_Kvichak,Alagnak,2021,Escapement,3236904
+324,600,Naknek_Kvichak,Naknek,2021,Escapement,2796534
+325,100,Nushagak,Igushik,2021,Escapement,878952
+325,300,Nushagak,Wood,2021,Escapement,4410156
+325,700,Nushagak,Nush-mul,2021,Escapement,4697299

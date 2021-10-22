@@ -255,7 +255,11 @@ DistrictID,District,Year,Type,SumOfTotal
 322,Egegik,2019,Catch,14687147
 324,Naknek_Kvichak,2019,Catch,8565053
 325,Nushagak,2019,Catch,14101488
-321,Ugashik,2020,Catch,2612373
-322,Egegik,2020,Catch,13366757
-324,Naknek_Kvichak,2020,Catch,11694028
-325,Nushagak,2020,Catch,8407488
+321,Ugashik,2020,Catch,2622792
+322,Egegik,2020,Catch,13423661
+324,Naknek_Kvichak,2020,Catch,11707775
+325,Nushagak,2020,Catch,8428885
+321,Ugashik,2021,Catch,5205876
+322,Egegik,2021,Catch,8553483
+324,Naknek_Kvichak,2021,Catch,6997084
+325,Nushagak,2021,Catch,17149165
