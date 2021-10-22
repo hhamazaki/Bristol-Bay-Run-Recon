@@ -256,7 +256,7 @@ source(file.path(wd,"Syrah", "outputFiles", "R", "plot.catch.esc.sigma.R"))
 # wd <- "/Users/curryc2/Documents/Curry's SYRAH Work/Syrah Annual"
 ############################
 #TESTING
- # plot.years <- 1963:2018
+ # plot.years <- 1963:2021
  # plot.side <- 'east'
  # cross <- 1.25
 
