@@ -151,7 +151,9 @@ plot.apportioned.catch <- function(side, years, pdf=FALSE, separate=FALSE, write
     abline(h=0, lwd=2)  	
     abline(h=pretty(c(0,y.limit)), lty=2)
     legend('top', legend=names.stocks, ncol=n.stocks, fill=cols, bty='n')
-    yrs.pty <- pretty(years)[-c(1,7)]
+    # yrs.pty <- pretty(years)[-c(1,7)]
+    yrs.pty <- pretty(years)
+    yrs.pty <- yrs.pty[yrs.pty>=min(years) & yrs.pty<=max(years)]
     loc.pty <- which(years %in% yrs.pty)
     axis(side=1, at=xpos[loc.pty], labels=yrs.pty, las=2, outer=TRUE)
     axis(side=1, at=xpos, labels=FALSE, las=2, outer=TRUE, col='gray')
