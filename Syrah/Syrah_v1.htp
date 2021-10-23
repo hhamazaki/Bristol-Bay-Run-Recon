@@ -1,5 +1,5 @@
-#if !defined(_Syrah_)
-#  define _Syrah_
+#if !defined(_Syrah_v1_)
+#  define _Syrah_v1_
 
 class model_data : public ad_comm{
   int debug;
@@ -83,7 +83,8 @@ private:
   param_number prior_function_value;
   param_number likelihood_function_value;
   objective_function_value negLogLike;
-  param_init_bounded_number_vector RunSize;
+  param_init_bounded_number_vector ln_RunSize;
+  param_vector RunSize;
   param_init_bounded_number_vector Availability;
   param_init_bounded_number_vector Selectivity;
   param_vector SelectivityGroup;

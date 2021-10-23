@@ -14,7 +14,7 @@
   extern "C"  {
     void ad_boundf(int i);
   }
-#include <Syrah.htp>
+#include <Syrah_v1.htp>
 
 model_data::model_data(int argc,char * argv[]) : ad_comm(argc,argv)
 {
@@ -82,9 +82,9 @@ model_parameters::model_parameters(int sz,int argc,char * argv[]) :
   
   for(i=1;i<=NGROUPS;i++) {
     phzRun(i)=TempRunSize(i,2);
-    startRun(i)=TempRunSize(i,3);
-    lbRun(i)=TempRunSize(i,4);
-    ubRun(i)=TempRunSize(i,5);	
+    startRun(i)=log(TempRunSize(i,3) + 1e-6);
+    lbRun(i)=log(TempRunSize(i,4) + 1e-6);
+    ubRun(i)=log(TempRunSize(i,5) + 1e-6);	
   }
   for(i=1;i<=NAVAILPAR;i++) {
     phzAvail(i)=TempAvailability(i,2);
@@ -99,7 +99,11 @@ model_parameters::model_parameters(int sz,int argc,char * argv[]) :
     ubSel(i)=TempSelectivity(i,5);
   }
   
-  RunSize.allocate(1,NGROUPS,lbRun,ubRun,phzRun,"RunSize");
+  ln_RunSize.allocate(1,NGROUPS,lbRun,ubRun,phzRun,"ln_RunSize");
+  RunSize.allocate(1,NGROUPS,"RunSize");
+  #ifndef NO_AD_INITIALIZE
+    RunSize.initialize();
+  #endif
   Availability.allocate(1,NAVAILPAR,lbAvail,ubAvail,phzAvail,"Availability");
   Selectivity.allocate(1,NSELECTPAR,lbSel,ubSel,phzSel,"Selectivity");
   SelectivityGroup.allocate(1,NGROUPS,"SelectivityGroup");
@@ -219,7 +223,7 @@ void model_parameters::preliminary_calculations(void)
   
   //Fix starting values for predicted variables
   for(i=1;i<=NGROUPS;i++) {
-    RunSize(i)=startRun(i);
+    ln_RunSize(i)=startRun(i);
   }
   for(i=1;i<=NAVAILPAR;i++) {
     Availability(i)=startAvail(i);
@@ -255,6 +259,8 @@ void model_parameters::InitializeVariables(void)
   int ac;  //Counter for age comp groups
   int s;  //Counter for stocks
   int g;  //Counter for groups
+  //NEW 2021: Tranform Log RunSize
+  RunSize=exp(ln_RunSize);
   //Objective Function Value
   negLogLike=0.0;
   //Negative Log Likelihood Parameters
