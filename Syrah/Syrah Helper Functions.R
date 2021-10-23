@@ -42,26 +42,38 @@ cleanup <- function(side='west', year=2013, wd=wd) {
 }
 
 #Move output files to specified folders
-move <- function(side='west', year=2013, wd=wd) {
+move <- function(side='west', year=2013, wd=wd, model.name=NULL) {
   if(side=='west') {
     file.copy(from=paste(wd, "/Syrah/SYRAH_annual.out", sep=""), 
               to=paste(wd, "/Syrah/outputFiles/WestSide/WestSide_",year, ".out", sep=""), 
               overwrite=TRUE)	
-    file.copy(from=paste(wd, "/Syrah/syrah.cor", sep=""),
+    # file.copy(from=paste(wd, "/Syrah/syrah.cor", sep=""),
+    #           to=paste(wd, "/Syrah/outputFiles/WestSide/COR/WestSide_",year, ".cor", sep=""), 
+    #           overwrite=TRUE)     
+    # file.copy(from=paste(wd, "/Syrah/syrah.std", sep=""), 
+    #           to=paste(wd, "/Syrah/outputFiles/WestSide/STD/WestSide_",year, ".std", sep=""), 
+    #           overwrite=TRUE)         
+    file.copy(from=file.path(wd, "Syrah", paste(model.name, ".cor", sep="")),
               to=paste(wd, "/Syrah/outputFiles/WestSide/COR/WestSide_",year, ".cor", sep=""), 
               overwrite=TRUE)     
-    file.copy(from=paste(wd, "/Syrah/syrah.std", sep=""), 
+    file.copy(from=file.path(wd, "Syrah", paste(model.name, ".std", sep="")), 
               to=paste(wd, "/Syrah/outputFiles/WestSide/STD/WestSide_",year, ".std", sep=""), 
-              overwrite=TRUE)                 
+              overwrite=TRUE)  
   }	
   if(side=='east') {
     file.copy(from=paste(wd, "/Syrah/SYRAH_annual.out", sep=""),
               to=paste(wd, "/Syrah/outputFiles/EastSide/EastSide_",year, ".out", sep=""), 
               overwrite=TRUE)	
-    file.copy(from=paste(wd, "/Syrah/syrah.cor", sep=""),
+    # file.copy(from=paste(wd, "/Syrah/syrah.cor", sep=""),
+    #           to=paste(wd, "/Syrah/outputFiles/EastSide/COR/EastSide_",year, ".cor", sep=""), 
+    #           overwrite=TRUE)     
+    # file.copy(from=paste(wd, "/Syrah/syrah.std", sep=""),
+    #           to=paste(wd, "/Syrah/outputFiles/EastSide/STD/EastSide_",year, ".std", sep=""), 
+    #           overwrite=TRUE)  	
+    file.copy(from=file.path(wd, "Syrah", paste(model.name, ".cor", sep="")),
               to=paste(wd, "/Syrah/outputFiles/EastSide/COR/EastSide_",year, ".cor", sep=""), 
               overwrite=TRUE)     
-    file.copy(from=paste(wd, "/Syrah/syrah.std", sep=""),
+    file.copy(from=file.path(wd, "Syrah", paste(model.name, ".std", sep="")),
               to=paste(wd, "/Syrah/outputFiles/EastSide/STD/EastSide_",year, ".std", sep=""), 
               overwrite=TRUE)  	
   }
