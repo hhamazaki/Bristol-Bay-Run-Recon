@@ -121,9 +121,9 @@ DATA_SECTION
 
 // Extract Control data   
    !! phzRun     = ivector(column(TempRunSize,2));
-   !! startRun   = (column(TempRunSize,3));
-   !! lbRun      = (column(TempRunSize,4));
-   !! ubRun      = (column(TempRunSize,5));
+   !! startRun   = log(column(TempRunSize,3) + 1e-6);
+   !! lbRun      = log(column(TempRunSize,4) + 1e-6);
+   !! ubRun      = log(column(TempRunSize,5) + 1e-6);
    !! phzAvail   = ivector(column(TempAvailability,2));
    !! startAvail = column(TempAvailability,3);
    !! lbAvail    = column(TempAvailability,4);
@@ -163,7 +163,7 @@ PARAMETER_SECTION
   
 // END_CALCS
 //  init_bounded_number_vector RunSize(1,NGROUPS,lbRun,ubRun,phzRun);
-  init_bounded_number_vector ln_RunSize(1,NGROUPS,log(lbRun),log(ubRun),phzRun);
+  init_bounded_number_vector ln_RunSize(1,NGROUPS,lbRun,ubRun,phzRun);
   vector RunSize(1,NGROUPS);
   init_bounded_number_vector Availability(1,NAVAILPAR,lbAvail,ubAvail,phzAvail);
   init_bounded_number_vector Selectivity(1,NSELECTPAR,lbSel,ubSel,phzSel);
@@ -238,7 +238,8 @@ PRELIMINARY_CALCS_SECTION
   
   //Fix starting values for predicted variables
   for(i=1;i<=NGROUPS;i++) {
-	ln_RunSize(i)=log(startRun(i)+1);  
+	    //ln_RunSize(i)=log(startRun(i)+1);  
+      ln_RunSize(i)=startRun(i);
 //    RunSize(i)=startRun(i);	
   }
   for(i=1;i<=NAVAILPAR;i++) {
@@ -314,7 +315,7 @@ FUNCTION InitializeVariables
   int ac;  //Counter for age comp groups
   int s;  //Counter for stocks
   int g;  //Counter for groups
-  RunSize=exp(ln_RunSize)-1;
+  RunSize=exp(ln_RunSize);
 //  RunSize=ln_RunSize; 
   //Objective Function Value
   negLogLike=0.0;
