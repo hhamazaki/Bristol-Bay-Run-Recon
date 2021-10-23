@@ -18,6 +18,15 @@ cleanup <- function(side='west', year=2013, wd=wd) {
   file.remove(paste(wd, "/Syrah/syrah.par", sep=""))
   file.remove(paste(wd, "/Syrah/syrah.std", sep=""))
   file.remove(paste(wd, "/Syrah/SYRAH_annual.out", sep=""))
+  
+  file.remove(paste(wd, "/Syrah/syrah_v1.cor", sep=""))
+  file.remove(paste(wd, "/Syrah/syrah_v1.par", sep=""))
+  file.remove(paste(wd, "/Syrah/syrah_v1.std", sep=""))
+
+  file.remove(paste(wd, "/Syrah/syrah_v2.cor", sep=""))
+  file.remove(paste(wd, "/Syrah/syrah_v2.par", sep=""))
+  file.remove(paste(wd, "/Syrah/syrah_v2.std", sep=""))
+
   #Side-specific files
   if(side=='west') {
     file.remove(paste(wd, "/Syrah/outputFiles/WestSide/WestSide_", year, ".out", sep=""))
