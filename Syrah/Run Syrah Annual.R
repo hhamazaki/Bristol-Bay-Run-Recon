@@ -123,7 +123,7 @@ if(do.west==TRUE) {
   # run_admb("syrah", extra.args=paste("-ind datFiles/WestSide_",year,".dat -rs -nox", sep=''), verbose=TRUE)
   run_admb(model.name, extra.args=paste("-ind datFiles/WestSide_",year,".dat -rs -nox", sep=''), verbose=TRUE)
   
-  move(side=side, year=year, wd=wd)
+  move(side=side, year=year, wd=wd, model.name=model.name)
   #Plot
   #plot.all(plot.years=plot.years, plot.side=side, cross=cross, wd=wd)
 
@@ -152,7 +152,7 @@ if(do.west==TRUE) {
   # run_admb("syrah", extra.args=paste("-ind datFiles/WestSide_",year,".dat -rs -nox", sep=''), verbose=TRUE)
   run_admb(model.name, extra.args=paste("-ind datFiles/WestSide_",year,".dat -rs -nox", sep=''), verbose=TRUE)
   
-  move(side=side, year=year, wd=wd)
+  move(side=side, year=year, wd=wd, model.name=model.name)
 
   #PLOT FINAL OUTPUT
   if(file.exists(paste(wd, "/Syrah/outputFiles/WestSide/COR/WestSide_", year, ".cor", sep=""))==TRUE) {
@@ -179,7 +179,7 @@ setwd(wd)
 phz.run=3; phz.sel=2; phz.avail=1;
 temp_sigmaCat=0.5; temp_sigmaEsc=0.1 # For Second Fit
 
-do.east <- TRUE
+do.east <- FALSE
 if(do.east==TRUE) {
   side <- 'east'
   
@@ -212,9 +212,9 @@ if(do.east==TRUE) {
   #system(paste("./syrah -ainp syrah.par -ind datFiles/EastSide_",year,".dat", sep=''))
   
   #With R2admb
-  run_admb("syrah", extra.args=paste("-ind datFiles/EastSide_",year,".dat -rs -nox", sep=''), verbose=TRUE)
+  run_admb(model.name, extra.args=paste("-ind datFiles/EastSide_",year,".dat -rs -nox", sep=''), verbose=TRUE)
   
-  move(side=side, year=year, wd=wd)
+  move(side=side, year=year, wd=wd, model.name=model.name)
   
   #Plot
   # plot.all(plot.years=plot.years, plot.side=side, cross=cross, wd=wd)
@@ -246,11 +246,11 @@ if(do.east==TRUE) {
   setwd(paste(wd, "/Syrah", sep=""))
   
   #With R2admb
-  run_admb("syrah", extra.args=paste("-ind datFiles/EastSide_",year,".dat -rs -nox", sep=''), verbose=TRUE)
+  run_admb(model.name, extra.args=paste("-ind datFiles/EastSide_",year,".dat -rs -nox", sep=''), verbose=TRUE)
   
 #   system(paste("./syrah -ainp syrah.par -ind datFiles/EastSide_",year,".dat", sep=''))
   
-  move(side=side, year=year, wd=wd)
+  move(side=side, year=year, wd=wd, model.name=model.name)
   
   #TEMPORARY
   # plot.annual.catch.esc(side=side, years=plot.years, pdf=FALSE, text.cex=0.6, cross.cex=cross, wd=wd)
