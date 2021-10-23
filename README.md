@@ -18,6 +18,15 @@ Each year is estimated **independently** although some information is shared amo
   2. Formal run reconstruction model estimation by AD-Model Builder (ADMB) in [/Syrah](https://github.com/curryc2/Bristol-Bay-Run-Recon/tree/master/Syrah) directory.
   3. Parsing annual ADMB output (.out) files into user-friendly tables and figures in the [Syrah/outputFiles](https://github.com/curryc2/Bristol-Bay-Run-Recon/tree/master/Syrah/outputFiles) directory.
 
+## Syrah Model Versions
+Name                            | Description
+--------------------------------|-------------------------------
+Syrah                           | Original version.
+Syrah_v1                        | Original model + small update to estimate RunSize in log space.
+Syrah_v2                        | Original model + small update to estimate RunSize in log space + updates from Hamazaki (ADFG) to likelihood formula (and perhaps other changes).
+
+** NOTE: *** all versions are designed to be backward compatible with input (.dat) and output (.out) files. All upstream data input creation R functions, and output processing and data visualization R functions will operate normally, independent of version. 
+
 ## Structure
 
 Directory                       | Description
