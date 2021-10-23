@@ -36,13 +36,15 @@ require(here)
 # NOTE IF YOU SET WORKING DIRECTORY TO THE GITHUB REPO THIS SHOULD WORK FINE...
 wd <- here()
 
-#Define operating system
-# mac <- TRUE  #Set to FALSE if working on a PC
+# DEFINE VERSION OF SYRAH
+# model.name <- "Syrah"
+model.name <- "Syrah_v1"
+# model.name <- "Syrah_v2"
 
 #############################################
 
 
-setwd(paste(wd, "/Syrah", sep=""))
+setwd(file.path(wd, "Syrah"))
 
 
 ##### Source Necessary Files #####
@@ -71,7 +73,8 @@ source(paste(wd, "/Syrah/Syrah Helper Functions.r", sep=""))
 # }
 
 #using R2admb
-compile_admb("syrah", verbose=TRUE)
+# compile_admb("syrah", verbose=TRUE)
+compile_admb(model.name, verbose=TRUE)
 
 #######################################################################################################
 year <- 2021
@@ -117,7 +120,8 @@ if(do.west==TRUE) {
   setwd(paste(wd, "/Syrah", sep=""))
   
   #With R2admb
-  run_admb("syrah", extra.args=paste("-ind datFiles/WestSide_",year,".dat -rs -nox", sep=''), verbose=TRUE)
+  # run_admb("syrah", extra.args=paste("-ind datFiles/WestSide_",year,".dat -rs -nox", sep=''), verbose=TRUE)
+  run_admb(model.name, extra.args=paste("-ind datFiles/WestSide_",year,".dat -rs -nox", sep=''), verbose=TRUE)
   
   move(side=side, year=year, wd=wd)
   #Plot
@@ -145,7 +149,8 @@ if(do.west==TRUE) {
   setwd(paste(wd, "/Syrah", sep=""))
 
   #With R2admb
-  run_admb("syrah", extra.args=paste("-ind datFiles/WestSide_",year,".dat -rs -nox", sep=''), verbose=TRUE)
+  # run_admb("syrah", extra.args=paste("-ind datFiles/WestSide_",year,".dat -rs -nox", sep=''), verbose=TRUE)
+  run_admb(model.name, extra.args=paste("-ind datFiles/WestSide_",year,".dat -rs -nox", sep=''), verbose=TRUE)
   
   move(side=side, year=year, wd=wd)
 
