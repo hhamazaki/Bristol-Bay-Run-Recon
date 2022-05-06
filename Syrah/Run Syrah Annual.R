@@ -37,9 +37,9 @@ require(here)
 wd <- here()
 
 # DEFINE VERSION OF SYRAH
-# model.name <- "Syrah"
-model.name <- "Syrah_v1"
-# model.name <- "Syrah_v2"
+# model.name <- "Syrah" # Original model
+model.name <- "Syrah_v1" # Update to estimate RunSize in log space
+# model.name <- "Syrah_v2" # Update to estimate RunSize in log space + Hamachan's update to likelihood. 
 
 #############################################
 
