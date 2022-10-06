@@ -1,4 +1,4 @@
-#************************************************************************************************
+#*******************************************************************************
 #Project Name: SYRAH ANNUAL - Running the complete model
 #Creator: Curry James Cunningham, SAFS, University of Washington
 #Date: 11.4.13
@@ -12,7 +12,7 @@
 #  5) Re-run ADMB from from previous parameter estimates
 #  6) Plot Output and create brood and return tables
 #
-#*************************************************************************************************
+#*******************************************************************************
 #Notes:
 #  A)
 #  
@@ -25,7 +25,6 @@ require(ggplot2)
 require(beanplot)
 require(mcmcplots)
 require(RColorBrewer)
-require(here)
 
 
 ############## CONTROL SECTION ##############
@@ -34,31 +33,26 @@ require(here)
 
 # wd <- "/Users/curryc2/Documents/Curry's SYRAH Work/Bristol-Bay-Run-Recon"
 # NOTE IF YOU SET WORKING DIRECTORY TO THE GITHUB REPO THIS SHOULD WORK FINE...
-wd <- here()
-
+#wd <- "C:/Projects/Bristol_Bay/Bristol-Bay-Run-Recon-master"
+wd <- file.path("C:","Projects","Bristol_Bay","Bristol-Bay-Run-Recon-master")
 # DEFINE VERSION OF SYRAH
-# model.name <- "Syrah" # Original model
-model.name <- "Syrah_v1" # Update to estimate RunSize in log space
-# model.name <- "Syrah_v2" # Update to estimate RunSize in log space + Hamachan's update to likelihood. 
+model.name <- "Syrah"
+model.name <- "Syrah_v1"
+#model.name <- "Syrah_v2"
 
 #############################################
-
-
-setwd(file.path(wd, "Syrah"))
-
-
+setwd(wd)
 ##### Source Necessary Files #####
 #Create ADMB input
-source(paste(wd, "/R/Annual Reconstruction.r", sep=""))
+source(file.path("R","Annual Reconstruction.r"))
 #Plot output
-source(paste(wd, "/Syrah/outputFiles/Plot Annual Output.r", sep=""))
+source(file.path("Syrah","outputFiles","Plot Annual Output.r"))
 #plot.all(plot.years=plot.years, plot.side=plot.side, cross=cross)
 #create.all(plot.years=plot.years, plot.side=plot.side)
 
 #Helper Functions
-source(paste(wd, "/Syrah/Syrah Helper Functions.r", sep=""))
+source(file.path("Syrah","Syrah Helper Functions.r"))
 #move(); cleanup(); both take side and year as inputs
-
 
 
 #Compile ADMB CODE
@@ -74,10 +68,10 @@ source(paste(wd, "/Syrah/Syrah Helper Functions.r", sep=""))
 
 #using R2admb
 # compile_admb("syrah", verbose=TRUE)
-compile_admb(model.name, verbose=TRUE)
+#compile_admb(model.name, verbose=TRUE)
 
 #######################################################################################################
-year <- 2021
+year <- 2022
 gen.dat <- TRUE  #Flag for Whether GSI data are available
 #######################################################################################################
 #Plotting parameters
@@ -86,14 +80,11 @@ cross <- 1.25
 #######################################################################################################
 #WEST SIDE
 phz.run=1; phz.sel=1; phz.avail=1;
-temp_sigmaCat=0.5; temp_sigmaEsc=0.1 # For Second Fit
+temp_sigmaCat=0.1; temp_sigmaEsc=0.05 # For Second Fit
 
-do.west <- FALSE
+do.west <- TRUE
 if(do.west==TRUE) {
   side <- 'west'
-  
-  # Reset Working Directory
-  setwd(wd)
   
   #Cleanup
   cleanup(side=side, year=year, wd=wd)
@@ -117,15 +108,15 @@ if(do.west==TRUE) {
                             read.outs=FALSE, phz.run=phz.run, phz.sel=phz.sel, phz.avail=phz.avail,
                             temp_sigmaCat=0.5, temp_sigmaEsc=0.5, wd=wd) 
   #Run ADMB 1st Round                          
-  setwd(paste(wd, "/Syrah", sep=""))
+  setwd(file.path(wd, "Syrah"))
   
   #With R2admb
-  # run_admb("syrah", extra.args=paste("-ind datFiles/WestSide_",year,".dat -rs -nox", sep=''), verbose=TRUE)
   run_admb(model.name, extra.args=paste("-ind datFiles/WestSide_",year,".dat -rs -nox", sep=''), verbose=TRUE)
+
   
   move(side=side, year=year, wd=wd, model.name=model.name)
   #Plot
-  #plot.all(plot.years=plot.years, plot.side=side, cross=cross, wd=wd)
+
 
   #Create ADMB Input
   if(gen.dat==TRUE) {
@@ -144,9 +135,8 @@ if(do.west==TRUE) {
 
   #Clear output objects
   cleanup(side=side, year=year, wd=wd)
-
   #Run ADMB 1st Round                          
-  setwd(paste(wd, "/Syrah", sep=""))
+  setwd(file.path(wd, "Syrah"))
 
   #With R2admb
   # run_admb("syrah", extra.args=paste("-ind datFiles/WestSide_",year,".dat -rs -nox", sep=''), verbose=TRUE)
@@ -155,9 +145,9 @@ if(do.west==TRUE) {
   move(side=side, year=year, wd=wd, model.name=model.name)
 
   #PLOT FINAL OUTPUT
-  if(file.exists(paste(wd, "/Syrah/outputFiles/WestSide/COR/WestSide_", year, ".cor", sep=""))==TRUE) {
-    # plot.all(plot.years=plot.years, plot.side=side, cross=cross, wd=wd)
-    # setwd(paste(wd, "/Syrah/outputFiles", sep=""))
+  if(file.exists(file.path(wd, "outputFiles","WestSide","COR",paste0("WestSide_", year, ".cor")))) {
+    
+
     plot.annual.catch.esc(side=side, years=plot.years, pdf=FALSE, text.cex=0.6, cross.cex=cross, wd=wd)
     plot.annual.agecomp(side=side, years=year, pdf=FALSE, input.cex=2, wd=wd)
     plot.annual.genComp(side, years=plot.years, pdf=FALSE, text.cex.left=1, text.cex.right=1, wd=wd)
@@ -176,10 +166,10 @@ setwd(wd)
 # phz.run=3; phz.sel=2; phz.avail=1; #2018 Best - sigma 0.5, 0.1 on first fit
 # phz.run=3; phz.sel=2; phz.avail=1; #2019 Best - sigma 0.5, 0.05 on re-fit
 
-phz.run=3; phz.sel=2; phz.avail=1;
-temp_sigmaCat=0.5; temp_sigmaEsc=0.1 # For Second Fit
+phz.run=1; phz.sel=1; phz.avail=1;
+temp_sigmaCat=0.5; temp_sigmaEsc=0.05 # For Second Fit
 
-do.east <- FALSE
+do.east <- TRUE
 if(do.east==TRUE) {
   side <- 'east'
   

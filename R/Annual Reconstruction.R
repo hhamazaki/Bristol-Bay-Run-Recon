@@ -1,4 +1,4 @@
-#**************************************************************************
+#******************************SS********************************************
 #Project Name: SYRAH ANNUAL - Create input files
 #Creator: Curry James Cunningham, SAFS, University of Washington
 #Date: 8.15.11
@@ -582,9 +582,9 @@ create.SYRAH.annual.input <- function(side='west', district.codes, stream.codes,
       ac <- 1
       for(ac in 1:n.agecomps) {
         if(temp.ac.esc[s,(ac+2)] + sum(temp.ac.cat[,(ac+2)]) == 0) {  #No fish of this age are in the escapement, therefore fix RunSize at 0 ###########ERROR HERE!
-          write(x=paste(group.counter, -1, 0, 0.0, total.return, sep='     '), file=outputfile, append=TRUE) 	
+          write(x=paste(group.counter, -1, 0, 0, 0, sep='     '), file=outputfile, append=TRUE) 	
         } else {
-          write(x=paste(group.counter, phz.run, temp.runSize[group.counter]+1, 0.0, total.return, sep='     '), file=outputfile, append=TRUE)	
+          write(x=paste(group.counter, phz.run, temp.runSize[group.counter]+1,ifelse(temp.runSize[group.counter]<1,0,0.2*temp.runSize[group.counter]+1), 5*ifelse(temp.runSize[group.counter]<100,1000,temp.runSize[group.counter])+1, sep='     '), file=outputfile, append=TRUE)	
         }
         group.counter <- group.counter+1
       }#next ac
@@ -605,9 +605,9 @@ create.SYRAH.annual.input <- function(side='west', district.codes, stream.codes,
         #print(paste('temp.ac.esc[s,(ac+2)]',temp.ac.esc[s,(ac+2)],sep=' '))
         #print(paste('sum(temp.ac.cat[,(ac+2)])',sum(temp.ac.cat[,(ac+2)]),sep=' '))	
       	if(temp.ac.esc[s,(ac+2)] + sum(temp.ac.cat[,(ac+2)]) == 0) {
-      	  write(x=paste(group.counter, -1, temp.start, 0.0, total.return, sep='     '), file=outputfile, append=TRUE)
+      	  write(x=paste(group.counter, -1, 0, 0, 0, sep='     '), file=outputfile, append=TRUE)
       	} else {
-      	  write(x=paste(group.counter, phz.run, temp.start+1, 0.0, total.return, sep='     '), file=outputfile, append=TRUE)
+      	  write(x=paste(group.counter, phz.run, temp.start+1, ifelse(temp.start<1,0,0.2*temp.start+1), 5*ifelse(temp.start<100,1000,temp.start)+1, sep='     '), file=outputfile, append=TRUE)
       	}
       	group.counter <- group.counter+1
       }
