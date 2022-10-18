@@ -246,7 +246,7 @@ if(do.east==TRUE) {
   # plot.annual.catch.esc(side=side, years=plot.years, pdf=FALSE, text.cex=0.6, cross.cex=cross, wd=wd)
   # plot.maxGradient(side=side, years=plot.years, pdf=FALSE, wd=wd)
   #Plot
-  if(file.exists(paste(wd, "/Syrah/outputFiles/EastSide/COR/EastSide_", year, ".cor", sep=""))==TRUE) {
+  if(file.exists(file.path(wd, "Syrah", "outputFiles","EastSide","COR",paste0("EastSide_", year, ".cor")))) {
     # plot.all(plot.years=plot.years, plot.side=side, cross=cross, wd=wd)
     # setwd(paste(wd, "/Syrah/outputFiles", sep=""))
     plot.annual.catch.esc(side=side, years=plot.years, pdf=FALSE, text.cex=0.6, cross.cex=cross, wd=wd)
