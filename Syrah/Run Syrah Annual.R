@@ -41,7 +41,7 @@ require(RColorBrewer)
 wd <- getwd()
 
 # DEFINE VERSION OF SYRAH
-model.name <- "Syrah"
+# model.name <- "Syrah"
 model.name <- "Syrah_v1"
 #model.name <- "Syrah_v2"
 
