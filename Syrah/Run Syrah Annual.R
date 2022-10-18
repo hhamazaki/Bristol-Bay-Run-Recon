@@ -145,7 +145,7 @@ if(do.west==TRUE) {
   move(side=side, year=year, wd=wd, model.name=model.name)
 
   #PLOT FINAL OUTPUT
-  if(file.exists(file.path(wd, "outputFiles","WestSide","COR",paste0("WestSide_", year, ".cor")))) {
+  if(file.exists(file.path(wd, "Syrah", "outputFiles","WestSide","COR",paste0("WestSide_", year, ".cor")))) {
     
 
     plot.annual.catch.esc(side=side, years=plot.years, pdf=FALSE, text.cex=0.6, cross.cex=cross, wd=wd)
