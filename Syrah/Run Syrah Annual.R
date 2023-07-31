@@ -34,9 +34,9 @@ require(RColorBrewer)
 # wd <- "/Users/curryc2/Documents/Curry's SYRAH Work/Bristol-Bay-Run-Recon"
 # NOTE IF YOU SET WORKING DIRECTORY TO THE GITHUB REPO THIS SHOULD WORK FINE...
 #wd <- "C:/Projects/Bristol_Bay/Bristol-Bay-Run-Recon-master"
-wd <- file.path("C:","Projects","Bristol_Bay","Bristol-Bay-Run-Recon-master")
+wd <- file.path("C:","Projects","Bristol_Bay","Bristol-Bay-Run-Recon")
 # DEFINE VERSION OF SYRAH
-model.name <- "Syrah"
+#model.name <- "Syrah"
 model.name <- "Syrah_v1"
 #model.name <- "Syrah_v2"
 
@@ -148,10 +148,10 @@ if(do.west==TRUE) {
   if(file.exists(file.path(wd, "outputFiles","WestSide","COR",paste0("WestSide_", year, ".cor")))) {
     
 
-    plot.annual.catch.esc(side=side, years=plot.years, pdf=FALSE, text.cex=0.6, cross.cex=cross, wd=wd)
-    plot.annual.agecomp(side=side, years=year, pdf=FALSE, input.cex=2, wd=wd)
-    plot.annual.genComp(side, years=plot.years, pdf=FALSE, text.cex.left=1, text.cex.right=1, wd=wd)
-    plot.maxGradient(side=side, years=plot.years, pdf=FALSE, wd=wd)
+    plot.annual.catch.esc(side=side, years=plot.years, pdf=TRUE, text.cex=0.6, cross.cex=cross, wd=wd)
+    plot.annual.agecomp(side=side, years=year, pdf=TRUE, input.cex=2, wd=wd)
+    plot.annual.genComp(side, years=plot.years, pdf=TRUE, text.cex.left=1, text.cex.right=1, wd=wd)
+    plot.maxGradient(side=side, years=plot.years, pdf=TRUE, wd=wd)
   }else {
     print(paste(side, 'SIDE RECONSTRUCTION DID NOT CONVERGE, RECHECK PHASING', sep=' '))	
   }
@@ -277,8 +277,8 @@ if(do.broods==TRUE) {
   # if(west.converge==TRUE & east.converge==TRUE) {
     create.all(plot.years=plot.years, plot.side='west', wd=wd)
     create.all(plot.years=plot.years, plot.side='east', wd=wd)
-    plot.all(plot.years=plot.years, plot.side='west', cross=cross, wd=wd)
-    plot.all(plot.years=plot.years, plot.side='east', cross=cross, wd=wd)
+    plot.all(plot.years=plot.years, plot.side='west', cross=cross, wd=wd,pdf=TRUE)
+    plot.all(plot.years=plot.years, plot.side='east', cross=cross, wd=wd,pdf=TRUE)
   # }else {
     # print(paste('ERROR: CANNOT CREATE TABLES, CONVERGENCE FOR WestSide: ', west.converge, ' CONVERGENCE FOR EastSide: ', east.converge, sep=''))
   # }
