@@ -34,9 +34,20 @@ require(RColorBrewer)
 # wd <- "/Users/curryc2/Documents/Curry's SYRAH Work/Bristol-Bay-Run-Recon"
 # NOTE IF YOU SET WORKING DIRECTORY TO THE GITHUB REPO THIS SHOULD WORK FINE...
 #wd <- "C:/Projects/Bristol_Bay/Bristol-Bay-Run-Recon-master"
+<<<<<<< HEAD
 wd <- file.path("C:","Projects","Bristol_Bay","Bristol-Bay-Run-Recon")
 # DEFINE VERSION OF SYRAH
 #model.name <- "Syrah"
+=======
+# wd <- file.path("C:","Projects","Bristol_Bay","Bristol-Bay-Run-Recon-master")
+
+# PLEASE SET WORKING DIRECTORY TO: "Project Directory"
+#   Session > Set Working Director > To Project Directory
+wd <- getwd()
+
+# DEFINE VERSION OF SYRAH
+# model.name <- "Syrah"
+>>>>>>> c571cc60656d006436d437b48ac5009289b7111e
 model.name <- "Syrah_v1"
 #model.name <- "Syrah_v2"
 
@@ -145,7 +156,7 @@ if(do.west==TRUE) {
   move(side=side, year=year, wd=wd, model.name=model.name)
 
   #PLOT FINAL OUTPUT
-  if(file.exists(file.path(wd, "outputFiles","WestSide","COR",paste0("WestSide_", year, ".cor")))) {
+  if(file.exists(file.path(wd, "Syrah", "outputFiles","WestSide","COR",paste0("WestSide_", year, ".cor")))) {
     
 
     plot.annual.catch.esc(side=side, years=plot.years, pdf=TRUE, text.cex=0.6, cross.cex=cross, wd=wd)
@@ -246,7 +257,7 @@ if(do.east==TRUE) {
   # plot.annual.catch.esc(side=side, years=plot.years, pdf=FALSE, text.cex=0.6, cross.cex=cross, wd=wd)
   # plot.maxGradient(side=side, years=plot.years, pdf=FALSE, wd=wd)
   #Plot
-  if(file.exists(paste(wd, "/Syrah/outputFiles/EastSide/COR/EastSide_", year, ".cor", sep=""))==TRUE) {
+  if(file.exists(file.path(wd, "Syrah", "outputFiles","EastSide","COR",paste0("EastSide_", year, ".cor")))) {
     # plot.all(plot.years=plot.years, plot.side=side, cross=cross, wd=wd)
     # setwd(paste(wd, "/Syrah/outputFiles", sep=""))
     plot.annual.catch.esc(side=side, years=plot.years, pdf=FALSE, text.cex=0.6, cross.cex=cross, wd=wd)
