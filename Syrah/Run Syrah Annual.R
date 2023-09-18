@@ -34,11 +34,10 @@ require(RColorBrewer)
 # wd <- "/Users/curryc2/Documents/Curry's SYRAH Work/Bristol-Bay-Run-Recon"
 # NOTE IF YOU SET WORKING DIRECTORY TO THE GITHUB REPO THIS SHOULD WORK FINE...
 #wd <- "C:/Projects/Bristol_Bay/Bristol-Bay-Run-Recon-master"
-<<<<<<< HEAD
 wd <- file.path("C:","Projects","Bristol_Bay","Bristol-Bay-Run-Recon")
 # DEFINE VERSION OF SYRAH
 #model.name <- "Syrah"
-=======
+
 # wd <- file.path("C:","Projects","Bristol_Bay","Bristol-Bay-Run-Recon-master")
 
 # PLEASE SET WORKING DIRECTORY TO: "Project Directory"
@@ -47,7 +46,7 @@ wd <- getwd()
 
 # DEFINE VERSION OF SYRAH
 # model.name <- "Syrah"
->>>>>>> c571cc60656d006436d437b48ac5009289b7111e
+
 model.name <- "Syrah_v1"
 #model.name <- "Syrah_v2"
 
