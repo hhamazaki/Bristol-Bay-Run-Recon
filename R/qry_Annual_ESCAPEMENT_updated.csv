@@ -554,14 +554,14 @@ DistrictID,Stream,District,System,Year,Type,SumOfTotal
 322,100,Egegik,Egegik,2014,Escapement,1382466
 324,100,Naknek_Kvichak,Kvichak,2014,Escapement,4458540
 324,600,Naknek_Kvichak,Naknek,2014,Escapement,1474428
-324,500,Naknek_Kvichak,Alagnak,2014,Escapement,200500
+324,500,Naknek_Kvichak,Alagnak,2014,Escapement,189452
 325,100,Nushagak,Igushik,2014,Escapement,340590
 325,300,Nushagak,Wood,2014,Escapement,2764614
 325,700,Nushagak,Nush-mul,2014,Escapement,618477
 321,100,Ugashik,Ugashik,2015,Escapement,1564638
 322,100,Egegik,Egegik,2015,Escapement,2160792
 324,100,Naknek_Kvichak,Kvichak,2015,Escapement,7348572
-324,500,Naknek_Kvichak,Alagnak,2015,Escapement,5770650
+324,500,Naknek_Kvichak,Alagnak,2015,Escapement,5452026
 324,600,Naknek_Kvichak,Naknek,2015,Escapement,1920954
 325,100,Nushagak,Igushik,2015,Escapement,651172
 325,300,Nushagak,Wood,2015,Escapement,1941474
@@ -569,7 +569,7 @@ DistrictID,Stream,District,System,Year,Type,SumOfTotal
 321,100,Ugashik,Ugashik,2016,Escapement,1635270
 322,100,Egegik,Egegik,2016,Escapement,1837260
 324,100,Naknek_Kvichak,Kvichak,2016,Escapement,4462728
-324,500,Naknek_Kvichak,Alagnak,2016,Escapement,1775820
+324,500,Naknek_Kvichak,Alagnak,2016,Escapement,1677769
 324,600,Naknek_Kvichak,Naknek,2016,Escapement,1691910
 325,100,Nushagak,Igushik,2016,Escapement,469230
 325,300,Nushagak,Wood,2016,Escapement,1309707
@@ -583,7 +583,7 @@ DistrictID,Stream,District,System,Year,Type,SumOfTotal
 325,300,Nushagak,Wood,2017,Escapement,4274224
 325,700,Nushagak,Nush-mul,2017,Escapement,2852308
 321,100,Ugashik,Ugashik,2018,Escapement,1167792
-322,100,Egegik,Egegik,2018,Escapement,1608357
+322,100,Egegik,Egegik,2018,Escapement,1608354
 324,100,Naknek_Kvichak,Kvichak,2018,Escapement,4398708
 324,500,Naknek_Kvichak,Alagnak,2018,Escapement,1581426
 324,600,Naknek_Kvichak,Naknek,2018,Escapement,2221152
@@ -622,3 +622,11 @@ DistrictID,Stream,District,System,Year,Type,SumOfTotal
 325,100,Nushagak,Igushik,2022,Escapement,378768
 325,300,Nushagak,Wood,2022,Escapement,3747612
 325,700,Nushagak,Nush-mul,2022,Escapement,3455272
+321,100,Ugashik,Ugashik,2023,Escapement,1128896
+322,100,Egegik,Egegik,2023,Escapement,1562700
+324,100,Naknek_Kvichak,Kvichak,2023,Escapement,3751686
+324,500,Naknek_Kvichak,Alagnak,2023,Escapement,1099050
+324,600,Naknek_Kvichak,Naknek,2023,Escapement,1156206
+325,100,Nushagak,Igushik,2023,Escapement,542496
+325,300,Nushagak,Wood,2023,Escapement,2648616
+325,700,Nushagak,Nush-mul,2023,Escapement,1772676
