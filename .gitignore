@@ -25,11 +25,16 @@ vignettes/*.pdf
 # Shiny token, see https://shiny.rstudio.com/articles/shinyapps.html
 rsconnect/
 .Rproj.user
+.metadata/
 
 .DS_Store
+# ignore files
 *.xlsx
 *.cpp
 *.htp
 *.obj
+*.Rds
+*.pdf
+
 
 
