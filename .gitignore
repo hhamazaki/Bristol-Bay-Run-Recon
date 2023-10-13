@@ -27,3 +27,9 @@ rsconnect/
 .Rproj.user
 
 .DS_Store
+*.xlsx
+*.cpp
+*.htp
+*.obj
+
+
