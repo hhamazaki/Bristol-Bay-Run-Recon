@@ -9,9 +9,14 @@
   long hour,minute,second;
   double elapsed_time;
   ofstream report1("SYRAH_annual.out");
+#ifdef DEBUG
+  #include <chrono>
+#endif
 #include <admodel.h>
+#ifdef USE_ADMB_CONTRIBS
 #include <contrib.h>
 
+#endif
   extern "C"  {
     void ad_boundf(int i);
   }
@@ -19,6 +24,35 @@
 
 model_data::model_data(int argc,char * argv[]) : ad_comm(argc,argv)
 {
+  adstring tmpstring;
+  tmpstring=adprogram_name + adstring(".dat");
+  if (argc > 1)
+  {
+    int on=0;
+    if ( (on=option_match(argc,argv,"-ind"))>-1)
+    {
+      if (on>argc-2 || argv[on+1][0] == '-')
+      {
+        cerr << "Invalid input data command line option"
+                " -- ignored" << endl;
+      }
+      else
+      {
+        tmpstring = adstring(argv[on+1]);
+      }
+    }
+  }
+  global_datafile = new cifstream(tmpstring);
+  if (!global_datafile)
+  {
+    cerr << "Error: Unable to allocate global_datafile in model_data constructor.";
+    ad_exit(1);
+  }
+  if (!(*global_datafile))
+  {
+    delete global_datafile;
+    global_datafile=NULL;
+  }
 debug=0;  //0=no debugging output, 1=debug data section, 2=higher level calls, 3=within RunModel(),
 catEscError=1;  //0=Poisson, 1=Log-normal specify, 2=Log-normal MLE est Sigma
 if(catEscError != 0 & catEscError != 1 & catEscError != 2) { cout<< "##### ERROR: LIKELIHOOD ERROR DIST FOR CAT. AND ESC. NOT AVAILABLE" <<endl; exit(1); }
@@ -71,9 +105,9 @@ if(debug == 1) { exit(1); }
   startAvail.allocate(1,NAVAILPAR);
   startSel.allocate(1,NSELECTPAR);
  phzRun     = ivector(column(TempRunSize,2));
- startRun   = log(column(TempRunSize,3) + 1e-6);
- lbRun      = log(column(TempRunSize,4) + 1e-6);
- ubRun      = log(column(TempRunSize,5) + 1e-6);
+ startRun   = log(column(TempRunSize,3) + 1.0);
+ lbRun      = log(column(TempRunSize,4) + 1.0);
+ ubRun      = log(column(TempRunSize,5) + 1.0);
  phzAvail   = ivector(column(TempAvailability,2));
  startAvail = column(TempAvailability,3);
  lbAvail    = column(TempAvailability,4);
@@ -82,6 +116,11 @@ if(debug == 1) { exit(1); }
  startSel   = column(TempSelectivity,3);
  lbSel      = column(TempSelectivity,4);
  ubSel      = column(TempSelectivity,5);  
+  if (global_datafile)
+  {
+    delete global_datafile;
+    global_datafile = NULL;
+  }
 }
 
 model_parameters::model_parameters(int sz,int argc,char * argv[]) : 
@@ -205,6 +244,10 @@ model_parameters::model_parameters(int sz,int argc,char * argv[]) :
 if(debug == 2) { cout<< "PARAMETER_SECTION Complete" <<endl;}
 }
 
+void model_parameters::initializationfunction(void)
+{
+}
+
 void model_parameters::preliminary_calculations(void)
 {
 
@@ -299,7 +342,7 @@ void model_parameters::InitializeVariables(void)
   int ac;  //Counter for age comp groups
   int s;  //Counter for stocks
   int g;  //Counter for groups
-  RunSize=exp(ln_RunSize);
+  RunSize=exp(ln_RunSize)-1;
   //Objective Function Value
   negLogLike=0.0;
   //Negative Log Likelihood Parameters
@@ -339,8 +382,6 @@ void model_parameters::InitializeVariables(void)
   for(g=1;g<=NGROUPS;g++) {
     escByGroup(g)=0;
   }//next g
-  
-        
 }
 
 void model_parameters::RunModel(void)
@@ -375,8 +416,6 @@ void model_parameters::RunModel(void)
       catchByGroup(g,d)=0;
     }//next d
   }//next g
-          
-  
   FishInArea=sum(RunSize);
   //if(debug == 3) { cout<< "FishInArea" << FishInArea <<endl; }
   //Newton-Raphson preliminary aproximation for district specific fishing mortality
@@ -397,7 +436,6 @@ void model_parameters::RunModel(void)
         catchModified=tempHarvestRate;
         //cout<<"TRUE"<<endl;
         //cout<<"tempHarvestRate: "<<tempHarvestRate<<endl;
-        
       }
       else {
         catchModified=1.0-0.0025/(tempHarvestRate-0.9);  //Corrects without using the posfun() - MUCH FASTER!
@@ -424,7 +462,6 @@ void model_parameters::RunModel(void)
         for(g=1;g<=NGROUPS;g++) {
           tempStockID=groupCodes(g,3);  //Set temporary stockID
           tempSelPointer=groupCodes(g,4);  //Set temporary selectivity pointer
-          
           //AvailabilityGroup(g,d)=Availability(NDISTRICTS*(tempStockID-1)+d);
           //SelectivityGroup(g)=Selectivity(tempSelPointer);
           if(contCatchType == 0) {
@@ -456,12 +493,10 @@ void model_parameters::RunModel(void)
     tempStockID=groupCodes(g,3);  //Set temporary stockID
     tempSelPointer=groupCodes(g,4);  //Set temporary selectivity pointer
     if(debug == 3) { cout<< "g: " << g << " StockID: " << tempStockID << " SelPointer: " << tempSelPointer <<endl; }
-    
     //SelectivityGroup(g)=Selectivity(tempSelPointer);  //Get selectivity for that group
     for(d=1;d<=NDISTRICTS;d++) {
       if(debug == 3) { cout<< "###d: " << d <<endl; }
       //AvailabilityGroup(g,d)=Availability(NDISTRICTS*(tempStockID-1)+d);
-      
       //Calculate the Catch for a Group in a district
       if(contCatchType == 0) {
         catchByGroup(g,d)=RunSize(g)*(1-mfexp(-1*SelectivityGroup(g)*AvailabilityGroup(g,d)*Fmort(d)));
@@ -473,16 +508,11 @@ void model_parameters::RunModel(void)
       catchByStock(tempStockID)+=catchByGroup(g,d);
     }//next d
   }//next g
-  
   if(debug == 3) { cout<< "After Catch Calculation" <<endl; }
-  
   //CALCULATE ESCAPEMENT: 
   for(g=1;g<=NGROUPS;g++) {
     tempStockID=groupCodes(g,3);
-    tempSumCatch=0;
-    for(d=1;d<=NDISTRICTS;d++) {
-      tempSumCatch+=catchByGroup(g,d); //ERROR HERE NEED TO GO ACROSS DISTRICTS FOR A GROUP
-    }
+	tempSumCatch=rowsum(catchByGroup)(g);
     escByGroup(g)=RunSize(g)-tempSumCatch;  //Updates predicted escapement by group
     escTotal_pred(tempStockID)+=escByGroup(g);  //Updates predicted escapement by stock
   }//next g
@@ -506,7 +536,6 @@ void model_parameters::CalcAgeComp(void)
       tempMat(s,ac)=0;
     }
   }
-  
   //CATCH AGECOMP  
   for(d=1;d<=NDISTRICTS;d++) {
     for(g=1;g<=NGROUPS;g++) {
@@ -520,9 +549,7 @@ void model_parameters::CalcAgeComp(void)
       catchAgeComp_pred(d,ac)=(catchAgeComp_pred(d,ac)/catchTotal_pred(d));
     }//next ac
   }//next d
-  
   //if(debug == 4) { cout<< "catchAgeComp_pred" <<endl; cout<< catchAgeComp_pred <<endl; } 
-  
   if(debug == 4) { cout<< "escAgeComp_pred" <<endl; cout<< escAgeComp_pred <<endl; }
   if(debug == 4) { cout << "escByGroup" <<endl; cout<< escByGroup <<endl;}
   //exit(1);
@@ -535,9 +562,6 @@ void model_parameters::CalcAgeComp(void)
     tempMat(tempStockID,tempAgeCompID)+=escByGroup(g);
   }//next g
   if(debug == 4) { cout<< "escAgeComp_pred" <<endl; cout<< escAgeComp_pred <<endl; } //OK to here
-  
-  
-  
   for(s=1;s<=NSTOCKS;s++) {
     for(ac=1;ac<=NAGECOMPS;ac++) {
       escAgeComp_pred(s,ac)=(escAgeComp_pred(s,ac)/escTotal_pred(s));//ERROR HERE
@@ -559,7 +583,6 @@ void model_parameters::CalcGeneticComp(void)
   int s;  //Counter for stocks
   int tempStockID;  //Temporary stockID
   catchGenComp_pred.initialize();
-    
   for(d=1;d<=NDISTRICTS;d++) {
     if(GENdata(d) == 1) {
       for(g=1;g<=NGROUPS;g++) {
@@ -591,11 +614,9 @@ void model_parameters::CalcLikelihoods(void)
   dvariable pen;
   double min;
   min=1e-100;
-  
   //Initialize
   sigmaCat = 0.0;
   sigmaEsc = 0.0;
-  
   //CATCH
   if(catEscError == 1) {  
     sigmaCat = temp_sigmaCat;
@@ -619,7 +640,6 @@ void model_parameters::CalcLikelihoods(void)
       //sigmaCat=0.01*catchData(d);
     }
   }//next d
-  
   //ESCAPEMENT
   if(catEscError == 1) {
    sigmaEsc = temp_sigmaEsc;
@@ -644,7 +664,6 @@ void model_parameters::CalcLikelihoods(void)
     }
     else {
 	  NLLescape += log(sigmaEsc)+0.5*square(log(escData(s))-log(escTotal_pred(s)))/square(sigmaEsc);
-		
     //  Log-normal distributed error
       if(debug == 5) { 
         cout<< "Stock: " << s <<endl;
@@ -653,7 +672,6 @@ void model_parameters::CalcLikelihoods(void)
       }
     }
   }//next s
-  
   //Catch Age Comp
   //  Multinomial likelihood
   for(d=1;d<=NDISTRICTS;d++) {
@@ -673,7 +691,6 @@ void model_parameters::CalcLikelihoods(void)
     }
   }//next d
   NLLagecompCatch += 100*ageCompCatchoff;
-  
   //cout<<"####"<<endl;cout<<escAgeComp_pred<<endl;
   //Esc Age Comp
   //  Multinomial likelihood
@@ -682,9 +699,7 @@ void model_parameters::CalcLikelihoods(void)
     tempSum=0;
     for(ac=1;ac<=NAGECOMPS;ac++) {
       tempPredProp=escAgeComp_pred(s,ac);
-      
       //cout<<tempPredProp<<endl;
-      
       if(tempPredProp < 1e-06) {  //Very small or near zero predicted proportion - force it to be non-zero
         tempPredProp=1e-06/(2-tempPredProp/1e-06);
         //cout<<ac<<" DOH "<<tempPredProp <<endl;
@@ -699,7 +714,6 @@ void model_parameters::CalcLikelihoods(void)
     }
   }//next s
   NLLagecompEsc += 100*ageCompEscoff;
-  
   //Genetic Composition
   //  Multinomial likelihood
   for(d=1;d<=NDISTRICTS;d++) {
@@ -721,18 +735,13 @@ void model_parameters::CalcLikelihoods(void)
       NLLgenetics += 0;
     }
   }//next d
-  
   NLLgenetics += 100*geneticsoff;
-  
   //Selectivity Parameters Average to 1
   //  least squares
   NLLselOne += 1000*square((sum(Selectivity)/NSELECTPAR)-1);
-  
-  
   //Availability Parameters Average to 1
   //  least squares
   //NLLavailOne += 1000*square((sum(Availability)/NAVAILPAR)-1);
-  
   for(d=1;d<=NDISTRICTS;d++) {
     tempSum=0;
     for(s=1;s<=NSTOCKS;s++) {
@@ -740,7 +749,6 @@ void model_parameters::CalcLikelihoods(void)
     }//next s
     NLLavailOne+=1000*square(tempSum/NSTOCKS-1.0);
   }//next d
-  
   //NEW 3.27.12 - ADDITIONAL LIKELIHOOD
   for(g=1;g<=NGROUPS;g++) {
     pen=0;
@@ -753,7 +761,6 @@ void model_parameters::CalcLikelihoods(void)
   negLogLike = NLLcatch+NLLescape+NLLagecompCatch+NLLagecompEsc+NLLgenetics+NLLselOne+NLLavailOne+NLLextra;
   //negLogLike = NLLcatch+NLLescape+NLLagecompCatch+NLLagecompEsc+NLLgenetics+NLLextra;
   //==============================================================================================================
-  
 }
 
 void model_parameters::report(const dvector& gradients)
@@ -820,7 +827,6 @@ void model_parameters::report(const dvector& gradients)
   report1 << sigmaCat <<endl;
   report1 << "$sigmaEsc" <<endl;
   report1 << sigmaEsc <<endl;
-  
   report1 << "#OBSERVED_AND_PREDICTED_VALUES" <<endl;
   report1 << "$predEsc" <<endl;  //ESCAPEMENT DATA
   for(s=1;s<=NSTOCKS;s++) {
@@ -926,8 +932,6 @@ void model_parameters::report(const dvector& gradients)
   report1 << Fmort <<endl;
   report1 << "#ESTIMATED_PARAMETERS" <<endl;
   report1 << "$availability" <<endl;
-  
-  
   for(d=1;d<=NDISTRICTS;d++) {
     for(s=1;s<=NSTOCKS;s++) {
       report1 << Availability((s-1)*NDISTRICTS + d) << " ";
@@ -941,8 +945,6 @@ void model_parameters::report(const dvector& gradients)
   report1 << "$RunSize" <<endl;
   report1 << RunSize <<endl;
   }//end Last_Phase() 
-  
-  
   if(debug == 2) { cout<< "REPORT_SECTION Complete" <<endl; }
 }
 
@@ -966,8 +968,6 @@ void model_parameters::final_calcs()
  cout << endl << endl << "Starting time: " << ctime(&start);
  cout << "Finishing time: " << ctime(&finish);
  cout << "This run took: " << hour << " hours, " << minute << " minutes, " << second << " seconds." << endl << endl;  
-  
-  
 }
 
 model_data::~model_data()
@@ -997,12 +997,12 @@ int main(int argc,char * argv[])
   gradient_structure::set_MAX_NVAR_OFFSET(500); //
   gradient_structure::set_NUM_DEPENDENT_VARIABLES(500); // max number of variables allowed in model
   time(&start);
-  
     gradient_structure::set_NO_DERIVATIVES();
 #ifdef DEBUG
   #ifndef __SUNPRO_C
 std::feclearexcept(FE_ALL_EXCEPT);
   #endif
+  auto start = std::chrono::high_resolution_clock::now();
 #endif
     gradient_structure::set_YES_SAVE_VARIABLES_VALUES();
     if (!arrmblsize) arrmblsize=15000000;
@@ -1011,6 +1011,7 @@ std::feclearexcept(FE_ALL_EXCEPT);
     mp.preliminary_calculations();
     mp.computations(argc,argv);
 #ifdef DEBUG
+  std::cout << endl << argv[0] << " elapsed time is " << std::chrono::duration_cast<std::chrono::microseconds>(std::chrono::high_resolution_clock::now() - start).count() << " microseconds." << endl;
   #ifndef __SUNPRO_C
 bool failedtest = false;
 if (std::fetestexcept(FE_DIVBYZERO))

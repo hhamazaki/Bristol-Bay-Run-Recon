@@ -265,7 +265,7 @@ plot.all <- function(plot.years, plot.side, cross, wd=wd,pdf=FALSE) {
   
   plot.annual.catch.esc(side=plot.side, years=plot.years, pdf=pdf, text.cex=0.6, cross.cex=cross, wd=wd)
   plot.annual.agecomp(side=plot.side, years=plot.years, pdf=pdf, input.cex=2, plot.page=4, wd=wd)
-  plot.agecomp.coord(side=plot.side, years=plot.years, all=FALSE, pdf=pdf, sz.pts=c(1,2), omit.est=TRUE, wd=wd)
+  plot.agecomp.coord(side=plot.side, years=plot.years, all=TRUE, pdf=pdf, sz.pts=c(1,2), omit.est=TRUE, wd=wd)
   plot.annual.genComp(side=plot.side, years=plot.years, pdf=pdf, text.cex.left=1, text.cex.right=0.75, wd=wd)
   plot.maxGradient(side=plot.side, years=plot.years, pdf=pdf, wd=wd)
   plot.avail.sel.time(side=plot.side, years=plot.years, pdf=pdf, plot.avail=TRUE, plot.sel=TRUE, plot.fmort=TRUE, plot.hist=TRUE, wd=wd)
