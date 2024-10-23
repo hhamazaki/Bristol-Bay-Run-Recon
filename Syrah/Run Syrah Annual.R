@@ -42,7 +42,7 @@ wd <- file.path("C:","Projects","Bristol_Bay","Bristol-Bay-Run-Recon")
 
 # PLEASE SET WORKING DIRECTORY TO: "Project Directory"
 #   Session > Set Working Director > To Project Directory
-wd <- getwd()
+#wd <- getwd()
 
 # DEFINE VERSION OF SYRAH
 # model.name <- "Syrah"
@@ -81,7 +81,7 @@ source(file.path("Syrah","Syrah Helper Functions.r"))
 #compile_admb(model.name, verbose=TRUE)
 
 #######################################################################################################
-year <- 2022
+year <- 2024
 gen.dat <- TRUE  #Flag for Whether GSI data are available
 #######################################################################################################
 #Plotting parameters
@@ -175,8 +175,8 @@ setwd(wd)
 # phz.run=2; phz.sel=2; phz.avail=1; # 2017 req
 # phz.run=3; phz.sel=2; phz.avail=1; #2018 Best - sigma 0.5, 0.1 on first fit
 # phz.run=3; phz.sel=2; phz.avail=1; #2019 Best - sigma 0.5, 0.05 on re-fit
-
-phz.run=1; phz.sel=1; phz.avail=1;
+# phz.run=3; phz.sel=2; phz.avail=1; #2024
+phz.run=3; phz.sel=2; phz.avail=1;
 temp_sigmaCat=0.5; temp_sigmaEsc=0.05 # For Second Fit
 
 do.east <- TRUE
