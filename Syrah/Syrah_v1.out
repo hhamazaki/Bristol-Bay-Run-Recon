@@ -1,72 +1,41 @@
-RECONSTRUCTING YEAR: 2024
-Starting optimization of 'Syrah_v1' in phase 1 of 3 at Tue Oct 15 11:40:10 2024
-phase= 1 | nvar= 15 | iter=  0 | nll=9.92e+02 | mag=2.87e+02 | par[ 15]=Availability[15]
-phase= 1 | nvar= 15 | iter= 20 | nll=9.50e+02 | mag=5.29e+00 | par[ 15]=Availability[15]
-phase= 1 | nvar= 15 | iter= 32 | nll=9.50e+02 | mag=2.51e-07 | par[ 14]=Availability[14]
-MLEsigmaCat: 0.5
-MLEsigmaEsc: 0.05
-MaxGrad: 2.51413e-07
-phase= 2 | nvar= 20 | iter=  0 | nll=9.50e+02 | mag=2.50e+02 | par[ 20]=Selectivity[5]
-phase= 2 | nvar= 20 | iter= 20 | nll=9.40e+02 | mag=1.67e+01 | par[ 17]=Selectivity[2]
-phase= 2 | nvar= 20 | iter= 40 | nll=9.40e+02 | mag=1.50e-01 | par[ 17]=Selectivity[2]
-phase= 2 | nvar= 20 | iter= 60 | nll=9.40e+02 | mag=1.39e-01 | par[ 19]=Selectivity[4]
-MLEsigmaCat: 0.5
-MLEsigmaEsc: 0.05
-MaxGrad: 0.000118906
-phase= 3 | nvar= 65 | iter=  0 | nll=9.40e+02 | mag=1.48e+01 | par[ 38]=ln_RunSize[79]
-phase= 3 | nvar= 65 | iter= 20 | nll=9.36e+02 | mag=1.93e+02 | par[ 38]=ln_RunSize[79]
-phase= 3 | nvar= 65 | iter= 40 | nll=9.34e+02 | mag=2.61e+01 | par[ 62]=Selectivity[2]
-phase= 3 | nvar= 65 | iter= 60 | nll=9.34e+02 | mag=3.09e+00 | par[ 62]=Selectivity[2]
-phase= 3 | nvar= 65 | iter= 80 | nll=9.34e+02 | mag=2.62e+00 | par[ 62]=Selectivity[2]
-phase= 3 | nvar= 65 | iter=100 | nll=9.34e+02 | mag=2.53e+00 | par[ 62]=Selectivity[2]
-phase= 3 | nvar= 65 | iter=120 | nll=9.34e+02 | mag=2.32e+00 | par[ 62]=Selectivity[2]
-phase= 3 | nvar= 65 | iter=140 | nll=9.34e+02 | mag=2.16e+00 | par[ 62]=Selectivity[2]
-phase= 3 | nvar= 65 | iter=160 | nll=9.34e+02 | mag=2.17e+00 | par[ 62]=Selectivity[2]
-phase= 3 | nvar= 65 | iter=180 | nll=9.34e+02 | mag=2.23e+00 | par[ 62]=Selectivity[2]
-phase= 3 | nvar= 65 | iter=200 | nll=9.34e+02 | mag=2.03e+00 | par[ 62]=Selectivity[2]
-phase= 3 | nvar= 65 | iter=220 | nll=9.34e+02 | mag=1.99e+00 | par[ 64]=Selectivity[4]
-phase= 3 | nvar= 65 | iter=240 | nll=9.34e+02 | mag=2.10e+00 | par[ 62]=Selectivity[2]
-phase= 3 | nvar= 65 | iter=260 | nll=9.34e+02 | mag=2.03e+00 | par[ 62]=Selectivity[2]
-phase= 3 | nvar= 65 | iter=280 | nll=9.34e+02 | mag=2.17e+00 | par[ 62]=Selectivity[2]
-phase= 3 | nvar= 65 | iter=300 | nll=9.34e+02 | mag=2.05e+00 | par[ 62]=Selectivity[2]
-phase= 3 | nvar= 65 | iter=320 | nll=9.34e+02 | mag=1.97e+00 | par[ 62]=Selectivity[2]
-phase= 3 | nvar= 65 | iter=340 | nll=9.34e+02 | mag=1.89e+00 | par[ 62]=Selectivity[2]
-phase= 3 | nvar= 65 | iter=360 | nll=9.34e+02 | mag=2.76e+00 | par[ 62]=Selectivity[2]
-phase= 3 | nvar= 65 | iter=380 | nll=9.34e+02 | mag=2.56e+00 | par[ 62]=Selectivity[2]
-phase= 3 | nvar= 65 | iter=400 | nll=9.34e+02 | mag=2.08e+00 | par[ 62]=Selectivity[2]
-phase= 3 | nvar= 65 | iter=420 | nll=9.34e+02 | mag=1.93e+00 | par[ 64]=Selectivity[4]
-phase= 3 | nvar= 65 | iter=440 | nll=9.34e+02 | mag=2.03e+00 | par[ 62]=Selectivity[2]
-phase= 3 | nvar= 65 | iter=460 | nll=9.34e+02 | mag=2.34e+00 | par[ 62]=Selectivity[2]
-phase= 3 | nvar= 65 | iter=480 | nll=9.34e+02 | mag=2.63e+00 | par[ 62]=Selectivity[2]
-phase= 3 | nvar= 65 | iter=500 | nll=9.34e+02 | mag=2.34e+00 | par[ 62]=Selectivity[2]
-phase= 3 | nvar= 65 | iter=520 | nll=9.34e+02 | mag=2.02e+00 | par[ 62]=Selectivity[2]
-phase= 3 | nvar= 65 | iter=540 | nll=9.34e+02 | mag=2.11e+00 | par[ 62]=Selectivity[2]
-phase= 3 | nvar= 65 | iter=560 | nll=9.34e+02 | mag=1.64e+00 | par[ 62]=Selectivity[2]
-phase= 3 | nvar= 65 | iter=580 | nll=9.34e+02 | mag=1.64e+00 | par[ 62]=Selectivity[2]
-phase= 3 | nvar= 65 | iter=600 | nll=9.34e+02 | mag=1.66e+00 | par[ 62]=Selectivity[2]
-phase= 3 | nvar= 65 | iter=620 | nll=9.34e+02 | mag=1.83e+00 | par[ 62]=Selectivity[2]
-phase= 3 | nvar= 65 | iter=640 | nll=9.34e+02 | mag=2.46e-01 | par[ 62]=Selectivity[2]
-phase= 3 | nvar= 65 | iter=660 | nll=9.34e+02 | mag=1.10e-01 | par[ 64]=Selectivity[4]
-phase= 3 | nvar= 65 | iter=680 | nll=9.34e+02 | mag=1.18e-02 | par[ 62]=Selectivity[2]
-phase= 3 | nvar= 65 | iter=700 | nll=9.34e+02 | mag=1.23e-02 | par[ 62]=Selectivity[2]
-phase= 3 | nvar= 65 | iter=720 | nll=9.34e+02 | mag=2.21e-02 | par[ 62]=Selectivity[2]
-phase= 3 | nvar= 65 | iter=740 | nll=9.34e+02 | mag=1.77e-04 | par[ 62]=Selectivity[2]
-phase= 3 | nvar= 65 | iter=760 | nll=9.34e+02 | mag=4.07e-02 | par[ 62]=Selectivity[2]
-phase= 3 | nvar= 65 | iter=767 | nll=9.34e+02 | mag=5.19e-05 | par[ 64]=Selectivity[4]
-Optimization completed after 2.5 s with final statistics:
-  nll=933.832116 | mag=5.18985e-05 | par[ 64]=Selectivity[4]
+RECONSTRUCTING YEAR: 2025
+Starting optimization of 'Syrah_v1' in phase 1 of 1 at Wed Oct 29 10:10:58 2025
+phase= 1 | nvar= 65 | iter=  0 | nll=1.23e+03 | mag=7.06e+02 | par[ 33]=ln_RunSize[66]
+phase= 1 | nvar= 65 | iter= 20 | nll=1.11e+03 | mag=4.70e+02 | par[ 33]=ln_RunSize[66]
+phase= 1 | nvar= 65 | iter= 40 | nll=1.05e+03 | mag=1.46e+02 | par[ 33]=ln_RunSize[66]
+phase= 1 | nvar= 65 | iter= 60 | nll=1.04e+03 | mag=6.65e+00 | par[ 63]=Selectivity[3]
+phase= 1 | nvar= 65 | iter= 80 | nll=1.04e+03 | mag=6.36e-02 | par[ 62]=Selectivity[2]
+phase= 1 | nvar= 65 | iter=100 | nll=1.04e+03 | mag=1.48e-02 | par[ 57]=Availability[12]
+phase= 1 | nvar= 65 | iter=120 | nll=1.04e+03 | mag=1.46e-01 | par[ 38]=ln_RunSize[79]
+phase= 1 | nvar= 65 | iter=140 | nll=1.04e+03 | mag=3.63e-04 | par[ 30]=ln_RunSize[62]
+phase= 1 | nvar= 65 | iter=160 | nll=1.04e+03 | mag=1.51e-03 | par[ 62]=Selectivity[2]
+phase= 1 | nvar= 65 | iter=180 | nll=1.04e+03 | mag=5.48e-05 | par[ 64]=Selectivity[4]
+phase= 1 | nvar= 65 | iter=200 | nll=1.04e+03 | mag=5.85e-03 | par[ 63]=Selectivity[3]
+phase= 1 | nvar= 65 | iter=220 | nll=1.04e+03 | mag=1.28e-03 | par[ 63]=Selectivity[3]
+phase= 1 | nvar= 65 | iter=240 | nll=1.04e+03 | mag=5.91e-04 | par[ 63]=Selectivity[3]
+phase= 1 | nvar= 65 | iter=260 | nll=1.04e+03 | mag=1.46e-03 | par[ 64]=Selectivity[4]
+phase= 1 | nvar= 65 | iter=280 | nll=1.04e+03 | mag=7.24e-04 | par[ 64]=Selectivity[4]
+phase= 1 | nvar= 65 | iter=297 | nll=1.04e+03 | mag=7.44e-06 | par[ 63]=Selectivity[3]
+Optimization completed after 0.51 s with final statistics:
+  nll=1042.118816 | mag=7.43592e-06 | par[ 63]=Selectivity[3]
 
 Warning: the following parameters had issues
-  Availability[2] is within 1% of lower bound: 0 < 0.0965135 < 10
-  Availability[3] is within 1% of lower bound: 0 < 0.0286601 < 10
-  Availability[6] is within 0.1% of lower bound: 0 < 0.000135096 < 10
-  Selectivity[1] is within 0.1% of lower bound: 0 < 0.00701564 < 10
+  ln_RunSize[34] is within 0.1% of lower bound: 4.42811 < 4.42955 < 7.63546
+  ln_RunSize[80] is within 1% of upper bound: 11.5692 < 14.7584 < 14.7881
+  Availability[3] is within 1% of lower bound: 0 < 0.0646282 < 10
+  Availability[5] is within 1% of lower bound: 0 < 0.0502048 < 10
+  Availability[6] is within 1% of lower bound: 0 < 0.0688058 < 10
+  Availability[9] is within 1% of lower bound: 0 < 0.0384025 < 10
+  Availability[10] is within 1% of lower bound: 0 < 0.0107419 < 10
+  Availability[13] is within 1% of lower bound: 0 < 0.0211086 < 10
+  Selectivity[1] is within 1% of lower bound: 0 < 0.0445215 < 10
+  Selectivity[5] is within 1% of lower bound: 0 < 0.0818839 < 10
 
 MLEsigmaCat: 0.5
 MLEsigmaEsc: 0.05
-MaxGrad: 5.18985e-05
-Calculating Hessian (65 variables): 20%, 40%, 60%, 80%, 100% done (0.53 s) 
-Inverting Hessian (65 variables): 20%, 40%, 60%, 80%, 100% done (0.011 s) 
+MaxGrad: 7.43592e-06
+Calculating Hessian (65 variables): 20%, 40%, 60%, 80%, 100% done (0.36 s) 
+Inverting Hessian (65 variables): 20%, 40%, 60%, 80%, 100% done (0.013 s) 
 Starting standard error calculations...  done (0.035 s) 
 
-Finished running model 'Syrah_v1' after 3.1 s.
+Finished running model 'Syrah_v1' after 0.93 s.

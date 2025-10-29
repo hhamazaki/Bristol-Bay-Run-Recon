@@ -34,7 +34,7 @@ require(RColorBrewer)
 # wd <- "/Users/curryc2/Documents/Curry's SYRAH Work/Bristol-Bay-Run-Recon"
 # NOTE IF YOU SET WORKING DIRECTORY TO THE GITHUB REPO THIS SHOULD WORK FINE...
 #wd <- "C:/Projects/Bristol_Bay/Bristol-Bay-Run-Recon-master"
-wd <- file.path("C:","Projects","Bristol_Bay","Bristol-Bay-Run-Recon")
+wd <- file.path("C:","Projects","Bristol_Bay","Bristol-Bay-Run-Reconstruction")
 # DEFINE VERSION OF SYRAH
 #model.name <- "Syrah"
 
@@ -81,7 +81,7 @@ source(file.path("Syrah","Syrah Helper Functions.r"))
 #compile_admb(model.name, verbose=TRUE)
 
 #######################################################################################################
-year <- 2024
+year <- 2025
 gen.dat <- TRUE  #Flag for Whether GSI data are available
 #######################################################################################################
 #Plotting parameters
