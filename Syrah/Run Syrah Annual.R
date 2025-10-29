@@ -25,7 +25,7 @@ require(ggplot2)
 require(beanplot)
 require(mcmcplots)
 require(RColorBrewer)
-
+options(scipen=999)
 
 ############## CONTROL SECTION ##############
 #Set working directory
@@ -34,7 +34,7 @@ require(RColorBrewer)
 # wd <- "/Users/curryc2/Documents/Curry's SYRAH Work/Bristol-Bay-Run-Recon"
 # NOTE IF YOU SET WORKING DIRECTORY TO THE GITHUB REPO THIS SHOULD WORK FINE...
 #wd <- "C:/Projects/Bristol_Bay/Bristol-Bay-Run-Recon-master"
-wd <- file.path("C:","Projects","Bristol_Bay","Bristol-Bay-Run-Recon")
+wd <- file.path("C:","Projects","Bristol_Bay","Bristol-Bay-Run-Reconstruction")
 # DEFINE VERSION OF SYRAH
 #model.name <- "Syrah"
 
@@ -81,7 +81,7 @@ source(file.path("Syrah","Syrah Helper Functions.r"))
 #compile_admb(model.name, verbose=TRUE)
 
 #######################################################################################################
-year <- 2024
+year <- 2025
 gen.dat <- TRUE  #Flag for Whether GSI data are available
 #######################################################################################################
 #Plotting parameters
@@ -155,9 +155,7 @@ if(do.west==TRUE) {
   move(side=side, year=year, wd=wd, model.name=model.name)
 
   #PLOT FINAL OUTPUT
-  if(file.exists(file.path(wd, "Syrah", "outputFiles","WestSide","COR",paste0("WestSide_", year, ".cor")))) {
-    
-
+  if(file.exists(file.path(wd, "Syrah", "outputFiles","WestSide","COR",paste0("WestSide_", year, ".cor")))) { 
     plot.annual.catch.esc(side=side, years=plot.years, pdf=TRUE, text.cex=0.6, cross.cex=cross, wd=wd)
     plot.annual.agecomp(side=side, years=year, pdf=TRUE, input.cex=2, wd=wd)
     plot.annual.genComp(side, years=plot.years, pdf=TRUE, text.cex.left=1, text.cex.right=1, wd=wd)
@@ -176,7 +174,7 @@ setwd(wd)
 # phz.run=3; phz.sel=2; phz.avail=1; #2018 Best - sigma 0.5, 0.1 on first fit
 # phz.run=3; phz.sel=2; phz.avail=1; #2019 Best - sigma 0.5, 0.05 on re-fit
 # phz.run=3; phz.sel=2; phz.avail=1; #2024
-phz.run=3; phz.sel=2; phz.avail=1;
+phz.run=1; phz.sel=1; phz.avail=1;
 temp_sigmaCat=0.5; temp_sigmaEsc=0.05 # For Second Fit
 
 do.east <- TRUE
@@ -217,9 +215,9 @@ if(do.east==TRUE) {
   move(side=side, year=year, wd=wd, model.name=model.name)
   
   #Plot
-  # plot.all(plot.years=plot.years, plot.side=side, cross=cross, wd=wd)
-  # plot.annual.catch.esc(side=side, years=plot.years, pdf=FALSE, text.cex=0.6, cross.cex=cross, wd=wd)
-  # plot.maxGradient(side=side, years=plot.years, pdf=FALSE, wd=wd)
+ #  plot.all(plot.years=plot.years, plot.side=side, cross=cross, wd=wd)
+ # plot.annual.catch.esc(side=side, years=plot.years, pdf=FALSE, text.cex=0.6, cross.cex=cross, wd=wd)
+ #  plot.maxGradient(side=side, years=plot.years, pdf=FALSE, wd=wd)
   
   #if(file.exists(paste("/Users/curryc2/Documents/Curry's SYRAH Work/Syrah Annual/Syrah/outputFiles/EastSide/COR/EastSide_", year, ".cor", sep=''))==FALSE) {
   #phz.run=1; phz.sel=2; phz.avail=1;
@@ -262,9 +260,7 @@ if(do.east==TRUE) {
     plot.annual.catch.esc(side=side, years=plot.years, pdf=FALSE, text.cex=0.6, cross.cex=cross, wd=wd)
     plot.annual.agecomp(side=side, years=year, pdf=FALSE, input.cex=2, wd=wd)
     plot.annual.genComp(side, years=plot.years, pdf=FALSE, text.cex.left=0, text.cex.right=0, wd=wd)
-    plot.maxGradient(side=side, years=plot.years, pdf=FALSE, wd=wd)
-    
-    
+    plot.maxGradient(side=side, years=plot.years, pdf=FALSE, wd=wd)    
   }else {
     print(paste(side, 'SIDE RECONSTRUCTION DID NOT CONVERGE, RECHECK PHASING', sep=' '))	
   }
@@ -287,6 +283,7 @@ if(do.broods==TRUE) {
   # if(west.converge==TRUE & east.converge==TRUE) {
     create.all(plot.years=plot.years, plot.side='west', wd=wd)
     create.all(plot.years=plot.years, plot.side='east', wd=wd)
+	
     plot.all(plot.years=plot.years, plot.side='west', cross=cross, wd=wd,pdf=TRUE)
     plot.all(plot.years=plot.years, plot.side='east', cross=cross, wd=wd,pdf=TRUE)
   # }else {
@@ -294,9 +291,62 @@ if(do.broods==TRUE) {
   # }
 }
 
+#######################################################################################################
+#Output Table createion 
+# Reset Working Directory
+setwd(wd)
+names.stocks.e <- c('Kvichak','Alagnak','Naknek','Egegik','Ugashik')	
+names.stocks.w <- c('Nushagak','Igushik', 'Wood')
+side.stock<- rbind(data.frame(side='East',stock=names.stocks.e),data.frame(side='West',stock=names.stocks.w))
+agecomp.codes <- c("0.1","0.2","0.3","0.4","0.5",
+                     "1.1","1.2","1.3","1.4","1.5",
+                     "2.1","2.2","2.3","2.4",
+                     "3.1","3.2","3.3","3.4")
+temp <- list()
+temp.return <- list()
+temp.brood <- list()
+temp.annual <- list()
+temp.inshore <- list()
+
+for(i in 1:8){
+temp <-  read.csv(file.path(wd,'Syrah','outputFiles',paste('Annual Summary/', side.stock$stock[i], ' ', year, ' Total.csv'))) 
+temp2 <- temp
+inTotal <- temp2[temp2$X=='Total',-1] - temp2[temp2$X=='Offshore Catch',-1] 
+inTotal <- data.frame(X='Inshore Total',(inTotal))
+temp2[2,-1] <- colSums(temp[2:3,-1],na.rm=TRUE)
+temp2 <- rbind(temp2[-3,],inTotal)
+names(temp)[1] <- side.stock$stock[i]
+names(temp)[-1] <- agecomp.codes
+temp$Total <- rowSums(temp[,-1],na.rm=TRUE)
+temp.annual[[i]] <- temp
+names(temp2)[1] <- side.stock$stock[i]
+names(temp2)[-1] <- agecomp.codes
+temp2$Total <- rowSums(temp2[,-1],na.rm=TRUE)
+temp.inshore[[i]] <- temp2
+temp.return[[i]] <- read.csv(file.path(wd,'Syrah','outputFiles',paste0(side.stock$side[i],'Side Figs'),paste(side.stock$stock[i],'Return Table.csv'))) 
+names(temp.return[[i]])[-1] <- agecomp.codes
+temp.return[[i]]$Total <- rowSums(temp.return[[i]][,-1],na.rm=TRUE)
+temp.brood[[i]] <- read.csv(file.path(wd,'Syrah','outputFiles',paste0(side.stock$side[i],'Side Figs'),paste(side.stock$stock[i],'Brood Table.csv'))) 
+names(temp.brood[[i]]) <- c('Brood Year',agecomp.codes,'Escapement','Recruits','R/S')
+}
 
 
-
-
-
+makedata <- function(dat,outfn){
+# Save original file as filename_0.dat
+file.remove(paste(outfn))
+out_file <- file(paste(outfn), open='a')
+for (j in seq_along(dat)){
+    write.table(paste0(" ",names(dat)[j]), file=out_file, sep=",", dec=".", quote=FALSE, col.names=FALSE, row.names=FALSE)  
+    write.table(t(names(dat[[j]])), file=out_file, sep=",", dec=".", quote=FALSE, col.names=FALSE, row.names=FALSE)  
+	write(t(dat[[j]]), file=out_file, sep=",", 
+	ncolumns= ifelse(is.numeric(dim(dat[[j]])[2]),dim(dat[[j]])[2],length(dat[[j]])))
+	}
+close(out_file) 
+}
+makedata(temp.annual,paste0('Syrah/OutputFiles/Annual Summary/Summary_',year'.csv'))
+makedata(temp.inshore,paste0('Syrah/OutputFiles/Annual Summary/Inshore_',year,'.csv'))
+names(temp.brood) <-  side.stock$stock
+names(temp.return) <-  side.stock$stock
+write.xlsx(temp.return, file=paste0('Syrah/OutputFiles/Annual Summary/Summary_return_',year,'.xlsx'),keepNA=TRUE,na.string='NA') 
+write.xlsx(temp.brood, file=paste0('Syrah/OutputFiles/Annual Summary/Summary_brood_',year,'.xlsx'),keepNA=TRUE,na.string='NA') 
 

@@ -1,5 +1,5 @@
  index   name             value      std.dev
-     1   ln_RunSize[6]   -9.6827e+00 1.0825e+04
+     1   ln_RunSize[6]   -9.4035e+00 8.6840e+03
      2   ln_RunSize[7]    1.3511e+01 2.7117e-01
      3   ln_RunSize[8]    1.3394e+01 2.2620e-01
      4   ln_RunSize[9]    8.4106e+00 1.9487e+00
@@ -8,11 +8,11 @@
      7   ln_RunSize[24]   9.0000e+00 2.5837e+00
      8   ln_RunSize[25]   1.6130e+01 8.7526e-02
      9   ln_RunSize[26]   1.3652e+01 3.4460e-01
-    10   ln_RunSize[27]  -7.7528e+00 1.4211e+04
-    11   ln_RunSize[29]   8.1170e+00 3.8754e+00
+    10   ln_RunSize[27]  -7.9650e+00 1.2397e+04
+    11   ln_RunSize[29]   8.1171e+00 3.8752e+00
     12   ln_RunSize[30]   1.2884e+01 5.1021e-01
     13   ln_RunSize[31]   1.1141e+01 1.1905e+00
-    14   ln_RunSize[42]   8.4121e+00 3.6074e+00
+    14   ln_RunSize[42]   8.4121e+00 3.6073e+00
     15   ln_RunSize[43]   1.5907e+01 1.2718e-01
     16   ln_RunSize[44]   1.5589e+01 1.2718e-01
     17   ln_RunSize[45]   1.0514e+01 1.8080e+00
@@ -22,8 +22,8 @@
     21   Availability[1]  6.0940e-01 2.1885e-01
     22   Availability[2]  1.0525e+00 1.5102e-01
     23   Availability[3]  1.3381e+00 1.5864e-01
-    24   Selectivity[1]   1.7922e-01 1.2288e+02
-    25   Selectivity[2]   1.4122e+00 9.6816e+02
-    26   Selectivity[3]   1.0856e+00 7.4428e+02
-    27   Selectivity[4]   1.1763e+00 8.0645e+02
-    28   Selectivity[5]   1.1467e+00 2.6418e+03
+    24   Selectivity[1]   1.7410e-01 2.3686e+02
+    25   Selectivity[2]   1.3718e+00 1.8663e+03
+    26   Selectivity[3]   1.0546e+00 1.4347e+03
+    27   Selectivity[4]   1.1427e+00 1.5545e+03
+    28   Selectivity[5]   1.2569e+00 5.0924e+03
